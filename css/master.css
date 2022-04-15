@@ -1,79 +1,223 @@
+/*ANCHOR REBOOT*/
+@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap);
+
+:root {
+    scroll-behavior: smooth;
+    --primary: gold;
+    --dark: #222222;
+    --light: #f5f5f5;
+    --white: #ffffff;
+    --black: #000000;
+    --accent: rgba(255, 255, 255, 0.2);
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #e5e5e5;
-    font-family: sans-serif;
     margin: 0;
+    font-size: large;
+    font-family: Roboto, sans-serif;
 }
 
-main {
-    max-width: 1200px;
-    margin: auto;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h3 {
+    color: var(--primary);
+
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+header {
+    background-color: hsla(0, 0%, 4%, 0.95);
+
+}
+
+main,
+section,
+article {
     padding: 1rem;
 }
 
-.app {
-    background-color: #fff;
-    border: 0.25rem solid #abcea1;
-    border-radius: 0.5rem;
-    padding: 1rem;
-}
 
-.app section {
-    background-color: #f2faf0;
-}
 
-#addNew {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(171, 206, 161, 0.35);
+input,
+textarea {
+    width: 100%;
     padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
 }
 
-.fa-plus {
-    background-color: #abcea1;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
+textarea {
+    min-height: 200px;
+
 }
 
-#msg {
-    color: red;
+/*ANCHOR COLOR*/
+
+.color-danger {
+    color: lightcoral;
 }
+
+.color-success {
+    color: #16bc6a;
+}
+
+.border-light {
+    border: 2px solid var(--accent);
+}
+
+/*ANCHOR FLEX Parent*/
+
+.d-flex {
+    display: flex;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.fd-row {
+    flex-direction: row;
+}
+
+.fd-column {
+    flex-direction: column;
+}
+
+.jc-c {
+    justify-content: center;
+}
+.jc-sb {
+    justify-content: space-between;
+}
+
+.ai-c {
+    align-items: center;
+}
+
+.g-1 {
+    gap: 1rem;
+}
+
+/*ANCHOR SIZING*/
+.mw-1200 {
+    max-width: 1200px;
+}
+
+/*ANCHOR SPACING*/
+.m-auto {
+    margin: auto;
+}
+.mt-auto {
+    margin-top: auto;
+}
+
+.p-1 {
+    padding: 1rem;
+}
+.px-1 {
+    padding: 0 1rem;
+}
+
+/*ANCHOR TYPO*/
+.text-right {
+    text-align: right;
+}
+
+/* ANCHOR BUTTON */
+.btn-default {
+    background-color: var(--primary);
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--primary);
+    border-radius: 5px;
+    transition: background-color 300ms, border-color 300ms, color 300ms;
+}
+
+.btn-default:hover {
+    background-color: transparent;
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.btn-square {
+    background-color: transparent;
+    color: var(--white);
+    min-width: 3rem;
+    aspect-ratio: 1 / 1;
+    border: 2px solid var(--accent);
+    border-radius: 5px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    transition: border-color 300ms, color 300ms;
+
+}
+
+.btn-square:hover {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+/*ANCHOR CUSTOM*/
 
 #tasks {
     display: grid;
-    grid-gap: 1em;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    /* display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap-reverse; */
-    gap: 1rem;
-    justify-content: center;
-    align-items: flex-start;
+    grid-template-columns: repeat(auto-fill, minmax(min(200px,100%), 1fr));
+    grid-gap:1rem;
 }
 
-#tasks div {
-    flex: 1 1 280px;
-    /* max-width: 280px; */
-    border: 0.25rem solid #abcea1;
-    background-color: #e2eede;
-    border-radius: 0.25rem;
-    padding: 0.25rem;
-    display: grid;
-    gap: 0.25rem;
+.tasks__art {
+    background-color: hsla(0, 0%, 8%, 0.8);
+    border-bottom: 4px solid var(--accent);
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    color: var(--white);
+
 }
 
-#tasks div .options {
-    justify-self: center;
-    display: flex;
-    gap: 1rem;
+#modal {
+    display: none;
+    background-color: hsla(0, 0%, 4%, 0.95);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 500px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-#tasks div .options i {
-    cursor: pointer;
+
+
+
+.rounded {
+    border-radius: 5px;
 }
 
 ::first-letter {
-    text-transform:capitalize;
+    text-transform: uppercase;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--dark);
+        color: var(--white);
+    }
 }

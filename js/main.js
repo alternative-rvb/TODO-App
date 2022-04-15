@@ -1,42 +1,65 @@
-let form = document.getElementById("form");
-let textInput = document.getElementById("textInput");
-let dateInput = document.getElementById("dateInput");
+let modalForm = document.getElementById("modal");
+let btnToOPen = document.getElementById("btn-open");
+let btnToClose = document.querySelectorAll(".btn-close");
+
+let inputTitle = document.getElementById("input-title");
+let inputDate = document.getElementById("input-date");
 let textarea = document.getElementById("textarea");
 let msg = document.getElementById("msg");
 let tasks = document.getElementById("tasks");
-let add = document.getElementById("add");
+// let btnToOpen = document.getElementById("add");
 
-form.addEventListener("submit", (e) => {
+btnToOPen.addEventListener("click", (e) => {
   e.preventDefault();
+  e.stopPropagation();
+  modal.style.display = "block";
+  resetForm();
+});
+
+btnToClose.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    modal.style.display = "none";
+  });
+});
+
+modalForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+
   formValidation();
+  
 });
 
 let formValidation = () => {
-  if (textInput.value === "") {
+  if (inputTitle.value === "") {
     console.log("failure");
     msg.innerHTML = "Task cannot be blank";
+    msg.classList.add("color-danger");
   } else {
     console.log("success");
     msg.innerHTML = "";
     acceptData();
-    add.setAttribute("data-bs-dismiss", "modal");
-    add.click();
+    modal.style.display = "none";
+    // FIXME
+    // btn-add.setAttribute("data-bs-dismiss", "modal");
+    // btn-add.click();
 
-    (() => {
-      add.setAttribute("data-bs-dismiss", "");
-    })();
+    // (() => {
+    //   btn-add.setAttribute("data-bs-dismiss", "");
+    // })();
   }
 };
 
-let data = [];
-
 // ANCHOR ACCEPT DATA
+let data = [];
 
 let acceptData = () => {
   // data.push({object})
   data.unshift({
-    text: textInput.value,
-    date: dateInput.value,
+    text: inputTitle.value,
+    date: inputDate.value,
     description: textarea.value,
   });
 
@@ -52,16 +75,19 @@ let createTasks = () => {
   tasks.innerHTML = "";
   data.map((x, y) => {
     return (tasks.innerHTML += `
-      <div id=${y}>
-            <span class="fw-bold">${x.text}</span>
-            <span class="small text-secondary">${x.date}</span>
-            <p>${x.description}</p>
-    
-            <span class="options">
-              <i onClick= "editTask(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
-              <i onClick ="deleteTask(this);createTasks()" class="fas fa-trash-alt"></i>
-            </span>
-          </div>
+      <article id=${y} class="tasks__art d-flex fd-column">
+      <h3>${x.text}</h3>
+      <p>${x.date}</p>
+      <p>${x.description}</p>
+      <form class="text-right">
+        <button class="btn-square" onClick="editTask(this)">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn-square" onClick="deleteTask(this);createTasks()">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </form>
+      </article>
       `);
   });
 
@@ -71,10 +97,11 @@ let createTasks = () => {
 // ANCHOR UPDATE DATA
 
 let editTask = (e) => {
+  modal.style.display = "block";
   let selectedTask = e.parentElement.parentElement;
 
-  textInput.value = selectedTask.children[0].innerHTML;
-  dateInput.value = selectedTask.children[1].innerHTML;
+  inputTitle.value = selectedTask.children[0].innerHTML;
+  inputDate.value = selectedTask.children[1].innerHTML;
   textarea.value = selectedTask.children[2].innerHTML;
 
   deleteTask(e);
@@ -95,8 +122,8 @@ let deleteTask = (e) => {
 // ANCHOR RESET FORM
 
 let resetForm = () => {
-  textInput.value = "";
-  dateInput.value = "";
+  inputTitle.value = "";
+  inputDate.value = "";
   textarea.value = "";
 };
 
@@ -105,3 +132,22 @@ let resetForm = () => {
   console.log({data});
   createTasks();
 })();
+
+// ANCHOR MODAL
+
+// When the user clicks on the button, open the modal
+// btnToOpen.onclick = function () {
+//   modal.style.display = "block";
+// };
+
+// When the user clicks on <span> (x), close the modal
+// btnToClose.onclick = function () {
+//   modal.style.display = "none";
+// };
+
+// FIXME When the user clicks anywhere outside of the modal, close it
+// window.onclick = function (event) {
+//   if (event.target == modalForm) {
+//     modal.style.display = "none";
+//   }
+// };
