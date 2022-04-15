@@ -33,7 +33,8 @@ let data = [];
 // ANCHOR ACCEPT DATA
 
 let acceptData = () => {
-  data.push({
+  // data.push({object})
+  data.unshift({
     text: textInput.value,
     date: dateInput.value,
     description: textarea.value,
@@ -41,7 +42,7 @@ let acceptData = () => {
 
   localStorage.setItem("data", JSON.stringify(data));
 
-  console.log(data);
+  console.log({data});
   createTasks();
 };
 
@@ -88,7 +89,7 @@ let deleteTask = (e) => {
 
   localStorage.setItem("data", JSON.stringify(data));
 
-  console.log(data);
+  console.log({data});
 };
 
 // ANCHOR RESET FORM
@@ -101,6 +102,6 @@ let resetForm = () => {
 
 (() => {
   data = JSON.parse(localStorage.getItem("data")) || [];
-  console.log(data);
+  console.log({data});
   createTasks();
 })();

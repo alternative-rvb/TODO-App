@@ -1,21 +1,24 @@
 body {
-    font-family: sans-serif;
-    margin: 0 50px;
     background-color: #e5e5e5;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
 }
 
 .app {
     background-color: #fff;
-    width: 300px;
-    height: 500px;
-    border: 5px solid #abcea1;
-    border-radius: 8px;
-    padding: 15px;
+    border: 0.25rem solid #abcea1;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.app section {
+    background-color: #f2faf0;
 }
 
 #addNew {
@@ -23,15 +26,15 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: rgba(171, 206, 161, 0.35);
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
     cursor: pointer;
 }
 
 .fa-plus {
     background-color: #abcea1;
-    padding: 3px;
-    border-radius: 3px;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
 }
 
 #msg {
@@ -40,25 +43,37 @@ body {
 
 #tasks {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap-reverse; */
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 #tasks div {
-    border: 3px solid #abcea1;
+    flex: 1 1 280px;
+    /* max-width: 280px; */
+    border: 0.25rem solid #abcea1;
     background-color: #e2eede;
-    border-radius: 6px;
-    padding: 5px;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
     display: grid;
-    gap: 4px;
+    gap: 0.25rem;
 }
 
 #tasks div .options {
     justify-self: center;
     display: flex;
-    gap: 20px;
+    gap: 1rem;
 }
 
 #tasks div .options i {
     cursor: pointer;
+}
+
+::first-letter {
+    text-transform:capitalize;
 }
