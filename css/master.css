@@ -206,6 +206,7 @@ textarea {
 .tasks__description{
     font-size: 0.8em;
     font-family: Roboto, sans-serif;
+    white-space: pre-line;
 }
 
 #modal {

@@ -75,8 +75,8 @@ const createTasks = () => {
     return (tasks.innerHTML += `
       <article id=${y} class="tasks__art d-flex fd-column">
       <h3 class="tasks__title">${x.text}</h3>
-      <p class="tasks__meta">${x.date ?  '<i class="fa-solid fa-clock"></i> ' + x.date: ''}</p>
-      <p><pre class="tasks__description">${x.description}</pre></p>
+      <p class="tasks__meta">${x.date}</p>
+      <pre class="tasks__description">${x.description}</pre>
       <form class="text-right mt-auto">
         <button class="btn-square" onClick="editTask(this)">
           <i class="fas fa-edit"></i>
