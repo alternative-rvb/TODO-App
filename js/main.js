@@ -1,13 +1,11 @@
-let modalForm = document.getElementById("modal");
-let btnToOPen = document.getElementById("btn-open");
-let btnToClose = document.querySelectorAll(".btn-close");
-
-let inputTitle = document.getElementById("input-title");
-let inputDate = document.getElementById("input-date");
-let textarea = document.getElementById("textarea");
-let msg = document.getElementById("msg");
-let tasks = document.getElementById("tasks");
-// let btnToOpen = document.getElementById("add");
+const modalForm = document.getElementById("modal");
+const btnToOPen = document.getElementById("btn-open");
+const btnToClose = document.querySelectorAll(".btn-close");
+const inputTitle = document.getElementById("input-title");
+const inputDate = document.getElementById("input-date");
+const textarea = document.getElementById("textarea");
+const msg = document.getElementById("msg");
+const tasks = document.getElementById("tasks");
 
 btnToOPen.addEventListener("click", (e) => {
   e.preventDefault();
@@ -32,7 +30,7 @@ modalForm.addEventListener("submit", (e) => {
   
 });
 
-let formValidation = () => {
+const formValidation = () => {
   if (inputTitle.value === "") {
     console.log("failure");
     msg.innerHTML = "Task cannot be blank";
@@ -55,7 +53,7 @@ let formValidation = () => {
 // ANCHOR ACCEPT DATA
 let data = [];
 
-let acceptData = () => {
+const acceptData = () => {
   // data.push({object})
   data.unshift({
     text: inputTitle.value,
@@ -71,15 +69,15 @@ let acceptData = () => {
 
 // ANCHOR CREATE TASK
 
-let createTasks = () => {
+const createTasks = () => {
   tasks.innerHTML = "";
   data.map((x, y) => {
     return (tasks.innerHTML += `
       <article id=${y} class="tasks__art d-flex fd-column">
-      <h3>${x.text}</h3>
-      <p>${x.date}</p>
-      <p>${x.description}</p>
-      <form class="text-right">
+      <h3 class="tasks__title">${x.text}</h3>
+      <p class="tasks__meta">${x.date ?  '<i class="fa-solid fa-clock"></i> ' + x.date: ''}</p>
+      <p><pre class="tasks__description">${x.description}</pre></p>
+      <form class="text-right mt-auto">
         <button class="btn-square" onClick="editTask(this)">
           <i class="fas fa-edit"></i>
         </button>
@@ -96,7 +94,7 @@ let createTasks = () => {
 
 // ANCHOR UPDATE DATA
 
-let editTask = (e) => {
+const editTask = (e) => {
   modal.style.display = "block";
   let selectedTask = e.parentElement.parentElement;
 
@@ -109,7 +107,7 @@ let editTask = (e) => {
 
 // ANCHOR DELETE TASK
 
-let deleteTask = (e) => {
+const deleteTask = (e) => {
   e.parentElement.parentElement.remove();
 
   data.splice(e.parentElement.parentElement.id, 1);
@@ -132,22 +130,3 @@ let resetForm = () => {
   console.log({data});
   createTasks();
 })();
-
-// ANCHOR MODAL
-
-// When the user clicks on the button, open the modal
-// btnToOpen.onclick = function () {
-//   modal.style.display = "block";
-// };
-
-// When the user clicks on <span> (x), close the modal
-// btnToClose.onclick = function () {
-//   modal.style.display = "none";
-// };
-
-// FIXME When the user clicks anywhere outside of the modal, close it
-// window.onclick = function (event) {
-//   if (event.target == modalForm) {
-//     modal.style.display = "none";
-//   }
-// };
