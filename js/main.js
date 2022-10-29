@@ -1,9 +1,11 @@
 const modalForm = document.getElementById("modal");
 const btnToOPen = document.getElementById("btn-open");
 const btnToClose = document.querySelectorAll(".btn-close");
-const inputTitle = document.getElementById("input-title");
-const inputDate = document.getElementById("input-date");
-const textarea = document.getElementById("textarea");
+// const inputTitle = document.getElementById("inputTitle");
+// const inputDate = document.getElementById("inputDate");
+// const textAreaMsg = document.getElementById("textarea_msg");
+const taskForm = document.getElementById("task-form").elements
+console.log('taskForm => ', taskForm);
 const msg = document.getElementById("msg");
 const tasks = document.getElementById("tasks");
 
@@ -37,7 +39,7 @@ const formValidation = () => {
     msg.classList.add("color-danger");
   } else {
     console.log("success");
-    msg.innerHTML = "";
+    // msg.innerHTML = "";
     acceptData();
     modal.style.display = "none";
     // FIXME
@@ -56,9 +58,9 @@ let data = [];
 const acceptData = () => {
   // data.push({object})
   data.unshift({
-    text: inputTitle.value,
-    date: inputDate.value,
-    description: textarea.value,
+    text: taskForm.inputTitle.value,
+    date: taskForm.inputDate.value,
+    description: taskForm.textAreaMsg.value,
   });
 
   localStorage.setItem("data", JSON.stringify(data));
@@ -98,9 +100,9 @@ const editTask = (e) => {
   modal.style.display = "block";
   let selectedTask = e.parentElement.parentElement;
 
-  inputTitle.value = selectedTask.children[0].innerHTML;
-  inputDate.value = selectedTask.children[1].innerHTML;
-  textarea.value = selectedTask.children[2].innerHTML;
+  taskForm.inputTitle.value = selectedTask.children[0].innerHTML;
+  taskForm.inputDate.value = selectedTask.children[1].innerHTML;
+  taskForm.textAreaMsg.value = selectedTask.children[2].innerHTML;
 
   deleteTask(e);
 };
@@ -120,9 +122,9 @@ const deleteTask = (e) => {
 // ANCHOR RESET FORM
 
 let resetForm = () => {
-  inputTitle.value = "";
-  inputDate.value = "";
-  textarea.value = "";
+  taskForm.inputTitle.value = "";
+  taskForm.inputDate.value = "";
+  taskForm.textAreaMsg.value = "";
 };
 
 (() => {
