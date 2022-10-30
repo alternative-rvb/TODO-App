@@ -4,10 +4,15 @@ const btnToClose = document.querySelectorAll(".btn-close");
 // const inputTitle = document.getElementById("inputTitle");
 // const inputDate = document.getElementById("inputDate");
 // const textAreaMsg = document.getElementById("textarea_msg");
-const taskForm = document.getElementById("task-form").elements
-console.log('taskForm => ', taskForm);
+const taskForm = document.getElementById("task-form").elements;
+// console.log('taskForm => ', taskForm);
 const msg = document.getElementById("msg");
 const tasks = document.getElementById("tasks");
+
+// PLUGINS SHODOWN MARDOWN
+const converter = new showdown.Converter();
+converter.setOption('tasklists', 'true');
+converter.setOption('tables', 'true');
 
 btnToOPen.addEventListener("click", (e) => {
   e.preventDefault();
@@ -29,7 +34,6 @@ modalForm.addEventListener("submit", (e) => {
   e.stopPropagation();
 
   formValidation();
-  
 });
 
 const formValidation = () => {
@@ -39,7 +43,7 @@ const formValidation = () => {
     msg.classList.add("color-danger");
   } else {
     console.log("success");
-    // msg.innerHTML = "";
+    msg.innerHTML = "";
     acceptData();
     modal.style.display = "none";
     // FIXME
@@ -57,11 +61,14 @@ let data = [];
 
 const acceptData = () => {
   // data.push({object})
+
   data.unshift({
-    text: taskForm.inputTitle.value,
+    
+    title: taskForm.inputTitle.value,
     date: taskForm.inputDate.value,
     description: taskForm.textAreaMsg.value,
   });
+  
 
   localStorage.setItem("data", JSON.stringify(data));
 
@@ -76,9 +83,9 @@ const createTasks = () => {
   data.map((x, y) => {
     return (tasks.innerHTML += `
       <article id=${y} class="tasks__art d-flex fd-column">
-      <h3 class="tasks__title">${x.text}</h3>
+      <h3 class="tasks__title">${x.title}</h3>
       <p class="tasks__meta">${x.date}</p>
-      <pre class="tasks__description">${x.description}</pre>
+      <pre class="tasks__description">${converter.makeHtml(x.description)}</pre>
       <form class="text-right mt-auto">
         <button class="btn-square" onClick="editTask(this)">
           <i class="fas fa-edit"></i>
@@ -99,10 +106,11 @@ const createTasks = () => {
 const editTask = (e) => {
   modal.style.display = "block";
   let selectedTask = e.parentElement.parentElement;
+  console.log("selectedTask.id => ", selectedTask.id);
 
-  taskForm.inputTitle.value = selectedTask.children[0].innerHTML;
-  taskForm.inputDate.value = selectedTask.children[1].innerHTML;
-  taskForm.textAreaMsg.value = selectedTask.children[2].innerHTML;
+  taskForm.inputTitle.value = data[selectedTask.id].title;
+  taskForm.inputDate.value = data[selectedTask.id].date;
+  taskForm.textAreaMsg.value = data[selectedTask.id].description;
 
   deleteTask(e);
 };

@@ -42,10 +42,12 @@ img {
     height: auto;
 }
 
-header {
+header,
+footer {
     background-color: hsla(0, 0%, 4%, 0.50);
 
 }
+
 
 main,
 section,
@@ -53,9 +55,11 @@ article {
     padding: 1rem;
 }
 
+main {
+    min-height: calc(100vh - 93px - 90px);
+}
 
-
-input,
+input[type="text"],
 textarea {
     width: 100%;
     padding: 0.25rem 0.5rem;
@@ -103,6 +107,7 @@ textarea {
 .jc-c {
     justify-content: center;
 }
+
 .jc-sb {
     justify-content: space-between;
 }
@@ -116,14 +121,15 @@ textarea {
 }
 
 /*ANCHOR SIZING*/
-.mw-1200 {
-    max-width: 1200px;
+.mw-1320 {
+    max-width: 1320px;
 }
 
 /*ANCHOR SPACING*/
 .m-auto {
     margin: auto;
 }
+
 .mt-auto {
     margin-top: auto;
 }
@@ -131,6 +137,7 @@ textarea {
 .p-1 {
     padding: 1rem;
 }
+
 .px-1 {
     padding: 0 1rem;
 }
@@ -138,6 +145,10 @@ textarea {
 /*ANCHOR TYPO*/
 .text-right {
     text-align: right;
+}
+
+.text-center {
+    text-align: center;
 }
 
 /* ANCHOR BUTTON */
@@ -180,8 +191,9 @@ textarea {
 
 #tasks {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(200px,100%), 1fr));
-    grid-gap:1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+    grid-gap: 1rem;
+    /* align-items: baseline; */
 }
 
 .tasks__art {
@@ -193,20 +205,37 @@ textarea {
 
 }
 
-.tasks__title, .tasks__meta {
+/* .tasks__art * {
+    margin: 0 !important;
+    padding: 0 !important;
+} */
+
+.tasks__title,
+.tasks__meta {
     margin: 0 0 0.5rem;
 }
-.tasks__meta{
+
+.tasks__meta {
     font-size: 0.8em;
     opacity: 0.75;
 }
-.tasks__meta i{
+
+.tasks__meta time {
+    font-style: italic;
+}
+
+.tasks__meta i {
     margin-right: 0.5rem;
 }
-.tasks__description{
+
+.tasks__description {
     font-size: 0.8em;
     font-family: Roboto, sans-serif;
     white-space: pre-line;
+    /* border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem;
+    border-radius: 5px; */
+
 }
 
 #modal {
@@ -237,5 +266,10 @@ textarea {
     body {
         background-color: var(--dark);
         color: var(--white);
+    }
+
+    a {
+        color: var(--white);
+
     }
 }

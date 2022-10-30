@@ -8,8 +8,8 @@
     <!-- FONT AWSOME CDN -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
@@ -20,6 +20,7 @@
   <body>
     <header class="task-add d-flex jc-sb ai-c g-1 px-1">
       <h1 class="task-add__title">TODO App</h1>
+      <p>New! Mardown support</p>
       <form class="task-add__form">
         <button id="btn-open" class="task-add__btn-open btn-default">
           <span>Add New Task</span>
@@ -27,9 +28,8 @@
         </button>
       </form>
     </header>
-    <main class="app mw-1200 m-auto ">
+    <main class="app mw-1320 m-auto">
       <div>
-        
         <section class="tasks-vue">
           <h2 class="tasks-vue__title">Tasks</h2>
           <div id="tasks" class="tasks-vue__container"></div>
@@ -52,18 +52,22 @@
           <div class="task-form__section">
             <h2 class="task-form__title">Add New Task</h2>
             <label for="inputTitle" class="task-form__label">
-              <p>Task Title</p>
+              <p>Intitulé:</p>
             </label>
-            <input type="text" id="inputTitle" class="rounded"/>
+            <input type="text" id="inputTitle" class="rounded" />
             <p id="msg"></p>
             <label for="inputDate" class="task-form__label">
-              <p>Due Date</p>
+              <p>Échéance:</p>
             </label>
             <input type="date" id="inputDate" class="rounded" />
             <label for="textarea" class="task-form__label">
               <p>Description</p>
             </label>
-            <textarea id="textAreaMsg" class="rounded" maxlength="250"></textarea>
+            <textarea
+              id="textAreaMsg"
+              class="rounded"
+              maxlength="250"
+            ></textarea>
           </div>
           <div class="task-form__section text-right">
             <button
@@ -83,7 +87,16 @@
         </form>
       </div>
     </main>
+    <footer class="p-1 text-center">
+      <p>© 2022 <a href="https://alternative-rvb.com/">Alternative RVB</a></p>
+    </footer>
 
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
+      integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="./js/main.js"></script>
   </body>
 </html>
