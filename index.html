@@ -18,26 +18,38 @@
   </head>
 
   <body>
-    <header class="task-header d-flex wrap jc-sb ai-c g-1 px-1">
-      <h1 class="task-header__title"><a href="#">TODO App</a></h1>
-      <p>New! Mardown support</p>
-      <form class="task-header__form">
-        <button id="btn-open" class="task-header__btn-open btn-default">
-          <span>Add New Task</span>
-          <i class="fas fa-plus"></i>
-        </button>
-      </form>
+    <header class="task-header">
+      <p class="task-header__info text-center">New! Mardown support</p>
+      <div class="d-flex jc-sb ai-c p-1">
+        <div class="d-flex wrap g-1">
+          <img id="logo" src="./images/logo-arvb-2019-color-bg-white-circle.svg" alt="Logo Alternative RVB" width="50">
+          <h1 class="task-header__title m-0"><a href="#">TODO App</a></h1>
+        </div>
+        <form class="create-form">
+          <button
+            id="btn-create"
+            class="btn-create btn-default d-flex jc-c ai-c shadow"
+            aria-label="Add new task"
+            title="Add new task"
+          >
+            <i class="fas fa-plus"></i>
+          </button>
+        </form>
+      </div>
     </header>
+
     <main class="app mw-1320 m-auto">
       <div>
         <section class="tasks-vue">
           <h2 class="tasks-vue__title">Tasks</h2>
-          <div id="tasks" class="tasks-vue__container"></div>
+          <p>Pour créer une tâche appuyer sur +</p>
+          <div id="tasks" class="tasks-vue__container">
+          </div>
         </section>
       </div>
 
       <!-- ANCHOR Modal -->
-      <div id="modal">
+      <div id="modalForm" class="shadow">
         <form id="task-form" class="task-form rounded p-1">
           <div class="task-form__section text-right">
             <button
@@ -51,35 +63,42 @@
           </div>
           <div class="task-form__section">
             <h2 class="task-form__title">Add New Task</h2>
-            <label for="inputTitle" class="task-form__label">
-              <p>Intitulé:</p>
-            </label>
-            <input type="text" id="inputTitle" class="rounded" />
-            <p id="msg"></p>
-            <label for="inputDate" class="task-form__label">
-              <p>Échéance:</p>
-            </label>
-            <input type="date" id="inputDate" class="rounded" />
-            <label for="textarea" class="task-form__label">
-              <p>Description</p>
-            </label>
-            <textarea
-              id="textAreaMsg"
-              class="rounded"
-              maxlength="250"
-            ></textarea>
+            <div class="my-1">
+              <label for="inputTitle" class="task-form__label">
+                Intitulé:
+              </label>
+              <input type="text" id="inputTitle" class="rounded" />
+            </div>
+            <p id="info"></p>
+            <div class="my-1">
+              <label for="inputDate" class="task-form__label">
+                Échéance:
+              </label>
+              <input type="date" id="inputDate" class="rounded" />
+            </div>
+            <div class="my-1">
+              <label for="textAreaMsg" class="task-form__label">
+                Description
+              </label>
+              <textarea
+                id="textAreaMsg"
+                class="rounded"
+                maxlength="250"
+              ></textarea>
+            </div>
+            <div class="my-1">
+              <input type="color" id="inputColor" value="#ffd700" />
+              <label for="inputColor">Couleur</label>
+            </div>
           </div>
           <div class="task-form__section text-right">
-            <button
-              type="button"
-              class="task-form__btn-close btn-close btn-default"
-            >
+            <button type="button" class="task-form__btn btn-default">
               Delete
             </button>
             <button
               type="submit"
               id="btn-add"
-              class="task-form__btn-add btn-default"
+              class="task-form__btn btn-default"
             >
               Add
             </button>
@@ -87,6 +106,7 @@
         </form>
       </div>
     </main>
+
     <footer class="p-1 text-center">
       <p>© 2022 <a href="https://alternative-rvb.com/">Alternative RVB</a></p>
     </footer>
