@@ -34,8 +34,13 @@ h6 {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-h3 {
+h1,
+h2 {
     color: var(--primary);
+}
+
+h3 {
+    color: var(--light);
 }
 
 img {
@@ -185,7 +190,8 @@ textarea {
     color: var(--white);
     min-width: 3rem;
     aspect-ratio: 1 / 1;
-    border: 2px solid var(--accent);
+    /* border: 2px solid var(--accent); */
+    border: none;
     border-radius: 5px;
     display: inline-flex;
     justify-content: center;
@@ -195,7 +201,7 @@ textarea {
 }
 
 .btn-square:hover {
-    border: 2px solid var(--primary);
+    /* border: 2px solid var(--primary); */
     color: var(--primary);
 }
 
