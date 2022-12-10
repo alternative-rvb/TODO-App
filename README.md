@@ -6,7 +6,7 @@ https://www.freecodecamp.org/news/learn-crud-operations-in-javascript-by-buildin
 
 ## Nouveau
 
-Prise en charge de Markdown
+Prise en charge de MarkDown
 
 ## TODO
 
