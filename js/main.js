@@ -7,13 +7,13 @@ const info = document.querySelector("#info");
 const tasks = document.querySelector("#tasks");
 const initInfo = "Pour créer une tâche appuyer sur +";
 
-// ANCHOR PLUGINS SHODOWN MARDOWN
+// SECTION PLUGINS SHODOWN MARDOWN
 const converter = new showdown.Converter();
 converter.setOption("tasklists", "true");
 converter.setOption("tables", "true");
-// END
+// !SECTION
 
-// ANCHOR GESTION DE LA COULEUR
+// SECTION GESTION DE LA COULEUR
 
 const getRandomColorHue = () => {
   return Math.floor(Math.random() * 360 + 1);
@@ -72,9 +72,9 @@ function HSLToHex(h, s, l) {
 
 console.log("HSLToHex ===>", HSLToHex(getRandomColorHue(), 50, 50));
 
-// END
+// !SECTION
 
-// ANCHOR TODO APP
+// SECTION TODO APP
 
 const noRefresh = (e) => {
   e.preventDefault();
@@ -194,3 +194,5 @@ const resetForm = () => {
   console.log({data});
   createTasks();
 })();
+
+// !SECTION
