@@ -1,6 +1,6 @@
 # JS-CRUD-TODO-App
 
-CRUD Javascript Simple avec Bootstrap 5
+Javascript CRUD Simple
 
 https://www.freecodecamp.org/news/learn-crud-operations-in-javascript-by-building-todo-app/
 
@@ -8,8 +8,8 @@ https://www.freecodecamp.org/news/learn-crud-operations-in-javascript-by-buildin
 
 Prise en charge de MarkDown
 
-https://css-tricks.com/converting-color-spaces-in-javascript/ 
+Convertir des codes couleurs: https://css-tricks.com/converting-color-spaces-in-javascript/ 
 
 ## TODO
 
-- [ ] Ajouter couleurs aléatoires
+- [X] Ajouter couleurs aléatoires
