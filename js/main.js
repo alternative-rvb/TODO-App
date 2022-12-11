@@ -70,31 +70,28 @@ function HSLToHex(h, s, l) {
   return "#" + r + g + b;
 }
 
-console.log("HSLToHex ===>",HSLToHex(getRandomColorHue(),50,50));
+console.log("HSLToHex ===>", HSLToHex(getRandomColorHue(), 50, 50));
 
 // END
 
 // ANCHOR TODO APP
 
-btnToOPen.addEventListener("click", (e) => {
+const noRefresh = (e) => {
   e.preventDefault();
   e.stopPropagation();
+};
+
+btnToOPen.addEventListener("click", (e) => {
+  noRefresh(e);
   modalForm.style.display = "block";
   // resetForm();
 });
 
 btnToClose.forEach((item) => {
   item.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    noRefresh(e);
     modalForm.style.display = "none";
   });
-});
-
-modalForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  formValidation();
 });
 
 const formValidation = () => {
@@ -115,6 +112,11 @@ const formValidation = () => {
     // })();
   }
 };
+
+modalForm.addEventListener("submit", (e) => {
+  noRefresh(e);
+  formValidation();
+});
 
 // ANCHOR ACCEPT DATA
 let data = [];
@@ -184,7 +186,7 @@ const resetForm = () => {
   taskForm.inputTitle.value = "";
   taskForm.inputDate.value = "";
   taskForm.textAreaMsg.value = "";
-  taskForm.inputColor.value = HSLToHex(getRandomColorHue(),50,50);
+  taskForm.inputColor.value = HSLToHex(getRandomColorHue(), 50, 50);
 };
 
 (() => {
@@ -192,4 +194,3 @@ const resetForm = () => {
   console.log({data});
   createTasks();
 })();
-
