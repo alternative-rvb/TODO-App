@@ -5,13 +5,76 @@ const btnToAdd = document.querySelector("#btn-add");
 const taskForm = document.querySelector("#task-form").elements;
 const info = document.querySelector("#info");
 const tasks = document.querySelector("#tasks");
-const initInfo = "Pour créer une tâche appuyer sur +"
+const initInfo = "Pour créer une tâche appuyer sur +";
 
-// PLUGINS SHODOWN MARDOWN
+// ANCHOR PLUGINS SHODOWN MARDOWN
 const converter = new showdown.Converter();
 converter.setOption("tasklists", "true");
 converter.setOption("tables", "true");
 // END
+
+// ANCHOR GESTION DE LA COULEUR
+
+const getRandomColorHue = () => {
+  return Math.floor(Math.random() * 360 + 1);
+};
+
+console.log("getRandomColorHue ===>", getRandomColorHue());
+
+function HSLToHex(h, s, l) {
+  s /= 100;
+  l /= 100;
+
+  let c = (1 - Math.abs(2 * l - 1)) * s,
+    x = c * (1 - Math.abs(((h / 60) % 2) - 1)),
+    m = l - c / 2,
+    r = 0,
+    g = 0,
+    b = 0;
+
+  if (0 <= h && h < 60) {
+    r = c;
+    g = x;
+    b = 0;
+  } else if (60 <= h && h < 120) {
+    r = x;
+    g = c;
+    b = 0;
+  } else if (120 <= h && h < 180) {
+    r = 0;
+    g = c;
+    b = x;
+  } else if (180 <= h && h < 240) {
+    r = 0;
+    g = x;
+    b = c;
+  } else if (240 <= h && h < 300) {
+    r = x;
+    g = 0;
+    b = c;
+  } else if (300 <= h && h < 360) {
+    r = c;
+    g = 0;
+    b = x;
+  }
+  // Having obtained RGB, convert channels to hex
+  r = Math.round((r + m) * 255).toString(16);
+  g = Math.round((g + m) * 255).toString(16);
+  b = Math.round((b + m) * 255).toString(16);
+
+  // Prepend 0s, if necessary
+  if (r.length == 1) r = "0" + r;
+  if (g.length == 1) g = "0" + g;
+  if (b.length == 1) b = "0" + b;
+
+  return "#" + r + g + b;
+}
+
+console.log("HSLToHex ===>",HSLToHex(getRandomColorHue(),50,50));
+
+// END
+
+// ANCHOR TODO APP
 
 btnToOPen.addEventListener("click", (e) => {
   e.preventDefault();
@@ -61,7 +124,7 @@ const acceptData = () => {
     title: taskForm.inputTitle.value,
     date: taskForm.inputDate.value,
     description: taskForm.textAreaMsg.value,
-    color: taskForm.inputColor.value
+    color: taskForm.inputColor.value,
   });
   localStorage.setItem("data", JSON.stringify(data));
   createTasks();
@@ -70,10 +133,12 @@ const acceptData = () => {
 // ANCHOR CREATE TASK
 const createTasks = () => {
   tasks.innerHTML = "";
-  btnToAdd.innerHTML= "Add";
+  btnToAdd.innerHTML = "Add";
   data.map((x, y) => {
     return (tasks.innerHTML += `
-      <article id=${y} class="tasks__art d-flex fd-column" style="border-color:${x.color}">
+      <article id=${y} class="tasks__art d-flex fd-column" style="border-color:${
+      x.color
+    }">
       <h3 class="tasks__title">${x.title}</h3>
       <p class="tasks__meta">${x.date}</p>
       <pre class="tasks__description">${converter.makeHtml(x.description)}</pre>
@@ -89,14 +154,14 @@ const createTasks = () => {
       `);
   });
   resetForm();
-  
+
   console.log({data});
 };
 
 // ANCHOR UPDATE DATA
 const editTask = (e) => {
   modalForm.style.display = "block";
-  btnToAdd.innerHTML= "Update";
+  btnToAdd.innerHTML = "Update";
   let selectedTask = e.parentElement.parentElement;
   taskForm.inputTitle.value = data[selectedTask.id].title;
   taskForm.inputDate.value = data[selectedTask.id].date;
@@ -115,11 +180,11 @@ const deleteTask = (e) => {
 };
 
 // ANCHOR RESET FORM
-let resetForm = () => {
+const resetForm = () => {
   taskForm.inputTitle.value = "";
   taskForm.inputDate.value = "";
   taskForm.textAreaMsg.value = "";
-  taskForm.inputColor.value = "#ffd700";
+  taskForm.inputColor.value = HSLToHex(getRandomColorHue(),50,50);
 };
 
 (() => {
@@ -127,3 +192,4 @@ let resetForm = () => {
   console.log({data});
   createTasks();
 })();
+
