@@ -52,6 +52,10 @@ ul {
     padding-inline-start: 1rem;
 }
 
+a {
+    color: var(--light);
+}
+
 header {
     position: fixed;
     top: 0;
@@ -61,6 +65,7 @@ header {
 header,
 footer {
     background-color: hsla(0, 0%, 8%, 1);
+    color: var(--light);
 }
 
 main,
@@ -133,6 +138,7 @@ textarea {
 .ai-c {
     align-items: center;
 }
+
 .ai-fs {
     align-items: center;
 }
