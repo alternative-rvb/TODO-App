@@ -1,123 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TODO APP</title>
-    <link rel="shortcut icon" href="images/logo-arvb-2019-color-bg-white-circle.svg" type="image/x-icon">
-    <!-- FONT AWSOME CDN -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <!-- CUSTOM CSS master -->
-    <link rel="stylesheet" href="./css/master.css" />
-  </head>
 
-  <body>
-    <header class="task-header">
-      <p class="task-header__info text-center">New! Mardown support</p>
-      <div class="d-flex jc-sb ai-c p-1">
-        <div class="d-flex wrap g-1">
-          <img id="logo" src="./images/logo-arvb-2019-color-bg-white-circle.svg" alt="Logo Alternative RVB" width="50">
-          <h1 class="task-header__title m-0"><a href="#">TODO App</a></h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TODO APP</title>
+  <link rel="shortcut icon" href="images/logo-arvb-2019-color-bg-white-circle.svg" type="image/x-icon">
+  <!-- FONT AWSOME CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- CUSTOM CSS master -->
+  <link rel="stylesheet" href="./css/master.css" />
+</head>
+
+<body>
+  <header class="task-header">
+    <p class="task-header__info text-center">New! Mardown support</p>
+    <div class="d-flex jc-sb ai-c p-1">
+      <div class="d-flex wrap g-1">
+        <img id="logo" src="./images/logo-arvb-2019-color-bg-white-circle.svg" alt="Logo Alternative RVB" width="50">
+        <h1 class="task-header__title m-0"><a href="#">TODO App</a></h1>
+      </div>
+      <form class="create-form">
+        <button id="btn-create" class="btn-create btn-default d-flex jc-c ai-c shadow" aria-label="Add new task"
+          title="Add new task">
+          <i class="fas fa-plus"></i>
+        </button>
+      </form>
+    </div>
+  </header>
+
+  <main class="app mw-1320 m-auto">
+    <div>
+      <section class="tasks-vue">
+        <h2 class="tasks-vue__title">Notes</h2>
+        <p>Pour ajouter une note cliquer sur +</p>
+        <div id="tasks" class="tasks-vue__container">
         </div>
-        <form class="create-form">
-          <button
-            id="btn-create"
-            class="btn-create btn-default d-flex jc-c ai-c shadow"
-            aria-label="Add new task"
-            title="Add new task"
-          >
-            <i class="fas fa-plus"></i>
+      </section>
+    </div>
+
+    <!-- ANCHOR Modal -->
+    <div id="modalForm" class="shadow">
+      <form id="task-form" class="task-form rounded p-1">
+        <div class="task-form__section text-right">
+          <button id="btn-close" class="task-form__btn-close btn-close btn-square" type="button" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
           </button>
-        </form>
-      </div>
-    </header>
-
-    <main class="app mw-1320 m-auto">
-      <div>
-        <section class="tasks-vue">
-          <h2 class="tasks-vue__title">Notes</h2>
-          <p>Pour ajouter une note cliquer sur +</p>
-          <div id="tasks" class="tasks-vue__container">
+        </div>
+        <div class="task-form__section">
+          <h2 class="task-form__title">Add New Task</h2>
+          <div class="my-1">
+            <label for="inputTitle" class="task-form__label">
+              Intitulé:
+            </label>
+            <input type="text" id="inputTitle" class="rounded" />
           </div>
-        </section>
-      </div>
-
-      <!-- ANCHOR Modal -->
-      <div id="modalForm" class="shadow">
-        <form id="task-form" class="task-form rounded p-1">
-          <div class="task-form__section text-right">
-            <button
-              id="btn-close"
-              class="task-form__btn-close btn-close btn-square"
-              type="button"
-              aria-label="Close"
-            >
-              <i class="fa-solid fa-xmark"></i>
-            </button>
+          <p id="info"></p>
+          <div class="my-1">
+            <label for="inputDate" class="task-form__label">
+              Échéance:
+            </label>
+            <input type="date" id="inputDate" class="rounded" />
           </div>
-          <div class="task-form__section">
-            <h2 class="task-form__title">Add New Task</h2>
-            <div class="my-1">
-              <label for="inputTitle" class="task-form__label">
-                Intitulé:
-              </label>
-              <input type="text" id="inputTitle" class="rounded" />
-            </div>
-            <p id="info"></p>
-            <div class="my-1">
-              <label for="inputDate" class="task-form__label">
-                Échéance:
-              </label>
-              <input type="date" id="inputDate" class="rounded" />
-            </div>
-            <div class="my-1">
-              <label for="textAreaMsg" class="task-form__label">
-                Description
-              </label>
-              <textarea
-                id="textAreaMsg"
-                class="rounded"
-                maxlength="250"
-              ></textarea>
-            </div>
-            <div class="my-1">
-              <input type="color" id="inputColor" value="#ffd700" />
-              <label for="inputColor">Couleur</label>
-            </div>
+          <div class="my-1">
+            <label for="textAreaMsg" class="task-form__label">
+              Description
+            </label>
+            <textarea id="textAreaMsg" class="rounded" maxlength="250"></textarea>
           </div>
-          <div class="task-form__section text-right">
-            <button type="button" class="task-form__btn btn-default">
-              Delete
-            </button>
-            <button
-              type="submit"
-              id="btn-add"
-              class="task-form__btn btn-default"
-            >
-              Add
-            </button>
+          <div class="my-1">
+            <input type="color" id="inputColor" value="#ffd700" />
+            <label for="inputColor">Couleur</label>
           </div>
-        </form>
-      </div>
-    </main>
+        </div>
+        <div class="task-form__section text-right">
+          <button type="button" class="task-form__btn btn-default">
+            Delete
+          </button>
+          <button type="submit" id="btn-add" class="task-form__btn btn-default">
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
 
-    <footer class="p-1 text-center">
-      <p>© 2022 <a href="https://alternative-rvb.com/">Alternative RVB</a></p>
-    </footer>
+  <footer class="p-1 text-center">
+    <p>© 2022 <a href="https://alternative-rvb.com/">Alternative RVB</a></p>
+  </footer>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
-      integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="./js/main.js"></script>
-  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
+    integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./js/main.js" type="module"></script>
+</body>
+
 </html>
