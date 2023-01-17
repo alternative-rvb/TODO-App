@@ -317,6 +317,14 @@ textarea {
     border-radius: 5px;
 }
 
+.rounded-right {
+    border-radius: 0 5px 5px 0;
+}
+
+.rounded-left {
+    border-radius: 5px 0 0 5px;
+}
+
 .shadow {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
