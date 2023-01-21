@@ -66,28 +66,28 @@ modalForm.addEventListener("submit", (e) => {
 let data = [];
 const acceptData = () => {
     let obj = {};
+    obj.task = [];
     for (let i = 0; i < taskForm.elements.length; i++) {
         if (taskForm.elements[i].name) {
-            obj[taskForm.elements[i].name] = taskForm.elements[i].value;
+            // REVIEW
+            if (!taskForm.elements[i].classList.contains("single-task")) {
+                obj[taskForm.elements[i].name] = taskForm.elements[i].value;
+            } else {
+                obj["task"].push(taskForm.elements[i].value);
+            }
         }
     }
     console.log("obj => ", obj);
-    // data.push({object})
 
     data.unshift({
-        // REVIEW Ajouter tous les champs avec un boucle
         ...obj,
-        // title: taskForm.elements.inputTitle.value,
-        // date: taskForm.elements.inputDate.value,
-        // description: taskForm.elements.textAreaMsg.value,
-        // color: taskForm.elements.inputColor.value,
     });
 
     localStorage.setItem("data", JSON.stringify(data));
     createTasks();
 };
 
-// ANCHOR CREATE TASK
+// ANCHOR CREATE TASK | AFFICHAGE
 const createTasks = () => {
     tasks.innerHTML = "";
     btnToAdd.innerHTML = "Add";
@@ -98,7 +98,9 @@ const createTasks = () => {
         }">
       <h3 class="tasks__title">${x.title}</h3>
       <p class="tasks__meta">${x.date}</p>
-      <pre class="tasks__description">${x.task1}</pre>
+      <ul>
+        ${x.task.map((item) => `<li class="tasks__task">${item}</li>`).join("")}
+      </ul>
       <form class="text-right mt-auto">
         <button class="edit-task btn-square" >
           <i class="fas fa-edit"></i>
