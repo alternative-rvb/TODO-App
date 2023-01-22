@@ -192,13 +192,25 @@ textarea {
 /* ANCHOR BUTTON */
 .btn-default {
     background-color: var(--primary);
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 0.5rem;
     border: 2px solid var(--primary);
     border-radius: 5px;
     transition: background-color 300ms, border-color 300ms, color 300ms;
 }
 
 .btn-default:hover {
+    background-color: transparent;
+    color: var(--primary);
+}
+.btn-classic {
+    background-color: var(--primary);
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 300ms, border-color 300ms, color 300ms;
+}
+
+.btn-classic:hover {
     background-color: transparent;
     color: var(--primary);
 }
@@ -233,7 +245,7 @@ textarea {
 /*ANCHOR CUSTOM*/
 
 #logo {
-    width: 50px;
+    width: 35px;
 }
 
 .task-header>* {
@@ -251,7 +263,9 @@ textarea {
 } */
 
 .task-header__title a {
+    display: block;
     text-decoration: none;
+    font-size: 24px;
 }
 
 #tasks {
@@ -315,6 +329,14 @@ textarea {
 
 .rounded {
     border-radius: 5px;
+}
+
+.rounded-right {
+    border-radius: 0 5px 5px 0;
+}
+
+.rounded-left {
+    border-radius: 5px 0 0 5px;
 }
 
 .shadow {

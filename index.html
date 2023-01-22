@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8" />
@@ -17,9 +17,9 @@
 
 <body>
   <header class="task-header">
-    <p class="task-header__info text-center">New! Mardown support</p>
+    <!-- <p class="task-header__info text-center">New! Mardown support</p> -->
     <div class="d-flex jc-sb ai-c p-1">
-      <div class="d-flex wrap g-1">
+      <div class="d-flex wrap ai-c g-1">
         <img id="logo" src="./images/logo-arvb-2019-color-bg-white-circle.svg" alt="Logo Alternative RVB" width="50">
         <h1 class="task-header__title m-0"><a href="#">TODO App</a></h1>
       </div>
@@ -56,31 +56,32 @@
             <label for="inputTitle" class="task-form__label">
               Intitulé:
             </label>
-            <input type="text" id="inputTitle" class="rounded" />
+            <input type="text" id="inputTitle" class="rounded" placeholder="Titre ..." name="title" />
           </div>
           <p id="info"></p>
           <div class="my-1">
             <label for="inputDate" class="task-form__label">
               Échéance:
             </label>
-            <input type="date" id="inputDate" class="rounded" />
+            <input type="date" id="inputDate" class="rounded" name="date" />
+          </div>
+          <div class="input-container">
+            <!-- <div class="my-1 d-flex ai-c">
+              <input type="text" id="inputTask1" class="single-task rounded-left" placeholder="Your task 1..."
+                name="task1">
+              <button type="button" class="add-single btn-classic rounded-right">+</button>
+            </div> -->
           </div>
           <div class="my-1">
-            <label for="textAreaMsg" class="task-form__label">
-              Description
-            </label>
-            <textarea id="textAreaMsg" class="rounded" maxlength="250"></textarea>
-          </div>
-          <div class="my-1">
-            <input type="color" id="inputColor" value="#ffd700" />
+            <input type="color" id="inputColor" value="#ffd700" name="color" />
             <label for="inputColor">Couleur</label>
           </div>
         </div>
         <div class="task-form__section text-right">
-          <button type="button" class="task-form__btn btn-default">
+          <button type="button" id="btn-delete" class="btn-delete task-form__btn btn-default">
             Delete
           </button>
-          <button type="submit" id="btn-add" class="task-form__btn btn-default">
+          <button type="submit" id="btn-add" class="btn-add task-form__btn btn-default">
             Add
           </button>
         </div>
@@ -95,7 +96,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
     integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="./js/main.js" type="module"></script>
+  <script src="./js/main.js" type="module" defer></script>
 </body>
 
 </html>
