@@ -6,7 +6,6 @@ const btnToClose = document.querySelectorAll(".btn-close");
 const btnToAdd = document.querySelector("#btn-add");
 const btnToDelete = document.querySelector("#btn-delete");
 const taskForm = document.querySelector("#task-form");
-console.log("taskForm => ", taskForm);
 const info = document.querySelector("#info");
 const tasks = document.querySelector("#tasks");
 const initInfo = "Pour créer une tâche appuyer sur +";
@@ -37,6 +36,32 @@ btnToClose.forEach((item) => {
     });
 });
 
+// modalForm.addEventListener("submit", (e) => {
+//     noRefresh(e);
+//     formValidation();
+// });
+
+let count = 2;
+modalForm.addEventListener("click", (e) => {
+    noRefresh(e);
+    if (e.target.classList.contains("add-single")) {
+        console.log("e => ", e);
+        const newLine = document.createElement("div");
+        newLine.classList.add("my-1", "d-flex");
+        newLine.innerHTML = `
+        <input type="text" id="inputTask${count}" class="single-task rounded-left" placeholder="Your task ${count}..." name="task1">
+        <button type="button" class="add-single btn-default rounded-right">+</button>
+        `;
+        e.target.parentElement.after(newLine);
+        count++;
+    } else if (e.target.classList.contains("btn-add")) {
+        formValidation();
+    } else if (e.target.classList.contains("btn-delete")) {
+        resetForm();
+        modalForm.style.display = "none";
+    }
+});
+
 const formValidation = () => {
     if (inputTitle.value === "") {
         console.log("failure");
@@ -56,11 +81,6 @@ const formValidation = () => {
     }
 };
 
-modalForm.addEventListener("submit", (e) => {
-    noRefresh(e);
-    formValidation();
-});
-
 // ANCHOR ACCEPT DATA
 
 let data = [];
@@ -77,8 +97,6 @@ const acceptData = () => {
             }
         }
     }
-    console.log("obj => ", obj);
-
     data.unshift({
         ...obj,
     });
@@ -97,9 +115,15 @@ const createTasks = () => {
             x.color
         }">
       <h3 class="tasks__title">${x.title}</h3>
-      <p class="tasks__meta">${x.date}</p>
+      <p class="tasks__meta"><small><time>${x.date}</small><time></p>
       <ul>
-        ${x.task.map((item) => `<li class="tasks__task">${item}</li>`).join("")}
+        ${x.task
+            .map((item) => {
+                if (item) {
+                    return `<li class="tasks__task">${item}</li>`;
+                }
+            })
+            .join("")}
       </ul>
       <form class="text-right mt-auto">
         <button class="edit-task btn-square" >
@@ -112,28 +136,26 @@ const createTasks = () => {
       </article>
       `);
     });
-
-    btnToDelete.addEventListener("click", (e) => {
-        console.log("e => ", e);
-        noRefresh(e);
-        resetForm();
-        modalForm.style.display = "none";
-    });
+    // REVIEW
 
     const edit = tasks.querySelectorAll(".edit-task");
     edit.forEach((item) => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
+            console.log("e => ", e);
             editTask(e.currentTarget);
         });
     });
+
     const deleteBtn = tasks.querySelectorAll(".delete-task");
     deleteBtn.forEach((item) => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
+            console.log("e => ", e);
             deleteTask(e.currentTarget);
         });
     });
+
     resetForm();
 
     console.log("data when create", {data});
@@ -144,28 +166,32 @@ const editTask = (e) => {
     modalForm.style.display = "block";
     btnToAdd.innerHTML = "Update";
     let selectedTask = e.parentElement.parentElement;
+    let allTasks = selectedTask.querySelectorAll(".tasks__task");
     taskForm.elements.inputTitle.value = data[selectedTask.id].title;
     taskForm.elements.inputDate.value = data[selectedTask.id].date;
-    taskForm.elements.inputTask1.value = data[selectedTask.id].task1;
     taskForm.elements.inputColor.value = data[selectedTask.id].color;
+    allTasks.forEach((item, index) => {
+        taskForm.elements[`inputTask${index + 1}`].value = item.innerText;
+    });
     deleteTask(e);
-    console.log({data});
 };
 
 // ANCHOR DELETE TASK
 const deleteTask = (e) => {
     e.parentElement.parentElement.remove();
+    // REVIEW
     data.splice(e.parentElement.parentElement.id, 1);
     localStorage.setItem("data", JSON.stringify(data));
-    console.log({data});
 };
 
 // ANCHOR RESET FORM
 const resetForm = () => {
+    let allTasks = taskForm.querySelectorAll(".single-task");
     taskForm.elements.inputTitle.value = "";
     taskForm.elements.inputDate.value = "";
-    taskForm.elements.inputTask1.value = "";
     taskForm.elements.inputColor.value = getRandomColor(50, 50);
+    // REVIEW
+    allTasks.forEach((item) => (item.value = ""));
 };
 
 (() => {
