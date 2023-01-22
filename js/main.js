@@ -46,6 +46,7 @@ modalForm.addEventListener("click", (e) => {
     noRefresh(e);
     if (e.target.classList.contains("add-single")) {
         console.log("e => ", e);
+        // REVIEW
         const newLine = document.createElement("div");
         newLine.classList.add("my-1", "d-flex");
         newLine.innerHTML = `
@@ -115,7 +116,7 @@ const createTasks = () => {
             x.color
         }">
       <h3 class="tasks__title">${x.title}</h3>
-      <p class="tasks__meta"><small><time>${x.date}</small><time></p>
+      ${x.date ? `<p class="tasks__meta"><small>Échéance: <time>${x.date}<time></small></p>` : ""}
       <ul>
         ${x.task
             .map((item) => {
