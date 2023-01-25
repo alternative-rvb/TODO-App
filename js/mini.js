@@ -12,7 +12,6 @@ const info = document.querySelector("#info");
 const tasks = document.querySelector("#tasks");
 const initInfo = "Pour créer une tâche appuyer sur +";
 
-// SECTION TODO APP
 
 const noRefresh = (e) => {
     e.preventDefault();
@@ -22,47 +21,27 @@ const noRefresh = (e) => {
 btnToOPen.addEventListener("click", (e) => {
     noRefresh(e);
     modalForm.style.display = "block";
-    if (count <= 1) {
-        resetForm();
-        inputContainer.innerHTML = "";
-        count = 1;
-        addInput(inputContainer);
-    }
+    resetForm();
+    inputContainer.innerHTML = "";
+    count = 1;
+    addInput(inputContainer);
 });
 
-// btnToClose.forEach((item) => {
-//     item.addEventListener("click", (e) => {
-//         noRefresh(e);
-//         modalForm.style.display = "none";
-//         resetForm();
-//         deleteTask();
-//         inputContainer.innerHTML = "";
-//         count = 1;
-//         addInput(inputContainer);
-//     });
-// });
 
-// modalForm.addEventListener("submit", (e) => {
-//     noRefresh(e);
-//     formValidation();
-// });
 
 modalForm.addEventListener("click", (e) => {
     noRefresh(e);
-    console.log("e.target => ", e.target);
+    console.log('e.target => ', e.target);
 
     if (e.target.classList.contains("add-single")) {
+
         addInput(inputContainer);
     } else if (e.target.closest(".btn-add")) {
         formValidation();
     } else if (e.target.closest(".btn-delete")) {
-        taskForm.reset();
-        inputContainer.innerHTML = "";
-        count = 1;
-        addInput(inputContainer);
-        // localStorage.clear();
+        document.location.reload();
     } else if (e.target.closest(".btn-close")) {
-        modalForm.style.display = "none";
+        document.location.reload();
     }
 });
 
@@ -76,12 +55,6 @@ const formValidation = () => {
         info.innerHTML = "";
         acceptData();
         modalForm.style.display = "none";
-        // FIXME
-        // btn-add.setAttribute("data-bs-dismiss", "modal");
-        // btn-add.click();
-        // (() => {
-        //   btn-add.setAttribute("data-bs-dismiss", "");
-        // })();
     }
 };
 
@@ -158,10 +131,9 @@ const createTasks = () => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
             deleteTask(e.currentTarget);
-            newInput.innerHTML = "";
-            count = 1;
-            // REVIEW
-            taskForm.reset();
+            // newInput.innerHTML = "";
+            // count = 1;
+            document.location.reload();
         });
     });
 
@@ -209,19 +181,13 @@ const deleteTask = (e) => {
 
 // ANCHOR RESET FORM
 const resetForm = () => {
-    // let allTasks = taskForm.querySelectorAll(".single-task");
-    // taskForm.elements.inputTitle.value = "";
-    // taskForm.elements.inputDate.value = "";
-    // taskForm.elements.inputColor.value = getRandomColor(50, 50);
-    // // REVIEW
-    // allTasks.forEach((item) => (item.value = ""));
-    taskForm.reset();
-    // inputContainer.innerHTML = "";
-    // count = 1;
-    // addInput(inputContainer);
+    let allTasks = taskForm.querySelectorAll(".single-task");
+    taskForm.elements.inputTitle.value = "";
+    taskForm.elements.inputDate.value = "";
+    taskForm.elements.inputColor.value = getRandomColor(50, 50);
+    allTasks.forEach((item) => (item.value = ""));
 };
 
-// ANCHOR ADD INPUT
 function addInput(location) {
     const newInput = document.createElement("div");
     newInput.classList.add("my-1", "d-flex");
@@ -240,4 +206,3 @@ function addInput(location) {
     createTasks();
 })();
 
-// !SECTION
