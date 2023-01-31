@@ -73,7 +73,15 @@ modalForm.querySelector(".btn-reset").addEventListener("click", (e) => {
 });
 
 modalForm.querySelector(".btn-close").addEventListener("click", (e) => {
-    formValidation();
+    noRefresh(e);
+    //  REVIEW
+    //  let confirmation=  confirm("Voulez-vous vraiment quitter ? Vous allez perdre vos données");
+    // if (confirmation) {
+    //     modalForm.style.display = "none";
+    //     createTasks();
+    // } 
+    modalForm.style.display = "none";
+    createTasks();
 });
 
 function formValidation() {
