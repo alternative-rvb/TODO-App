@@ -73,9 +73,7 @@ modalForm.querySelector(".btn-reset").addEventListener("click", (e) => {
 });
 
 modalForm.querySelector(".btn-close").addEventListener("click", (e) => {
-    noRefresh(e);
-    modalForm.style.display = "none";
-    createTasks();
+    formValidation();
 });
 
 function formValidation() {
