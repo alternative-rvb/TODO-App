@@ -1,17 +1,14 @@
 import {getRandomColor} from "./color.js";
 
 const modalForm = document.querySelector("#modalForm");
-const btnToOPen = document.querySelector("#btn-create");
-const btnToClose = document.querySelectorAll(".btn-close");
-const btnToAdd = document.querySelector("#btn-add");
-const btnToDelete = document.querySelector("#btn-reset");
 const taskForm = document.querySelector("#task-form");
+const btnToOPen = document.querySelector("#btn-create");
+const btnToAdd = document.querySelector("#btn-add");
+const tasks = document.querySelector("#tasks-container");
 const inputContainer = document.querySelector(".input-container");
 let count = 0;
 console.log("count => ", count);
 const info = document.querySelector("#info");
-const tasks = document.querySelector("#tasks");
-const initInfo = "Pour créer une tâche appuyer sur +";
 
 // SECTION TODO APP
 
@@ -71,6 +68,7 @@ modalForm.querySelector(".btn-close").addEventListener("click", (e) => {
     // }
     modalForm.style.display = "none";
     createTasks();
+    info.innerHTML = "";
 });
 
 // ANCHOR VALIDATION
