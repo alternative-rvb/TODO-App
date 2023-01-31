@@ -4,10 +4,11 @@ const modalForm = document.querySelector("#modalForm");
 const btnToOPen = document.querySelector("#btn-create");
 const btnToClose = document.querySelectorAll(".btn-close");
 const btnToAdd = document.querySelector("#btn-add");
-const btnToDelete = document.querySelector("#btn-delete");
+const btnToDelete = document.querySelector("#btn-reset");
 const taskForm = document.querySelector("#task-form");
 const inputContainer = document.querySelector(".input-container");
 let count = 0;
+console.log("count => ", count);
 const info = document.querySelector("#info");
 const tasks = document.querySelector("#tasks");
 const initInfo = "Pour créer une tâche appuyer sur +";
@@ -23,26 +24,58 @@ btnToOPen.addEventListener("click", (e) => {
     noRefresh(e);
     createTasks();
     modalForm.style.display = "block";
+    taskForm.inputColor.value = getRandomColor(50, 50);
 });
 
-modalForm.addEventListener("click", (e) => {
-    noRefresh(e);
-    // console.log("e.target => ", e.target);
+// modalForm.addEventListener("click", (e) => {
+//     noRefresh(e);
+//     console.log('e.target => ', e.target);
+//     // console.log("e.target => ", e.target);
 
-    if (e.target.closest(".add-single")) {
-        addInput(inputContainer);
-    } else if (e.target.closest(".remove-single")) {
-        e.target.parentElement.remove();
-    } else if (e.target.closest(".btn-add")) {
-        formValidation();
-    } else if (e.target.closest(".btn-delete")) {
-        taskForm.reset();
-        createTasks();
-    } else if (e.target.closest(".btn-close")) {
-        modalForm.style.display = "none";
-        taskForm.reset();
-        createTasks();
-    }
+//     if (e.target.closest(".add-single")) {
+//         addInput(inputContainer);
+//     } else if (e.target.closest(".remove-single")) {
+//         if (count > 2) {
+//             e.target.parentElement.remove();
+//             count--;
+//             console.log("count => ", count);
+//         } else {
+//             // Sélectionner le premier enfant de inputContainer
+//             e.target.parentElement.children[0].value = "";
+//         }
+//     } else if (e.target.closest(".btn-add")) {
+//         formValidation();
+//     } else if (e.target.closest(".btn-reset")) {
+//         // taskForm.reset();
+//         createTasks();
+//     } else if (e.target.closest(".btn-close")) {
+//         modalForm.style.display = "none";
+//         // taskForm.reset();
+//         createTasks();
+//     }
+// });
+
+// ANCHOR HANDLE FORM
+
+modalForm.querySelector(".add-single").addEventListener("click", (e) => {
+    noRefresh(e);
+    addInput(inputContainer);
+});
+
+modalForm.querySelector(".btn-add").addEventListener("click", (e) => {
+    noRefresh(e);
+    formValidation();
+});
+
+modalForm.querySelector(".btn-reset").addEventListener("click", (e) => {
+    noRefresh(e);
+    createTasks();
+});
+
+modalForm.querySelector(".btn-close").addEventListener("click", (e) => {
+    noRefresh(e);
+    modalForm.style.display = "none";
+    createTasks();
 });
 
 function formValidation() {
@@ -107,7 +140,7 @@ function createTasks() {
         ${x.task
             .map((item) => {
                 if (item) {
-                    return `<li class="tasks__task">${item}</li>`;
+                    return `<li class="tasks__li">${item}</li>`;
                 }
             })
             .join("")}
@@ -154,7 +187,7 @@ function editTask(e) {
     modalForm.style.display = "block";
     btnToAdd.innerHTML = "Update";
     let selectedTask = e.parentElement.parentElement;
-    let allTasks = selectedTask.querySelectorAll(".tasks__task");
+    let allTasks = selectedTask.querySelectorAll(".tasks__li");
     if (data[selectedTask.id].task.length > 0) {
         for (let i = 1; i < data[selectedTask.id].task.length; i++) {
             addInput(inputContainer);
@@ -182,15 +215,25 @@ function addInput(location) {
     const newInput = document.createElement("div");
     newInput.classList.add("my-1", "d-flex");
     newInput.innerHTML = `
-            <input type="text" id="inputTask${count}" class="single-task  flex-1 ${count === 1 ? `rounded`:`rounded-left`}" placeholder="Your task ${count}..." name="task1">
-            ${
-                count > 1
-                    ? `<button type="button" class="remove-single btn-default rounded-right">-</button>`
-                    : ``
-            }
-        `;
+    <input type="text" id="inputTask${count}" class="single-task  flex-1 rounded-left" placeholder="Your task ${count}..." name="task1">
+    <button type="button" class="remove-single btn-default rounded-right">-</button>
+    `;
     location.appendChild(newInput);
+    newInput.querySelector(".remove-single").addEventListener("click", (e) => {
+        console.log("e => ", e);
+        noRefresh(e);
+        if (count > 2) {
+            e.target.parentElement.remove();
+            count--;
+            console.log("count => ", count);
+        } else {
+            // Sélectionner le premier enfant de inputContainer
+            e.target.parentElement.children[0].value = "";
+        }
+    });
     count++;
+    console.log("count => ", count);
+
     return newInput;
 }
 
