@@ -207,6 +207,7 @@ textarea {
     background-color: transparent;
     color: var(--primary);
 }
+
 .btn-classic {
     background-color: var(--primary);
     padding: 0.25rem 0.5rem;
@@ -248,6 +249,28 @@ textarea {
 }
 
 /*ANCHOR CUSTOM*/
+
+.rounded {
+    border-radius: 5px;
+}
+
+.rounded-right {
+    border-radius: 0 5px 5px 0;
+}
+
+.rounded-left {
+    border-radius: 5px 0 0 5px;
+}
+
+.shadow {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+::first-letter {
+    text-transform: uppercase;
+}
+
+/* ANCHOR COMPONENTS */
 
 #logo {
     width: 35px;
@@ -332,24 +355,10 @@ textarea {
 
 }
 
-.rounded {
-    border-radius: 5px;
-}
-
-.rounded-right {
-    border-radius: 0 5px 5px 0;
-}
-
-.rounded-left {
-    border-radius: 5px 0 0 5px;
-}
-
-.shadow {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-
-::first-letter {
-    text-transform: uppercase;
+.input-container {
+    padding: 0.5rem;
+    max-height: 35vh;
+    overflow-y: auto;
 }
 
 @media (min-width: 1410px) {

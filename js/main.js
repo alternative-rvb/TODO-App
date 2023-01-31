@@ -30,9 +30,25 @@ btnToOPen.addEventListener("click", (e) => {
 
 // ANCHOR HANDLE FORM
 
+// On empêche l'envoi du formulaire avec la touche entrée
+modalForm.onkeypress = (e) => {
+    let key = e.charCode || e.keyCode || 0;
+    if (key == 13) {
+        //   alert("No Enter!");
+        e.preventDefault();
+    }
+};
+
 modalForm.querySelector(".add-single").addEventListener("click", (e) => {
-    noRefresh(e);
+    // noRefresh(e);
     addInput(inputContainer);
+});
+// Lorsqu'on appuie sur entrée on ajoute un autre input
+inputContainer.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+        // noRefresh(e);
+        addInput(inputContainer);
+    }
 });
 
 modalForm.querySelector(".btn-add").addEventListener("click", (e) => {
@@ -41,18 +57,18 @@ modalForm.querySelector(".btn-add").addEventListener("click", (e) => {
 });
 
 modalForm.querySelector(".btn-reset").addEventListener("click", (e) => {
-    noRefresh(e);
+    // noRefresh(e);
     createTasks();
 });
 
 modalForm.querySelector(".btn-close").addEventListener("click", (e) => {
-    noRefresh(e);
+    // noRefresh(e);
     //  REVIEW
     //  let confirmation=  confirm("Voulez-vous vraiment quitter ? Vous allez perdre vos données");
     // if (confirmation) {
     //     modalForm.style.display = "none";
     //     createTasks();
-    // } 
+    // }
     modalForm.style.display = "none";
     createTasks();
 });
@@ -62,6 +78,7 @@ modalForm.querySelector(".btn-close").addEventListener("click", (e) => {
 function formValidation() {
     if (inputTitle.value === "") {
         console.log("failure");
+        inputTitle.focus();
         info.innerHTML = "Task cannot be blank";
         info.classList.add("color-danger");
     } else {
@@ -202,7 +219,7 @@ function addInput(location) {
     location.appendChild(newInput);
     newInput.querySelector(".remove-single").addEventListener("click", (e) => {
         console.log("e => ", e);
-        noRefresh(e);
+        // noRefresh(e);
         if (count > 2) {
             e.target.parentElement.remove();
             count--;
@@ -212,6 +229,8 @@ function addInput(location) {
             e.target.parentElement.children[0].value = "";
         }
     });
+    // Ajouter focus sur le dernier input
+    newInput.querySelector(".single-task").focus();
     count++;
     console.log("count => ", count);
 
