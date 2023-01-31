@@ -21,28 +21,22 @@ function noRefresh(e) {
 
 btnToOPen.addEventListener("click", (e) => {
     noRefresh(e);
+    createTasks();
     modalForm.style.display = "block";
-    resetForm();
-    inputContainer.innerHTML = "";
-    count = 1;
-    addInput(inputContainer);
 });
 
 modalForm.addEventListener("click", (e) => {
     noRefresh(e);
-    console.log("e.target => ", e.target);
+    // console.log("e.target => ", e.target);
 
     if (e.target.classList.contains("add-single")) {
         addInput(inputContainer);
     } else if (e.target.closest(".btn-add")) {
         formValidation();
     } else if (e.target.closest(".btn-delete")) {
-        // document.location.reload();
         taskForm.reset();
         createTasks();
-        addInput(inputContainer);
     } else if (e.target.closest(".btn-close")) {
-        // document.location.reload();
         modalForm.style.display = "none";
         taskForm.reset();
         createTasks();
@@ -146,26 +140,23 @@ function createTasks() {
         });
     });
 
-    resetForm();
+    taskForm.reset();
     inputContainer.innerHTML = "";
     count = 1;
+    addInput(inputContainer);
     console.log("data when create", {data});
 }
 
 // ANCHOR UPDATE DATA
 function editTask(e) {
-    // count = 1;
-    // inputContainer.innerHTML = "";
     modalForm.style.display = "block";
     btnToAdd.innerHTML = "Update";
     let selectedTask = e.parentElement.parentElement;
     let allTasks = selectedTask.querySelectorAll(".tasks__task");
     if (data[selectedTask.id].task.length > 0) {
-        for (let i = 0; i < data[selectedTask.id].task.length; i++) {
+        for (let i = 1; i < data[selectedTask.id].task.length; i++) {
             addInput(inputContainer);
         }
-    } else {
-        addInput(inputContainer);
     }
     taskForm.elements.inputTitle.value = data[selectedTask.id].title;
     taskForm.elements.inputDate.value = data[selectedTask.id].date;
@@ -183,19 +174,6 @@ function deleteTask(e) {
     // REVIEW
     data.splice(e.parentElement.parentElement.id, 1);
     localStorage.setItem("data", JSON.stringify(data));
-    // inputContainer.innerHTML = "";
-    // count = 1;
-    // addInput(inputContainer);
-}
-
-// ANCHOR RESET FORM
-function resetForm() {
-    let allTasks = taskForm.querySelectorAll(".single-task");
-    taskForm.elements.inputTitle.value = "";
-    taskForm.elements.inputDate.value = "";
-    taskForm.elements.inputColor.value = getRandomColor(50, 50);
-    // REVIEW
-    allTasks.forEach((item) => (item.value = ""));
 }
 
 function addInput(location) {
@@ -210,7 +188,7 @@ function addInput(location) {
 
 (() => {
     data = JSON.parse(localStorage.getItem("data")) || [];
-    console.log("data at first time", {data});
+    console.log("data onLoad", {data});
     createTasks();
 })();
 
