@@ -24,36 +24,9 @@ btnToOPen.addEventListener("click", (e) => {
     noRefresh(e);
     createTasks();
     modalForm.style.display = "block";
+    taskForm.inputTitle.focus();
     taskForm.inputColor.value = getRandomColor(50, 50);
 });
-
-// modalForm.addEventListener("click", (e) => {
-//     noRefresh(e);
-//     console.log('e.target => ', e.target);
-//     // console.log("e.target => ", e.target);
-
-//     if (e.target.closest(".add-single")) {
-//         addInput(inputContainer);
-//     } else if (e.target.closest(".remove-single")) {
-//         if (count > 2) {
-//             e.target.parentElement.remove();
-//             count--;
-//             console.log("count => ", count);
-//         } else {
-//             // Sélectionner le premier enfant de inputContainer
-//             e.target.parentElement.children[0].value = "";
-//         }
-//     } else if (e.target.closest(".btn-add")) {
-//         formValidation();
-//     } else if (e.target.closest(".btn-reset")) {
-//         // taskForm.reset();
-//         createTasks();
-//     } else if (e.target.closest(".btn-close")) {
-//         modalForm.style.display = "none";
-//         // taskForm.reset();
-//         createTasks();
-//     }
-// });
 
 // ANCHOR HANDLE FORM
 
