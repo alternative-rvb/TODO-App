@@ -84,6 +84,8 @@ modalForm.querySelector(".btn-close").addEventListener("click", (e) => {
     createTasks();
 });
 
+// ANCHOR VALIDATION
+
 function formValidation() {
     if (inputTitle.value === "") {
         console.log("failure");
@@ -130,7 +132,7 @@ function acceptData() {
 // ANCHOR CREATE TASK | AFFICHAGE | UI
 function createTasks() {
     tasks.innerHTML = "";
-    btnToAdd.innerHTML = "Add";
+    btnToAdd.innerHTML = "Ajouter";
     data.map((x, y) => {
         return (tasks.innerHTML += `
       <article id=${y} class="tasks__art d-flex fd-column" style="border-color:${
@@ -191,7 +193,7 @@ function createTasks() {
 // ANCHOR UPDATE DATA
 function editTask(e) {
     modalForm.style.display = "block";
-    btnToAdd.innerHTML = "Update";
+    btnToAdd.innerHTML = "Mettre à jour";
     let selectedTask = e.parentElement.parentElement;
     let allTasks = selectedTask.querySelectorAll(".tasks__li");
     if (data[selectedTask.id].task.length > 0) {
@@ -221,7 +223,7 @@ function addInput(location) {
     const newInput = document.createElement("div");
     newInput.classList.add("my-1", "d-flex");
     newInput.innerHTML = `
-    <input type="text" id="inputTask${count}" class="single-task  flex-1 rounded-left" placeholder="Your task ${count}..." name="task1">
+    <input type="text" id="inputTask${count}" class="single-task  flex-1 rounded-left" placeholder="Tâche ${count}..." name="task1">
     <button type="button" class="remove-single btn-default rounded-right">-</button>
     `;
     location.appendChild(newInput);
