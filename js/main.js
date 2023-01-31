@@ -14,10 +14,10 @@ const initInfo = "Pour créer une tâche appuyer sur +";
 
 // SECTION TODO APP
 
-const noRefresh = (e) => {
+function noRefresh(e) {
     e.preventDefault();
     e.stopPropagation();
-};
+}
 
 btnToOPen.addEventListener("click", (e) => {
     noRefresh(e);
@@ -28,40 +28,28 @@ btnToOPen.addEventListener("click", (e) => {
     addInput(inputContainer);
 });
 
-// btnToClose.forEach((item) => {
-//     item.addEventListener("click", (e) => {
-//         noRefresh(e);
-//         modalForm.style.display = "none";
-//         resetForm();
-//         deleteTask();
-//         inputContainer.innerHTML = "";
-//         count = 1;
-//         addInput(inputContainer);
-//     });
-// });
-
-// modalForm.addEventListener("submit", (e) => {
-//     noRefresh(e);
-//     formValidation();
-// });
-
 modalForm.addEventListener("click", (e) => {
     noRefresh(e);
-    console.log('e.target => ', e.target);
+    console.log("e.target => ", e.target);
 
     if (e.target.classList.contains("add-single")) {
-
         addInput(inputContainer);
     } else if (e.target.closest(".btn-add")) {
         formValidation();
     } else if (e.target.closest(".btn-delete")) {
-        document.location.reload();
+        // document.location.reload();
+        taskForm.reset();
+        createTasks();
+        addInput(inputContainer);
     } else if (e.target.closest(".btn-close")) {
-        document.location.reload();
+        // document.location.reload();
+        modalForm.style.display = "none";
+        taskForm.reset();
+        createTasks();
     }
 });
 
-const formValidation = () => {
+function formValidation() {
     if (inputTitle.value === "") {
         console.log("failure");
         info.innerHTML = "Task cannot be blank";
@@ -78,12 +66,12 @@ const formValidation = () => {
         //   btn-add.setAttribute("data-bs-dismiss", "");
         // })();
     }
-};
+}
 
 // ANCHOR ACCEPT DATA
 
 let data = [];
-const acceptData = () => {
+function acceptData() {
     let obj = {};
     obj.task = [];
     for (let i = 0; i < taskForm.elements.length; i++) {
@@ -102,10 +90,10 @@ const acceptData = () => {
 
     localStorage.setItem("data", JSON.stringify(data));
     createTasks();
-};
+}
 
 // ANCHOR CREATE TASK | AFFICHAGE
-const createTasks = () => {
+function createTasks() {
     tasks.innerHTML = "";
     btnToAdd.innerHTML = "Add";
     data.map((x, y) => {
@@ -154,9 +142,7 @@ const createTasks = () => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
             deleteTask(e.currentTarget);
-            // newInput.innerHTML = "";
-            // count = 1;
-            document.location.reload();
+            createTasks();
         });
     });
 
@@ -164,11 +150,11 @@ const createTasks = () => {
     inputContainer.innerHTML = "";
     count = 1;
     console.log("data when create", {data});
-};
+}
 
 // ANCHOR UPDATE DATA
-const editTask = (e) => {
-    count = 1;
+function editTask(e) {
+    // count = 1;
     // inputContainer.innerHTML = "";
     modalForm.style.display = "block";
     btnToAdd.innerHTML = "Update";
@@ -189,10 +175,10 @@ const editTask = (e) => {
     });
 
     deleteTask(e);
-};
+}
 
 // ANCHOR DELETE TASK
-const deleteTask = (e) => {
+function deleteTask(e) {
     e.parentElement.parentElement.remove();
     // REVIEW
     data.splice(e.parentElement.parentElement.id, 1);
@@ -200,25 +186,23 @@ const deleteTask = (e) => {
     // inputContainer.innerHTML = "";
     // count = 1;
     // addInput(inputContainer);
-};
+}
 
 // ANCHOR RESET FORM
-const resetForm = () => {
+function resetForm() {
     let allTasks = taskForm.querySelectorAll(".single-task");
     taskForm.elements.inputTitle.value = "";
     taskForm.elements.inputDate.value = "";
     taskForm.elements.inputColor.value = getRandomColor(50, 50);
     // REVIEW
     allTasks.forEach((item) => (item.value = ""));
-};
+}
 
 function addInput(location) {
     const newInput = document.createElement("div");
     newInput.classList.add("my-1", "d-flex");
     newInput.innerHTML = `
-        <input type="text" id="inputTask${count}" class="single-task rounded-left" placeholder="Your task ${count}..." name="task1">
-        <button type="button" class="add-single btn-default rounded-right">+</button>
-        `;
+        <input type="text" id="inputTask${count}" class="single-task rounded" placeholder="Your task ${count}..." name="task1">`;
     location.appendChild(newInput);
     count++;
     return newInput;
