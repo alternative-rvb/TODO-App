@@ -111,7 +111,7 @@ textarea {
     border: 2px solid var(--accent);
 }
 
-/*ANCHOR FLEX Parent*/
+/*ANCHOR FLEX Container*/
 .d-flex {
     display: flex;
 }
@@ -146,6 +146,11 @@ textarea {
 
 .g-1 {
     gap: 1rem;
+}
+
+/*ANCHOR FLEX items*/
+.flex-1 {
+    flex-grow: 1;
 }
 
 /*ANCHOR SIZING*/

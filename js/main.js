@@ -29,8 +29,10 @@ modalForm.addEventListener("click", (e) => {
     noRefresh(e);
     // console.log("e.target => ", e.target);
 
-    if (e.target.classList.contains("add-single")) {
+    if (e.target.closest(".add-single")) {
         addInput(inputContainer);
+    } else if (e.target.closest(".remove-single")) {
+        e.target.parentElement.remove();
     } else if (e.target.closest(".btn-add")) {
         formValidation();
     } else if (e.target.closest(".btn-delete")) {
@@ -86,7 +88,7 @@ function acceptData() {
     createTasks();
 }
 
-// ANCHOR CREATE TASK | AFFICHAGE
+// ANCHOR CREATE TASK | AFFICHAGE | UI
 function createTasks() {
     tasks.innerHTML = "";
     btnToAdd.innerHTML = "Add";
@@ -121,7 +123,7 @@ function createTasks() {
       </article>
       `);
     });
-    // REVIEW
+    // ANCHOR UI
 
     const edit = tasks.querySelectorAll(".edit-task");
     edit.forEach((item) => {
@@ -180,7 +182,13 @@ function addInput(location) {
     const newInput = document.createElement("div");
     newInput.classList.add("my-1", "d-flex");
     newInput.innerHTML = `
-        <input type="text" id="inputTask${count}" class="single-task rounded" placeholder="Your task ${count}..." name="task1">`;
+            <input type="text" id="inputTask${count}" class="single-task  flex-1 ${count === 1 ? `rounded`:`rounded-left`}" placeholder="Your task ${count}..." name="task1">
+            ${
+                count > 1
+                    ? `<button type="button" class="remove-single btn-default rounded-right">-</button>`
+                    : ``
+            }
+        `;
     location.appendChild(newInput);
     count++;
     return newInput;
