@@ -356,7 +356,7 @@ textarea {
 }
 
 .input-container {
-    padding: 0.5rem;
+    padding-right: 0.5rem;
     max-height: 35vh;
     overflow-y: auto;
 }
