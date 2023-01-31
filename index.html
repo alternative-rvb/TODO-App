@@ -51,10 +51,10 @@
           </button>
         </div>
         <div class="task-form__section">
-          <h2 class="task-form__title">Add New Task</h2>
+          <h2 class="task-form__title">Remplissez tous les champs</h2>
           <div class="my-1">
             <label for="inputTitle" class="task-form__label">
-              Intitulé:
+              Intitulé de la liste:
             </label>
             <input type="text" id="inputTitle" class="rounded" placeholder="Titre ..." name="title" />
           </div>
@@ -65,6 +65,7 @@
             </label>
             <input type="date" id="inputDate" class="rounded" name="date" />
           </div>
+          <p class="task-form__title">Cliquer sur [+] pour ajouter un tâche</p>
           <div class="input-container">
             <!-- <div class="my-1 d-flex ai-c">
               <input type="text" id="inputTask1" class="single-task rounded-left" placeholder="Your task 1..."
@@ -72,17 +73,20 @@
               <button type="button" class="add-single btn-classic rounded-right">+</button>
             </div> -->
           </div>
+          <div>
+            <button type="button" class="add-single btn-default rounded">+</button>
+          </div>
           <div class="my-1">
-            <input type="color" id="inputColor" value="#ffd700" name="color" />
+            <input type="color" id="inputColor" class="input-color" value="#ffd700" name="color" />
             <label for="inputColor">Couleur</label>
           </div>
         </div>
         <div class="task-form__section text-right">
-          <button type="button" id="btn-delete" class="btn-delete task-form__btn btn-default">
-            Delete
+          <button type="button" id="btn-reset" class="btn-reset task-form__btn btn-default">
+            Réinitialiser
           </button>
           <button type="submit" id="btn-add" class="btn-add task-form__btn btn-default">
-            Add
+            Ajouter
           </button>
         </div>
       </form>

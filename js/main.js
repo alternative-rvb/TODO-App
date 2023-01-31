@@ -4,64 +4,89 @@ const modalForm = document.querySelector("#modalForm");
 const btnToOPen = document.querySelector("#btn-create");
 const btnToClose = document.querySelectorAll(".btn-close");
 const btnToAdd = document.querySelector("#btn-add");
-const btnToDelete = document.querySelector("#btn-delete");
+const btnToDelete = document.querySelector("#btn-reset");
 const taskForm = document.querySelector("#task-form");
 const inputContainer = document.querySelector(".input-container");
 let count = 0;
+console.log("count => ", count);
 const info = document.querySelector("#info");
 const tasks = document.querySelector("#tasks");
 const initInfo = "Pour créer une tâche appuyer sur +";
 
 // SECTION TODO APP
 
-const noRefresh = (e) => {
+function noRefresh(e) {
     e.preventDefault();
     e.stopPropagation();
-};
+}
 
 btnToOPen.addEventListener("click", (e) => {
     noRefresh(e);
+    createTasks();
     modalForm.style.display = "block";
-    resetForm();
-    inputContainer.innerHTML = "";
-    count = 1;
+    taskForm.inputColor.value = getRandomColor(50, 50);
+});
+
+// modalForm.addEventListener("click", (e) => {
+//     noRefresh(e);
+//     console.log('e.target => ', e.target);
+//     // console.log("e.target => ", e.target);
+
+//     if (e.target.closest(".add-single")) {
+//         addInput(inputContainer);
+//     } else if (e.target.closest(".remove-single")) {
+//         if (count > 2) {
+//             e.target.parentElement.remove();
+//             count--;
+//             console.log("count => ", count);
+//         } else {
+//             // Sélectionner le premier enfant de inputContainer
+//             e.target.parentElement.children[0].value = "";
+//         }
+//     } else if (e.target.closest(".btn-add")) {
+//         formValidation();
+//     } else if (e.target.closest(".btn-reset")) {
+//         // taskForm.reset();
+//         createTasks();
+//     } else if (e.target.closest(".btn-close")) {
+//         modalForm.style.display = "none";
+//         // taskForm.reset();
+//         createTasks();
+//     }
+// });
+
+// ANCHOR HANDLE FORM
+
+modalForm.querySelector(".add-single").addEventListener("click", (e) => {
+    noRefresh(e);
     addInput(inputContainer);
 });
 
-// btnToClose.forEach((item) => {
-//     item.addEventListener("click", (e) => {
-//         noRefresh(e);
-//         modalForm.style.display = "none";
-//         resetForm();
-//         deleteTask();
-//         inputContainer.innerHTML = "";
-//         count = 1;
-//         addInput(inputContainer);
-//     });
-// });
-
-// modalForm.addEventListener("submit", (e) => {
-//     noRefresh(e);
-//     formValidation();
-// });
-
-modalForm.addEventListener("click", (e) => {
+modalForm.querySelector(".btn-add").addEventListener("click", (e) => {
     noRefresh(e);
-    console.log('e.target => ', e.target);
-
-    if (e.target.classList.contains("add-single")) {
-
-        addInput(inputContainer);
-    } else if (e.target.closest(".btn-add")) {
-        formValidation();
-    } else if (e.target.closest(".btn-delete")) {
-        document.location.reload();
-    } else if (e.target.closest(".btn-close")) {
-        document.location.reload();
-    }
+    formValidation();
 });
 
-const formValidation = () => {
+modalForm.querySelector(".btn-reset").addEventListener("click", (e) => {
+    noRefresh(e);
+    createTasks();
+});
+
+modalForm.querySelector(".btn-close").addEventListener("click", (e) => {
+    noRefresh(e);
+    //  REVIEW
+    //  let confirmation=  confirm("Voulez-vous vraiment quitter ? Vous allez perdre vos données");
+    // if (confirmation) {
+    //     modalForm.style.display = "none";
+    //     createTasks();
+    // } 
+    modalForm.style.display = "none";
+    createTasks();
+});
+
+// ANCHOR VALIDATION
+
+function formValidation() {
     if (inputTitle.value === "") {
         console.log("failure");
         info.innerHTML = "Task cannot be blank";
@@ -78,12 +103,12 @@ const formValidation = () => {
         //   btn-add.setAttribute("data-bs-dismiss", "");
         // })();
     }
-};
+}
 
 // ANCHOR ACCEPT DATA
 
 let data = [];
-const acceptData = () => {
+function acceptData() {
     let obj = {};
     obj.task = [];
     for (let i = 0; i < taskForm.elements.length; i++) {
@@ -102,12 +127,12 @@ const acceptData = () => {
 
     localStorage.setItem("data", JSON.stringify(data));
     createTasks();
-};
+}
 
-// ANCHOR CREATE TASK | AFFICHAGE
-const createTasks = () => {
+// ANCHOR CREATE TASK | AFFICHAGE | UI
+function createTasks() {
     tasks.innerHTML = "";
-    btnToAdd.innerHTML = "Add";
+    btnToAdd.innerHTML = "Ajouter";
     data.map((x, y) => {
         return (tasks.innerHTML += `
       <article id=${y} class="tasks__art d-flex fd-column" style="border-color:${
@@ -123,7 +148,7 @@ const createTasks = () => {
         ${x.task
             .map((item) => {
                 if (item) {
-                    return `<li class="tasks__task">${item}</li>`;
+                    return `<li class="tasks__li">${item}</li>`;
                 }
             })
             .join("")}
@@ -139,7 +164,7 @@ const createTasks = () => {
       </article>
       `);
     });
-    // REVIEW
+    // ANCHOR UI
 
     const edit = tasks.querySelectorAll(".edit-task");
     edit.forEach((item) => {
@@ -154,32 +179,27 @@ const createTasks = () => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
             deleteTask(e.currentTarget);
-            // newInput.innerHTML = "";
-            // count = 1;
-            document.location.reload();
+            createTasks();
         });
     });
 
-    resetForm();
+    taskForm.reset();
     inputContainer.innerHTML = "";
     count = 1;
+    addInput(inputContainer);
     console.log("data when create", {data});
-};
+}
 
 // ANCHOR UPDATE DATA
-const editTask = (e) => {
-    count = 1;
-    // inputContainer.innerHTML = "";
+function editTask(e) {
     modalForm.style.display = "block";
-    btnToAdd.innerHTML = "Update";
+    btnToAdd.innerHTML = "Mettre à jour";
     let selectedTask = e.parentElement.parentElement;
-    let allTasks = selectedTask.querySelectorAll(".tasks__task");
+    let allTasks = selectedTask.querySelectorAll(".tasks__li");
     if (data[selectedTask.id].task.length > 0) {
-        for (let i = 0; i < data[selectedTask.id].task.length; i++) {
+        for (let i = 1; i < data[selectedTask.id].task.length; i++) {
             addInput(inputContainer);
         }
-    } else {
-        addInput(inputContainer);
     }
     taskForm.elements.inputTitle.value = data[selectedTask.id].title;
     taskForm.elements.inputDate.value = data[selectedTask.id].date;
@@ -189,44 +209,45 @@ const editTask = (e) => {
     });
 
     deleteTask(e);
-};
+}
 
 // ANCHOR DELETE TASK
-const deleteTask = (e) => {
+function deleteTask(e) {
     e.parentElement.parentElement.remove();
     // REVIEW
     data.splice(e.parentElement.parentElement.id, 1);
     localStorage.setItem("data", JSON.stringify(data));
-    // inputContainer.innerHTML = "";
-    // count = 1;
-    // addInput(inputContainer);
-};
-
-// ANCHOR RESET FORM
-const resetForm = () => {
-    let allTasks = taskForm.querySelectorAll(".single-task");
-    taskForm.elements.inputTitle.value = "";
-    taskForm.elements.inputDate.value = "";
-    taskForm.elements.inputColor.value = getRandomColor(50, 50);
-    // REVIEW
-    allTasks.forEach((item) => (item.value = ""));
-};
+}
 
 function addInput(location) {
     const newInput = document.createElement("div");
     newInput.classList.add("my-1", "d-flex");
     newInput.innerHTML = `
-        <input type="text" id="inputTask${count}" class="single-task rounded-left" placeholder="Your task ${count}..." name="task1">
-        <button type="button" class="add-single btn-default rounded-right">+</button>
-        `;
+    <input type="text" id="inputTask${count}" class="single-task  flex-1 rounded-left" placeholder="Tâche ${count}..." name="task1">
+    <button type="button" class="remove-single btn-default rounded-right">-</button>
+    `;
     location.appendChild(newInput);
+    newInput.querySelector(".remove-single").addEventListener("click", (e) => {
+        console.log("e => ", e);
+        noRefresh(e);
+        if (count > 2) {
+            e.target.parentElement.remove();
+            count--;
+            console.log("count => ", count);
+        } else {
+            // Sélectionner le premier enfant de inputContainer
+            e.target.parentElement.children[0].value = "";
+        }
+    });
     count++;
+    console.log("count => ", count);
+
     return newInput;
 }
 
 (() => {
     data = JSON.parse(localStorage.getItem("data")) || [];
-    console.log("data at first time", {data});
+    console.log("data onLoad", {data});
     createTasks();
 })();
 
