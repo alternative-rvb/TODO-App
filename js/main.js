@@ -104,7 +104,7 @@ function acceptData() {
         if (taskForm.elements[i].name) {
             // REVIEW
             if (!taskForm.elements[i].classList.contains("single-task")) {
-                obj[taskForm.elements[i].name] = taskForm.elements[i].value;
+                obj[taskForm.elements[i].name] = sanitizeInput(taskForm.elements[i].value);
             } else if (taskForm.elements[i].value) {
                 obj["task"].push(sanitizeInput(taskForm.elements[i].value));
             }
