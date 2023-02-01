@@ -342,7 +342,7 @@ textarea {
     border-radius: 5px; */
 }
 
-#modalForm {
+#modal-form {
     display: none;
     background-color: hsla(0, 0%, 4%, 0.95);
     position: absolute;
@@ -355,7 +355,7 @@ textarea {
 
 }
 
-.input-container {
+.task-form__container {
     padding-right: 0.5rem;
     max-height: 35vh;
     overflow-y: auto;
