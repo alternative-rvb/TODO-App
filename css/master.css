@@ -17,6 +17,9 @@
 ::after,
 ::before {
     box-sizing: border-box;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 body {

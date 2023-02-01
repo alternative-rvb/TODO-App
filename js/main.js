@@ -1,4 +1,5 @@
 import {getRandomColor} from "./color.js";
+import {sanitizeInput} from "./tools.js";
 
 const modalForm = document.querySelector("#modal-form");
 const taskForm = document.querySelector("#task-form");
@@ -105,7 +106,7 @@ function acceptData() {
             if (!taskForm.elements[i].classList.contains("single-task")) {
                 obj[taskForm.elements[i].name] = taskForm.elements[i].value;
             } else if (taskForm.elements[i].value) {
-                obj["task"].push(taskForm.elements[i].value);
+                obj["task"].push(sanitizeInput(taskForm.elements[i].value));
             }
         }
     }

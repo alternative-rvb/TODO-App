@@ -5,7 +5,7 @@
 - [X] Ajouter fonctions suppression ligne tache
 - [X] Ajouter tache quand on appuie sur entrée
 - [X] Ajouter focus sur la ligne de tache
-- [ ] Empêcher l'injection de code
+- [X] Empêcher l'injection de code
 - [ ] Ajouter un identifiant unique pour chaque tache
 - [ ] Implémenter des classes pour les taches
 - [ ] Remplacer liste a puce par checkbox
@@ -16,3 +16,4 @@
 - [ ] Ajouter fonction pour archiver une tache
 - [ ] Ajouter fonction pour restaurer une tache
 - [ ] Ajouter fonction pour supprimer une tache
+- [ ] Ajouter des labels pour les taches
