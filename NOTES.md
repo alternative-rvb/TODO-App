@@ -1,19 +1,23 @@
 # TODO
 
-- [X] Ajouter fonctions boucle de tache
-- [X] Ajouter fonctions ajout ligne tache
-- [X] Ajouter fonctions suppression ligne tache
-- [X] Ajouter tache quand on appuie sur entrée
-- [X] Ajouter focus sur la ligne de tache
+- [X] Ajouter fonctions boucle de tâche
+- [X] Ajouter fonctions ajout ligne tâche
+- [X] Ajouter fonctions suppression ligne tâche
+- [X] Ajouter tâche quand on appuie sur entrée
+- [X] Ajouter focus sur la ligne de tâche
 - [X] Empêcher l'injection de code
-- [ ] Ajouter un identifiant unique pour chaque tache
-- [ ] Implémenter des classes pour les taches
+- [ ] Ajouter un identifiant unique pour chaque tâche
+- [ ] Implémenter des classes pour les tâches
 - [ ] Remplacer liste a puce par checkbox
-- [ ] Ajouter fonction de tri des taches
-- [ ] Ajouter fonction de recherche des taches
-- [ ] Ajouter fonction pour dupliquer une tache
-- [ ] Ajouter fonction pour déplacer une tache
-- [ ] Ajouter fonction pour archiver une tache
-- [ ] Ajouter fonction pour restaurer une tache
-- [ ] Ajouter fonction pour supprimer une tache
-- [ ] Ajouter des labels pour les taches
+- [ ] Ajouter fonction de tri des tâches
+- [ ] Ajouter fonction de recherche des tâches
+- [ ] Ajouter fonction pour dupliquer une tâche
+- [ ] Ajouter fonction pour déplacer une tâche
+- [ ] Ajouter fonction pour archiver une tâche
+- [ ] Ajouter fonction pour restaurer une tâche
+- [ ] Ajouter fonction pour supprimer une tâche
+- [ ] Ajouter des labels pour les tâches
+
+## Ressources
+
+https://jsdoc.app/ 
