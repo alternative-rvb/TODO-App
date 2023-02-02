@@ -1,4 +1,9 @@
-// Empêcher les injections de code ou de caractères spéciaux
+/**
+ * Empêcher les injections de code ou de caractères spéciaux
+ * @param {string} input 
+ * @returns {string} 
+ */
+
 export function sanitizeInput(input) {
     // Enlever les balises HTML
     input = input.replace(/<[^>]*>/g, "");
