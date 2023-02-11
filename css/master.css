@@ -312,7 +312,10 @@ textarea {
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     color: var(--white);
+    cursor: grab;
 }
+
+
 
 /* .tasks__art * {
     margin: 0 !important;
@@ -362,6 +365,16 @@ textarea {
     padding-right: 0.5rem;
     max-height: 35vh;
     overflow-y: auto;
+}
+
+.drag-start {
+    background-color: #222;
+}
+.drag-enter {
+    background-color: #222;
+}
+.drop {
+    background-color: none;
 }
 
 @media (min-width: 1410px) {

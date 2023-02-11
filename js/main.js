@@ -99,14 +99,17 @@ function formValidation() {
 let data = [];
 function acceptData() {
     let obj = {};
-    obj.task = [];
+    obj.id = `task${Date.now()}`;
+    obj.tasks = [];
     for (let i = 0; i < taskForm.elements.length; i++) {
         if (taskForm.elements[i].name) {
             // REVIEW
             if (!taskForm.elements[i].classList.contains("single-task")) {
-                obj[taskForm.elements[i].name] = sanitizeInput(taskForm.elements[i].value);
+                obj[taskForm.elements[i].name] = sanitizeInput(
+                    taskForm.elements[i].value
+                );
             } else if (taskForm.elements[i].value) {
-                obj["task"].push(sanitizeInput(taskForm.elements[i].value));
+                obj["tasks"].push(sanitizeInput(taskForm.elements[i].value));
             }
         }
     }
@@ -122,11 +125,13 @@ function acceptData() {
 function createTasks() {
     tasks.innerHTML = "";
     btnAdd.innerHTML = "Ajouter";
-    data.map((x, y) => {
+    data.map((x) => {
         return (tasks.innerHTML += `
-      <article id=${y} class="tasks__art d-flex fd-column" style="border-color:${
+      <article id=${
+          x.id
+      } class="tasks__art d-flex fd-column" style="border-color:${
             x.color
-        }">
+        }" draggable="true">
       <h3 class="tasks__title">${x.title}</h3>
       ${
           x.date
@@ -134,7 +139,7 @@ function createTasks() {
               : ""
       }
       <ul>
-        ${x.task
+        ${x.tasks
             .map((item) => {
                 if (item) {
                     return `<li class="tasks__li">${item}</li>`;
@@ -159,7 +164,7 @@ function createTasks() {
     edit.forEach((item) => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
-            editTask(e.currentTarget);
+            editTask(e);
         });
     });
 
@@ -167,7 +172,7 @@ function createTasks() {
     deleteBtn.forEach((item) => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
-            deleteTask(e.currentTarget);
+            deleteTask(e);
             createTasks();
         });
     });
@@ -183,18 +188,20 @@ function createTasks() {
 function editTask(e) {
     modalForm.style.display = "block";
     btnAdd.innerHTML = "Mettre à jour";
-    let selectedTask = e.parentElement.parentElement;
-    let allTasks = selectedTask.querySelectorAll(".tasks__li");
-    if (data[selectedTask.id].task.length > 0) {
-        for (let i = 1; i < data[selectedTask.id].task.length; i++) {
+    const selectedTask = e.currentTarget.closest(".tasks__art");
+    const allTasks = selectedTask.querySelectorAll(".tasks__li");
+    const index = data.findIndex((item) => item.id == selectedTask.id);
+    console.log("index => ", index);
+    if (data[index].tasks.length > 0) {
+        for (let i = 1; i < data[index].tasks.length; i++) {
             addInput(inputContainer);
         }
     }
-    taskForm.elements.inputTitle.value = data[selectedTask.id].title;
-    taskForm.elements.inputDate.value = data[selectedTask.id].date;
-    taskForm.elements.inputColor.value = data[selectedTask.id].color;
+    taskForm.elements.inputTitle.value = data[index].title;
+    taskForm.elements.inputDate.value = data[index].date;
+    taskForm.elements.inputColor.value = data[index].color;
     allTasks.forEach((item, index) => {
-        taskForm.elements[`inputTask${index + 1}`].value = item.innerText;
+        taskForm.elements[`input-task${index + 1}`].value = item.innerText;
     });
 
     deleteTask(e);
@@ -202,9 +209,11 @@ function editTask(e) {
 
 // ANCHOR DELETE TASK
 function deleteTask(e) {
-    e.parentElement.parentElement.remove();
+    const selectedTask = e.currentTarget.closest(".tasks__art");
+    const index = data.findIndex((item) => item.id == selectedTask.id);
+
     // REVIEW
-    data.splice(e.parentElement.parentElement.id, 1);
+    data.splice(index, 1);
     localStorage.setItem("data", JSON.stringify(data));
 }
 
@@ -212,7 +221,7 @@ function addInput(location) {
     const newInput = document.createElement("div");
     newInput.classList.add("my-1", "d-flex");
     newInput.innerHTML = `
-    <input type="text" id="inputTask${countInputFields}" class="single-task  flex-1 rounded-left" placeholder="Tâche ${countInputFields}..." name="task1">
+    <input type="text" id="input-task${countInputFields}" class="single-task  flex-1 rounded-left" placeholder="Tâche ${countInputFields}..." name="task1">
     <button type="button" class="remove-single btn-default rounded-right">-</button>
     `;
     location.appendChild(newInput);
@@ -243,3 +252,45 @@ function addInput(location) {
 })();
 
 // !SECTION
+
+// ondragstart
+// ondragenter
+// ondragleave
+// ondragend
+// ondragover
+// ondrop
+
+const allArticles = document.querySelectorAll(".tasks__art");
+
+allArticles.forEach((article) => {
+    article.ondragstart = (e) => {
+        console.log("e.target START => ", e.target);
+        e.target.closest("article").classList.add("drag-start");
+        // e.dataTransfer.setData("text/plain", e.target.closest("article").innerHTML);
+        // e.currentTarget.style.transform = "scale(.5)";
+    };
+    article.ondragover = (e) => {
+        e.preventDefault();
+    };
+
+    article.ondragenter = (e) => {
+        console.log("e.target ENTER => ", e.target.closest("article"));
+        e.target.closest("article").classList.remove("drag-start");
+        // e.target.closest("article").classList.add("drag-enter");
+    };
+
+    article.ondragleave = (e) => {
+        console.log("e.target LEAVE => ", e.target.closest("article"));
+        // e.target.closest("article").classList.remove("drag-enter");
+    };
+
+    article.ondrop = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        e.target.closest("article").classList.add("drop");
+        // e.target.closest("article").innerHTML = e.dataTransfer.getData("text/plain");
+    };
+    article.ondragend = (e) => {
+        e.target.closest("article").classList.remove("drop");
+    };
+});
