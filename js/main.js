@@ -137,11 +137,11 @@ function createList() {
           x.id
       } class="tasks__art d-flex fd-column" style="border-color:${
             x.color
-        }" draggable="true">
+        }" draggable="true" data-color="${x.color}">
       <h3 class="tasks__title">${x.title}</h3>
       ${
           x.date
-              ? `<p class="tasks__meta"><small>Échéance: <time>${x.date}<time></small></p>`
+              ? `<p class="tasks__meta"><small>Échéance: <time>${x.date}</time></small></p>`
               : ""
       }
       <ul>
@@ -229,10 +229,26 @@ function autoUpdateTasks(e) {
     const selectedTask = e.currentTarget.closest(".tasks__art");
     const allTasks = selectedTask.querySelectorAll(".tasks__li");
     const indexOfList = data.findIndex((item) => item.id == selectedTask.id);
-    data[indexOfList].tasks.forEach((item, indexOfTask) => {
-        item.task = allTasks[indexOfTask].innerText;
-        item.isChecked = allTasks[indexOfTask].dataset.checked;
-    });
+    if (selectedTask.querySelector(".tasks__title").innerText)
+        data[indexOfList].title = sanitizeInput(
+            selectedTask.querySelector(".tasks__title").innerText
+        );
+    if (selectedTask.querySelector(".tasks__meta time")) {
+        data[indexOfList].date = sanitizeInput(
+            selectedTask.querySelector(".tasks__meta time").innerText
+        );
+    }
+    if (selectedTask.dataset.color) {
+        data[indexOfList].color = sanitizeInput(selectedTask.dataset.color);
+    }
+    if (allTasks.length > 0) {
+        data[indexOfList].tasks.forEach((item, indexOfTask) => {
+            item.task = sanitizeInput(allTasks[indexOfTask].innerText);
+            item.isChecked = sanitizeInput(
+                allTasks[indexOfTask].dataset.checked
+            );
+        });
+    }
     localStorage.setItem("data", JSON.stringify(data));
 }
 
