@@ -291,7 +291,6 @@ textarea {
 
 .task-header>* {
     text-decoration: none;
-    margin: 0;
 }
 
 .task-header__info {
@@ -450,14 +449,7 @@ li::marker {
     animation: loading 1s;
 }
 
-@media (min-width: 1410px) {
-    .btn-create {
 
-        position: fixed;
-        bottom: calc(var(--footerHeight) + 2rem);
-        right: 2rem;
-    }
-}
 
 @media (prefers-color-scheme: dark) {
     body {
