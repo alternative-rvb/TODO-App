@@ -299,7 +299,7 @@ textarea {
     font-size: 24px;
 }
 
-#tasks-container {
+#lists-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
     grid-gap: 1rem;
@@ -313,6 +313,9 @@ textarea {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     color: var(--white);
     cursor: grab;
+}
+.tasks__art > *{
+    cursor: initial;
 }
 
 
@@ -370,11 +373,31 @@ textarea {
 .drag-start {
     background-color: #222;
 }
+
 .drag-enter {
     background-color: #222;
 }
+
 .drop {
     background-color: none;
+}
+
+li {
+    padding-left: 8px;
+    font-size: medium;
+}
+li::marker {
+    content: '\f0c8';
+    font-family: 'Font Awesome 5 Free';
+    font-size: 0.75em;
+}
+.checked {
+    opacity: 0.75;
+}
+.checked::marker {
+    content: '\f14a';
+    font-family: 'Font Awesome 5 Free';
+    font-size: 0.75em;
 }
 
 @media (min-width: 1410px) {
