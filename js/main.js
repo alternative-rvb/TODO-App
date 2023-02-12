@@ -9,6 +9,8 @@ const inputsContainer = document.querySelector("#inputs-container");
 let countInputs = 0;
 console.log("countInputs => ", countInputs);
 const info = document.querySelector("#info");
+let updatedIndex = "";
+console.log("updatedIndex A => ", updatedIndex);
 
 // SECTION TODO APP
 
@@ -119,9 +121,16 @@ function acceptData() {
             }
         }
     }
-    data.unshift({
-        ...obj,
-    });
+    // data.unshift(obj);
+
+    console.log("updatedIndex B => ", updatedIndex);
+
+    if (updatedIndex !== "") {
+        data.splice(updatedIndex, 0, obj);
+        updatedIndex = "";
+    } else {
+        data.unshift(obj);
+    }
 
     localStorage.setItem("data", JSON.stringify(data));
     createList();
@@ -212,7 +221,8 @@ function updateList(e) {
     const selectedTask = e.currentTarget.closest(".tasks__art");
     const allTasks = selectedTask.querySelectorAll(".tasks__li");
     const index = data.findIndex((item) => item.id == selectedTask.id);
-    console.log("index => ", index);
+    updatedIndex = index;
+
     if (data[index].tasks.length > 0) {
         for (let i = 1; i < data[index].tasks.length; i++) {
             addInput(inputsContainer);
@@ -367,3 +377,5 @@ function checkTask(e) {
 //         e.target.closest("article").classList.remove("drop");
 //     };
 // });
+
+// !SECTION
