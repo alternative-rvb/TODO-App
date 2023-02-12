@@ -4,8 +4,6 @@ function getRandomColorHue() {
     return Math.floor(Math.random() * 360 + 1);
 }
 
-console.log("getRandomColorHue ===>", getRandomColorHue());
-
 function HSLToHex(h, s, l) {
     s /= 100;
     l /= 100;
@@ -54,8 +52,6 @@ function HSLToHex(h, s, l) {
 
     return "#" + r + g + b;
 }
-
-console.log("HSLToHex ===>", HSLToHex(getRandomColorHue(), 50, 50));
 
 export function getRandomColor(s, b) {
     return HSLToHex(getRandomColorHue(), s, b);
