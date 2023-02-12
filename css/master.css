@@ -81,6 +81,7 @@ article {
 article {
     padding: 1rem 1rem 0.5rem;
 }
+
 main {
     margin-top: var(--headerHeight);
     min-height: calc(100vh - var(--headerHeight) - var(--footerHeight));
@@ -317,7 +318,8 @@ textarea {
     color: var(--white);
     cursor: grab;
 }
-.tasks__art > *{
+
+.tasks__art>* {
     cursor: initial;
 }
 
@@ -368,10 +370,39 @@ textarea {
 }
 
 .list-form__container {
-    padding-right: 0.5rem;
+    padding: 0 8px 0 2px;
     max-height: 35vh;
     overflow-y: auto;
+
 }
+
+.list-form__container::-webkit-scrollbar {
+    width: 0.8rem;
+    height: 0.8rem;
+
+}
+
+.list-form__container::-webkit-scrollbar-thumb {
+    background: var(--dark);
+    border-radius: 0.5rem;
+
+}
+
+.list-form__container::-webkit-scrollbar-track-piece {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+}
+
+/* .list-form__container::-webkit-scrollbar-track {
+}
+.list-form__container::-webkit-scrollbar-corner {
+} 
+.list-form__container::-webkit-resizer {
+}*/
+
+
+
+
 
 .drag-start {
     background-color: #222;
@@ -389,18 +420,25 @@ li {
     padding-left: 8px;
     font-size: medium;
 }
+
 li::marker {
     content: '\f0c8';
     font-family: 'Font Awesome 5 Free';
     font-size: 0.75em;
 }
+
 .checked {
     opacity: 0.75;
 }
+
 .checked::marker {
     content: '\f14a';
     font-family: 'Font Awesome 5 Free';
     font-size: 0.75em;
+}
+
+.fx {
+    animation: loading 1s;
 }
 
 @media (min-width: 1410px) {
@@ -420,5 +458,27 @@ li::marker {
 
     a {
         color: var(--white);
+    }
+}
+
+@keyframes loading {
+    0% {
+        background-color: hsla(0, 0%, 8%, 0.8);
+    }
+
+    25% {
+        background-color: hsla(0, 0%, 16%, 0.8);
+    }
+
+    50% {
+        background-color: hsla(0, 0%, 8%, 0.8);
+    }
+
+    75% {
+        background-color: hsla(0, 0%, 16%, 0.8);
+    }
+
+    100% {
+        background-color: hsla(0, 0%, 8%, 0.8);
     }
 }
