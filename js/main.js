@@ -4,6 +4,7 @@ import {sanitizeInput} from "./tools.js";
 const modalForm = document.querySelector("#modal-form");
 const taskForm = document.querySelector("#list-form");
 const btnCreate = document.querySelector("#btn-create");
+const btnDeleteAll = document.querySelector("#btn-delete-all");
 const listsContainer = document.querySelector("#lists-container");
 const inputsContainer = document.querySelector("#inputs-container");
 let countInputs = 0;
@@ -23,6 +24,13 @@ btnCreate.addEventListener("click", (e) => {
     modalForm.style.display = "block";
     taskForm.inputTitle.focus();
     taskForm.inputColor.value = getRandomColor(50, 50);
+});
+
+btnDeleteAll.addEventListener("click", (e) => {
+    noRefresh(e);
+    localStorage.clear();
+    data = [];
+    createList();
 });
 
 // ANCHOR HANDLE FORM
