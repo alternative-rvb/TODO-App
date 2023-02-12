@@ -7,10 +7,8 @@ const btnCreate = document.querySelector("#btn-create");
 const listsContainer = document.querySelector("#lists-container");
 const inputsContainer = document.querySelector("#inputs-container");
 let countInputs = 0;
-console.log("countInputs => ", countInputs);
-const info = document.querySelector("#info");
 let updatedIndex = "";
-console.log("updatedIndex A => ", updatedIndex);
+const info = document.querySelector("#info");
 
 // SECTION TODO APP
 
@@ -122,8 +120,6 @@ function acceptData() {
         }
     }
     // data.unshift(obj);
-
-    console.log("updatedIndex B => ", updatedIndex);
 
     if (updatedIndex !== "") {
         data.splice(updatedIndex, 0, obj);
@@ -287,12 +283,10 @@ function addInput(location) {
     `;
     location.appendChild(newInput);
     newInput.querySelector(".remove-single").addEventListener("click", (e) => {
-        console.log("e => ", e);
         // noRefresh(e);
         if (countInputs > 2) {
             e.target.parentElement.remove();
             countInputs--;
-            console.log("countInputs => ", countInputs);
         } else {
             // Sélectionner le premier enfant de inputsContainer
             e.target.parentElement.children[0].value = "";
@@ -301,7 +295,6 @@ function addInput(location) {
     // Ajouter focus sur le dernier input
     newInput.querySelector(".single-task").focus();
     countInputs++;
-    console.log("countInputs => ", countInputs);
 
     return newInput;
 }
