@@ -8,7 +8,7 @@
 - [X] Empêcher l'injection de code
 - [X] Ajouter un identifiant unique pour chaque tâche
 - [X] Remplacer liste a puce par checkbox
-- [ ] Ajouter fonction pour supprimer une tâche
+- [X] Ajouter fonction pour supprimer une tâche
 - [ ] Implémenter des classes pour les tâches
 - [ ] Ajouter fonction de tri des liste de tâches
 - [ ] Ajouter fonction de recherche des liste de tâches
@@ -16,7 +16,7 @@
 - [ ] Ajouter fonction pour déplacer une liste de tâche
 - [ ] Ajouter fonction pour archiver une liste de tâche
 - [ ] Ajouter fonction pour restaurer une liste de tâche
-- [ ] Ajouter des labels pour les tâches
+- [ ] Ajouter plus d'infos à l'utilisateur
 
 ## Ressources
 
