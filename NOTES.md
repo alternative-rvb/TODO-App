@@ -7,15 +7,15 @@
 - [X] Ajouter focus sur la ligne de tâche
 - [X] Empêcher l'injection de code
 - [X] Ajouter un identifiant unique pour chaque tâche
-- [ ] Implémenter des classes pour les tâches
-- [ ] Remplacer liste a puce par checkbox
-- [ ] Ajouter fonction de tri des tâches
-- [ ] Ajouter fonction de recherche des tâches
-- [ ] Ajouter fonction pour dupliquer une tâche
-- [ ] Ajouter fonction pour déplacer une tâche
-- [ ] Ajouter fonction pour archiver une tâche
-- [ ] Ajouter fonction pour restaurer une tâche
+- [X] Remplacer liste a puce par checkbox
 - [ ] Ajouter fonction pour supprimer une tâche
+- [ ] Implémenter des classes pour les tâches
+- [ ] Ajouter fonction de tri des liste de tâches
+- [ ] Ajouter fonction de recherche des liste de tâches
+- [ ] Ajouter fonction pour dupliquer une liste de tâche
+- [ ] Ajouter fonction pour déplacer une liste de tâche
+- [ ] Ajouter fonction pour archiver une liste de tâche
+- [ ] Ajouter fonction pour restaurer une liste de tâche
 - [ ] Ajouter des labels pour les tâches
 
 ## Ressources

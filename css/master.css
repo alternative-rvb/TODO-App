@@ -78,6 +78,9 @@ article {
     padding: 1rem;
 }
 
+article {
+    padding: 1rem 1rem 0.5rem;
+}
 main {
     margin-top: var(--headerHeight);
     min-height: calc(100vh - var(--headerHeight) - var(--footerHeight));
@@ -227,7 +230,7 @@ textarea {
 .btn-square {
     background-color: transparent;
     color: var(--white);
-    min-width: 3rem;
+    min-width: 2rem;
     aspect-ratio: 1 / 1;
     /* border: 2px solid var(--accent); */
     border: none;
@@ -245,10 +248,10 @@ textarea {
 }
 
 .btn-create {
-    /* width: 48px; */
+    width: 32px;
     aspect-ratio: 1 / 1;
     border-radius: 100%;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 /*ANCHOR CUSTOM*/
@@ -276,7 +279,7 @@ textarea {
 /* ANCHOR COMPONENTS */
 
 #logo {
-    width: 35px;
+    width: 32px;
 }
 
 .task-header>* {

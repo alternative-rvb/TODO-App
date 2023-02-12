@@ -176,8 +176,8 @@ function createList() {
         });
     });
 
-    const deleteBtn = listsContainer.querySelectorAll(".delete-task");
-    deleteBtn.forEach((item) => {
+    const resetBtn = listsContainer.querySelectorAll(".delete-task");
+    resetBtn.forEach((item) => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
             deleteList(e);
@@ -192,7 +192,12 @@ function createList() {
             checkTask(e);
         });
     });
-
+    tasksLi.forEach((item) => {
+        item.addEventListener("dblclick", (e) => {
+            noRefresh(e);
+            deleteTask(e);
+        });
+    });
     taskForm.reset();
     inputsContainer.innerHTML = "";
     countInputs = 1;
@@ -250,6 +255,7 @@ function autoUpdateTasks(e) {
         });
     }
     localStorage.setItem("data", JSON.stringify(data));
+    createList();
 }
 
 // ANCHOR DELETE LIST
@@ -290,6 +296,19 @@ function addInput(location) {
     return newInput;
 }
 
+// ANCHOR DELETE TASK
+function deleteTask(e) {
+    const selectedTask = e.currentTarget.closest(".tasks__art");
+    const allTasks = selectedTask.querySelectorAll(".tasks__li");
+    const indexOfList = data.findIndex((item) => item.id == selectedTask.id);
+    const indexOfTask = data[indexOfList].tasks.findIndex(
+        (item) => item.task == e.currentTarget.innerText
+    );
+    data[indexOfList].tasks.splice(indexOfTask, 1);
+    localStorage.setItem("data", JSON.stringify(data));
+    createList();
+}
+
 // ANCHOR CHECK TASK
 function checkTask(e) {
     e.currentTarget.dataset.checked =
@@ -298,6 +317,7 @@ function checkTask(e) {
     autoUpdateTasks(e);
 }
 
+// DISPLAY LISTS ON LOAD
 (() => {
     data = JSON.parse(localStorage.getItem("data")) || [];
     console.log("data onLoad", {data});
