@@ -2,7 +2,7 @@ import {getRandomColor} from "./color.js";
 import {sanitizeInput} from "./tools.js";
 
 const modalForm = document.querySelector("#modal-form");
-const taskForm = document.querySelector("#task-form");
+const taskForm = document.querySelector("#list-form");
 const btnCreate = document.querySelector("#btn-create");
 const listsContainer = document.querySelector("#lists-container");
 const inputsContainer = document.querySelector("#inputs-container");

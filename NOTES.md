@@ -6,7 +6,7 @@
 - [X] Ajouter tâche quand on appuie sur entrée
 - [X] Ajouter focus sur la ligne de tâche
 - [X] Empêcher l'injection de code
-- [ ] Ajouter un identifiant unique pour chaque tâche
+- [X] Ajouter un identifiant unique pour chaque tâche
 - [ ] Implémenter des classes pour les tâches
 - [ ] Remplacer liste a puce par checkbox
 - [ ] Ajouter fonction de tri des tâches

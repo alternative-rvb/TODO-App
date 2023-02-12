@@ -44,29 +44,29 @@
 
     <!-- ANCHOR Modal -->
     <div id="modal-form" class="shadow">
-      <form id="task-form" class="task-form rounded p-1">
-        <div class="task-form__section text-right">
-          <button id="btn-close" class="task-form__btn-close btn-close btn-square" type="button" aria-label="Close">
+      <form id="list-form" class="list-form rounded p-1">
+        <div class="list-form__section text-right">
+          <button id="btn-close" class="list-form__btn-close btn-close btn-square" type="button" aria-label="Close">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
-        <div class="task-form__section">
-          <h2 class="task-form__title">Remplissez tous les champs</h2>
+        <div class="list-form__section">
+          <h2 class="list-form__title">Remplissez tous les champs</h2>
           <div class="my-1">
-            <label for="inputTitle" class="task-form__label">
+            <label for="inputTitle" class="list-form__label">
               Intitulé de la liste:
             </label>
             <input type="text" id="inputTitle" class="rounded" placeholder="Titre ..." name="title" />
           </div>
           <p id="info"></p>
           <div class="my-1">
-            <label for="inputDate" class="task-form__label">
+            <label for="inputDate" class="list-form__label">
               Échéance:
             </label>
             <input type="date" id="inputDate" class="rounded" name="date" />
           </div>
-          <p class="task-form__title">Cliquer sur [+] ou appuyer sur Entrée pour ajouter un tâche</p>
-          <div id="inputs-container" class="task-form__container">
+          <p class="list-form__title">Cliquer sur [+] ou appuyer sur Entrée pour ajouter un tâche</p>
+          <div id="inputs-container" class="list-form__container">
             <!-- <div class="my-1 d-flex ai-c">
               <input type="text" id="inputTask1" class="single-task rounded-left" placeholder="Your task 1..."
                 name="task1">
@@ -81,11 +81,11 @@
             <label for="inputColor">Couleur</label>
           </div>
         </div>
-        <div class="task-form__section text-right">
-          <button type="button" id="btn-reset" class="btn-reset task-form__btn btn-default">
+        <div class="list-form__section text-right">
+          <button type="button" id="btn-reset" class="btn-reset list-form__btn btn-default">
             Supprimer
           </button>
-          <button id="btn-validation" class="btn-validation task-form__btn btn-default">
+          <button id="btn-validation" class="btn-validation list-form__btn btn-default">
             Ajouter
           </button>
         </div>
