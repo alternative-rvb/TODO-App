@@ -10,7 +10,7 @@
     --black: #000000;
     --accent: rgba(255, 255, 255, 0.2);
     --headerHeight: 64px;
-    --footerHeight: 70.7px;
+    --footerHeight: 70px;
 }
 
 *,
@@ -245,7 +245,7 @@ textarea {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
+    font-size: 0.8rem;
     transition: border-color 300ms, color 300ms;
 }
 
@@ -255,11 +255,25 @@ textarea {
 }
 
 .btn-create {
-    width: 32px;
+    /* width: 32px;
     aspect-ratio: 1 / 1;
     border-radius: 100%;
-    font-size: 18px;
+    font-size: 18px; */
 }
+
+.btn-default span{
+    padding-left: 4px;
+}
+
+.btn-delete-all {
+    background-color: transparent;
+    border: none;
+    color: #CF5C36;
+}
+.btn-delete-all span {
+    padding-left: 4px;
+}
+
 
 /*ANCHOR CUSTOM*/
 
@@ -313,8 +327,8 @@ textarea {
     grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
     grid-gap: 1rem;
     /* align-items: baseline; */
-    align-items: flex-start;
-    align-content: flex-start;
+    /* align-items: flex-start;
+    align-content: flex-start; */
 
 }
 
@@ -449,7 +463,16 @@ li::marker {
     animation: loading 1s;
 }
 
-
+#wallpaper {
+    display: block;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    filter: saturate(0.1) brightness(0.1) blur(5px);
+        /* filter: blur(2px); */
+}
 
 @media (prefers-color-scheme: dark) {
     body {
