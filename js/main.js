@@ -22,6 +22,7 @@ btnCreate.addEventListener("click", (e) => {
     noRefresh(e);
     createList();
     modalForm.style.display = "block";
+    taskForm.classList.add("fx-scale-out");
     taskForm.inputTitle.focus();
     taskForm.inputColor.value = getRandomColor(50, 50);
 });
@@ -48,6 +49,7 @@ modalForm.querySelector(".add-single").addEventListener("click", (e) => {
     // noRefresh(e);
     addInput(inputsContainer);
 });
+
 // Lorsqu'on appuie sur entrée on ajoute un autre input
 inputsContainer.addEventListener("keyup", (e) => {
     if (e.key === "Enter") {
@@ -221,6 +223,7 @@ function createList() {
 // ANCHOR UPDATE LIST
 function updateList(e) {
     modalForm.style.display = "block";
+    taskForm.classList.add("fx-scale-out");
     document.querySelector("#btn-validation").innerHTML = "Mettre à jour";
     const selectedTask = e.currentTarget.closest(".tasks__art");
     const allTasks = selectedTask.querySelectorAll(".tasks__li");

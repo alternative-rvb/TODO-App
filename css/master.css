@@ -49,7 +49,6 @@ h3 {
 
 p {
     margin: 0 0 1rem;
-
 }
 
 img {
@@ -78,7 +77,6 @@ footer {
     color: var(--light);
 }
 
-
 section,
 article {
     padding: 1rem;
@@ -104,7 +102,6 @@ label,
 input:not([type="date"], [type="color"], [type="checkbox"]),
 textarea {
     width: 100%;
-
 }
 
 textarea {
@@ -246,12 +243,14 @@ textarea {
     justify-content: center;
     align-items: center;
     font-size: 0.8rem;
-    transition: border-color 300ms, color 300ms;
+    transform-origin: center;
+    transition: border-color 300ms, color 300ms, transmorm 300ms;
 }
 
 .btn-square:hover {
     /* border: 2px solid var(--primary); */
     color: var(--primary);
+    transform: scale(1.2);
 }
 
 .btn-create {
@@ -261,7 +260,7 @@ textarea {
     font-size: 18px; */
 }
 
-.btn-default span{
+.btn-default span {
     padding-left: 4px;
 }
 
@@ -270,13 +269,12 @@ textarea {
     border: none;
     color: #CF5C36;
 }
+
 .btn-delete-all span {
     padding-left: 4px;
 }
 
-
 /*ANCHOR CUSTOM*/
-
 .rounded {
     border-radius: 5px;
 }
@@ -298,7 +296,6 @@ textarea {
 }
 
 /* ANCHOR COMPONENTS */
-
 #logo {
     width: 32px;
 }
@@ -315,7 +312,6 @@ textarea {
 /* .task-header__title {
     white-space: nowrap;
 } */
-
 .task-header__title a {
     display: block;
     text-decoration: none;
@@ -329,7 +325,6 @@ textarea {
     /* align-items: baseline; */
     /* align-items: flex-start;
     align-content: flex-start; */
-
 }
 
 .tasks__art {
@@ -344,8 +339,6 @@ textarea {
 .tasks__art>* {
     cursor: initial;
 }
-
-
 
 /* .tasks__art * {
     margin: 0 !important;
@@ -380,7 +373,6 @@ textarea {
 
 #modal-form {
     display: none;
-    background-color: hsla(0, 0%, 4%, 0.95);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -388,26 +380,27 @@ textarea {
     width: 100%;
     max-width: 500px;
     border-radius: 5px;
+}
 
+.list-form {
+    background-color: hsla(0, 0%, 4%, 0.95);
+    transform-origin: 50% 50%;
 }
 
 .list-form__container {
     padding: 0 8px 0 2px;
     max-height: 35vh;
     overflow-y: auto;
-
 }
 
 .list-form__container::-webkit-scrollbar {
     width: 0.8rem;
     height: 0.8rem;
-
 }
 
 .list-form__container::-webkit-scrollbar-thumb {
     background: var(--dark);
     border-radius: 0.5rem;
-
 }
 
 .list-form__container::-webkit-scrollbar-track-piece {
@@ -421,11 +414,6 @@ textarea {
 } 
 .list-form__container::-webkit-resizer {
 }*/
-
-
-
-
-
 .drag-start {
     background-color: #222;
 }
@@ -463,6 +451,15 @@ li::marker {
     animation: loading 1s;
 }
 
+.fx-scale-out {
+    animation: fx-scale-out 300ms;
+    animation-timing-function: ease-in;
+}
+.fx-scale-in {
+    animation: fx-scale-in 300ms;
+    animation-timing-function: ease-in;
+}
+
 #wallpaper {
     display: block;
     position: fixed;
@@ -471,7 +468,7 @@ li::marker {
     object-fit: cover;
     z-index: -1;
     filter: saturate(0.1) brightness(0.1) blur(5px);
-        /* filter: blur(2px); */
+    /* filter: blur(2px); */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -504,5 +501,23 @@ li::marker {
 
     100% {
         background-color: hsla(0, 0%, 8%, 0.8);
+    }
+}
+
+@keyframes fx-scale-out {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fx-scale-in {
+
+
+    to {
+        transform: scale(0);
     }
 }
