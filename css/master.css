@@ -1,5 +1,5 @@
 /*ANCHOR REBOOT*/
-@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Hind+Madurai:wght@300;400;500;600;700&display=swap');
 
 :root {
     scroll-behavior: smooth;
@@ -10,7 +10,7 @@
     --black: #000000;
     --accent: rgba(255, 255, 255, 0.2);
     --headerHeight: 64px;
-    --footerHeight: 90px;
+    --footerHeight: 70.7px;
 }
 
 *,
@@ -24,8 +24,8 @@
 
 body {
     margin: 0;
-    /* font-size: large; */
-    font-family: Roboto, sans-serif;
+    font-size: medium;
+    font-family: 'Hind Madurai', sans-serif;
 }
 
 h1,
@@ -34,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Comfortaa', cursive;
     margin: 0 0 1rem;
 }
 
@@ -426,7 +426,7 @@ textarea {
 
 li {
     padding-left: 8px;
-    font-size: medium;
+    font-size: small;
 }
 
 li::marker {
