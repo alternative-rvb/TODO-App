@@ -220,7 +220,7 @@ function createList() {
     });
 
     // ANCHOR DRAG AND DROP
-    console.log("listsContainer => ", listsContainer);
+    // console.log("listsContainer => ", listsContainer);
     listsContainer.querySelectorAll("article").forEach((article) => {
         article.setAttribute("draggable", "true");
         article.addEventListener("dragstart", handleDragStart);
