@@ -29,9 +29,15 @@ btnCreate.addEventListener("click", (e) => {
 
 btnDeleteAll.addEventListener("click", (e) => {
     noRefresh(e);
-    localStorage.clear();
-    data = [];
-    createList();
+    if (
+        window.confirm(
+            "Voulez-vous vraiment quitter ? Vous allez perdre vos données"
+        )
+    ) {
+        localStorage.clear();
+        data = [];
+        createList();
+    }
 });
 
 // ANCHOR HANDLE FORM
@@ -76,9 +82,15 @@ modalForm.querySelector(".btn-close").addEventListener("click", (e) => {
     //     modalForm.style.display = "none";
     //     createList();
     // }
-    modalForm.style.display = "none";
-    createList();
-    info.innerHTML = "";
+    if (
+        window.confirm(
+            "Voulez-vous vraiment quitter ? Vous allez perdre vos données"
+        )
+    ) {
+        modalForm.style.display = "none";
+        createList();
+        info.innerHTML = "";
+    }
 });
 
 // ANCHOR VALIDATION
@@ -181,6 +193,7 @@ function createList() {
       </article>
       `);
     });
+
     // ANCHOR UI
 
     const edit = listsContainer.querySelectorAll(".edit-task");
@@ -207,12 +220,14 @@ function createList() {
             checkTask(e);
         });
     });
+
     tasksLi.forEach((item) => {
         item.addEventListener("dblclick", (e) => {
             noRefresh(e);
             deleteTask(e);
         });
     });
+
     taskForm.reset();
     inputsContainer.innerHTML = "";
     countInputs = 1;
@@ -383,3 +398,4 @@ function checkTask(e) {
 // });
 
 // !SECTION
+
