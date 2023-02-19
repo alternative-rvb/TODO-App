@@ -1,5 +1,6 @@
 import {getRandomColor} from "./color.js";
-import {sanitizeInput} from "./tools.js";
+import {sanitizeInput, noRefresh, findIndexOfElmt} from "./utilities.js";
+// import {noRefresh} from "./tools.js";
 
 const modalForm = document.querySelector("#modal-form");
 const taskForm = document.querySelector("#list-form");
@@ -7,16 +8,14 @@ const btnCreate = document.querySelector("#btn-create");
 const btnDeleteAll = document.querySelector("#btn-delete-all");
 const listsContainer = document.querySelector("#lists-container");
 const inputsContainer = document.querySelector("#inputs-container");
+let data = [];
 let countInputs = 0;
 let updatedIndex = "";
 const info = document.querySelector("#info");
 
 // SECTION TODO APP
 
-function noRefresh(e) {
-    e.preventDefault();
-    e.stopPropagation();
-}
+// ANCHOR UI
 
 btnCreate.addEventListener("click", (e) => {
     noRefresh(e);
@@ -117,7 +116,6 @@ function formValidation() {
 
 // ANCHOR ACCEPT DATA
 
-let data = [];
 function acceptData() {
     let obj = {};
     obj.id = `task${Date.now()}`;
@@ -240,9 +238,9 @@ function updateList(e) {
     modalForm.style.display = "block";
     taskForm.classList.add("fx-scale-out");
     document.querySelector("#btn-validation").innerHTML = "Mettre à jour";
-    const selectedTask = e.currentTarget.closest(".tasks__art");
-    const allTasks = selectedTask.querySelectorAll(".tasks__li");
-    const index = data.findIndex((item) => item.id == selectedTask.id);
+    const currentList = e.currentTarget.closest(".tasks__art");
+    const index = findIndexOfElmt(currentList.id, data);
+    const allTasks = currentList.querySelectorAll(".tasks__li");
     updatedIndex = index;
 
     if (data[index].tasks.length > 0) {
@@ -263,23 +261,23 @@ function updateList(e) {
 }
 // UPDATE TASK
 function autoUpdateTasks(e) {
-    const selectedTask = e.currentTarget.closest(".tasks__art");
-    const allTasks = selectedTask.querySelectorAll(".tasks__li");
-    const indexOfList = data.findIndex((item) => item.id == selectedTask.id);
-    if (selectedTask.querySelector(".tasks__title").innerText)
-        data[indexOfList].title = sanitizeInput(
-            selectedTask.querySelector(".tasks__title").innerText
+    const currentList = e.currentTarget.closest(".tasks__art");
+    const index = findIndexOfElmt(currentList.id, data);
+    const allTasks = currentList.querySelectorAll(".tasks__li");
+    if (currentList.querySelector(".tasks__title").innerText)
+        data[index].title = sanitizeInput(
+            currentList.querySelector(".tasks__title").innerText
         );
-    if (selectedTask.querySelector(".tasks__meta time")) {
-        data[indexOfList].date = sanitizeInput(
-            selectedTask.querySelector(".tasks__meta time").innerText
+    if (currentList.querySelector(".tasks__meta time")) {
+        data[index].date = sanitizeInput(
+            currentList.querySelector(".tasks__meta time").innerText
         );
     }
-    if (selectedTask.dataset.color) {
-        data[indexOfList].color = sanitizeInput(selectedTask.dataset.color);
+    if (currentList.dataset.color) {
+        data[index].color = sanitizeInput(currentList.dataset.color);
     }
     if (allTasks.length > 0) {
-        data[indexOfList].tasks.forEach((item, indexOfTask) => {
+        data[index].tasks.forEach((item, indexOfTask) => {
             item.task = sanitizeInput(allTasks[indexOfTask].innerText);
             item.isChecked = sanitizeInput(
                 allTasks[indexOfTask].dataset.checked
@@ -292,14 +290,15 @@ function autoUpdateTasks(e) {
 
 // ANCHOR DELETE LIST
 function deleteList(e) {
-    const selectedTask = e.currentTarget.closest(".tasks__art");
-    const index = data.findIndex((item) => item.id == selectedTask.id);
+    const currentList = e.currentTarget.closest(".tasks__art");
+    const index = findIndexOfElmt(currentList.id, data);
 
     // REVIEW
     data.splice(index, 1);
     localStorage.setItem("data", JSON.stringify(data));
 }
 
+// ANCHOR ADD INPUT
 function addInput(location) {
     const newInput = document.createElement("div");
     newInput.classList.add("my-1", "d-flex");
@@ -325,25 +324,28 @@ function addInput(location) {
     return newInput;
 }
 
-// ANCHOR DELETE TASK
-function deleteTask(e) {
-    const selectedTask = e.currentTarget.closest(".tasks__art");
-    const allTasks = selectedTask.querySelectorAll(".tasks__li");
-    const indexOfList = data.findIndex((item) => item.id == selectedTask.id);
-    const indexOfTask = data[indexOfList].tasks.findIndex(
-        (item) => item.task == e.currentTarget.innerText
-    );
-    data[indexOfList].tasks.splice(indexOfTask, 1);
-    localStorage.setItem("data", JSON.stringify(data));
-    createList();
-}
-
 // ANCHOR CHECK TASK
 function checkTask(e) {
     e.currentTarget.dataset.checked =
         e.currentTarget.dataset.checked === "false" ? "true" : "false";
     e.currentTarget.classList.toggle("checked");
     autoUpdateTasks(e);
+}
+
+// ANCHOR DELETE TASK
+function deleteTask(e) {
+    const currentList = e.currentTarget.closest(".tasks__art");
+    const indexOfList = findIndexOfElmt(currentList.id, data);
+    const indexOfTask = findIndexOfElmt(
+        e.currentTarget.innerText,
+        data[indexOfList].tasks
+    );
+    // const indexOfTask = data[indexOfList].tasks.findIndex(
+    //     (item) => item.task == e.currentTarget.innerText
+    // );
+    data[indexOfList].tasks.splice(indexOfTask, 1);
+    localStorage.setItem("data", JSON.stringify(data));
+    createList();
 }
 
 // DISPLAY LISTS ON LOAD
@@ -398,4 +400,3 @@ function checkTask(e) {
 // });
 
 // !SECTION
-

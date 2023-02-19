@@ -1,10 +1,11 @@
 /**
+ * ANCHOR SANITIZE INPUT
  * Empêcher les injections de code ou de caractères spéciaux
- * @param {string} input 
- * @returns {string} 
+ * @param {string} input
+ * @returns {string}
  */
 
-export function sanitizeInput(input) {
+function sanitizeInput(input) {
     // Enlever les balises HTML
     input = input.replace(/<[^>]*>/g, "");
     // Enlever les caractères spéciaux dangereux
@@ -15,3 +16,17 @@ export function sanitizeInput(input) {
     input = input.trim();
     return input;
 }
+
+// ANCHOR NO REFRESH
+function noRefresh(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+// ANCHOR FIND INDEX OF ELEMENT
+function findIndexOfElmt(currentElmt, data) {
+    return data.findIndex((item) => item.id == currentElmt);
+}
+
+// Exporter toutes les fonctions
+export {sanitizeInput, noRefresh, findIndexOfElmt};
