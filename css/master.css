@@ -235,8 +235,9 @@ textarea {
     background-color: transparent;
     color: var(--white);
     min-width: 2rem;
-    aspect-ratio: 1 / 1;
+    /* aspect-ratio: 1 / 1; */
     /* border: 2px solid var(--accent); */
+    
     border: none;
     border-radius: 5px;
     display: inline-flex;
@@ -320,7 +321,7 @@ textarea {
 
 #lists-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
     grid-gap: 1rem;
     /* align-items: baseline; */
     /* align-items: flex-start;

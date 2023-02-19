@@ -158,40 +158,50 @@ function acceptData() {
 function createList() {
     listsContainer.innerHTML = "";
     document.querySelector("#btn-validation").innerHTML = "Ajouter";
+
+    // Création de l'article
     data.map((x) => {
-        return (listsContainer.innerHTML += `
-      <article id=${
-          x.id
-      } class="tasks__art d-flex fd-column" style="border-color:${
+        let template = `
+    <article id=${
+        x.id
+    } class="tasks__art d-flex fd-column" style="border-color:${
             x.color
         }" draggable="true" data-color="${x.color}">
-      <h3 class="tasks__title">${x.title}</h3>
-      ${
-          x.date
-              ? `<p class="tasks__meta"><small>Échéance: <time>${x.date}</time></small></p>`
-              : ""
-      }
-      <ul>
-        ${x.tasks
-            .map((y) => {
-                return `<li class="tasks__li ${
-                    y.isChecked === "true" ? "checked" : ""
-                }" data-checked="${
-                    y.isChecked === "true" ? "true" : "false"
-                }">${y.task}</li>`;
-            })
-            .join("")}
-      </ul>
-      <form class="text-right mt-auto">
-        <button class="edit-task btn-square" >
-          <i class="fas fa-edit"></i>
-        </button>
-        <button class="delete-task btn-square" >
-          <i class="fas fa-trash-alt"></i>
-        </button>
-      </form>
-      </article>
-      `);
+    <h3 class="tasks__title">${x.title}</h3>
+    ${
+        x.date
+            ? `<p class="tasks__meta"><small>Échéance: <time>${x.date}</time></small></p>`
+            : ""
+    }
+    <div class="my-1">
+        <button type="button" class="filter btn-square">Toutes</button> |
+        <button type="button" class="filter btn-square">A faire</button> |
+        <button type="button" class="filter btn-square">Terminées</button>
+    </div>
+    <ul>
+      ${x.tasks
+          .map((y) => {
+              return `<li class="tasks__li ${
+                  y.isChecked === "true" ? "checked" : ""
+              }" data-checked="${y.isChecked === "true" ? "true" : "false"}">${
+                  y.task
+              }</li>`;
+          })
+          .join("")}
+    </ul>
+    <form class="text-right mt-auto">
+          <div>
+            <button type="button" class="edit-task btn-square" >
+            <i class="fas fa-edit"></i>
+            </button>
+            <button type="button" class="delete-task btn-square" >
+            <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+    </form>
+    </article>
+    `;
+        return (listsContainer.innerHTML += template);
     });
 
     // ANCHOR UI
@@ -225,6 +235,14 @@ function createList() {
         item.addEventListener("dblclick", (e) => {
             noRefresh(e);
             deleteTask(e);
+        });
+    });
+
+    const filters = listsContainer.querySelectorAll(".filter");
+    filters.forEach((item) => {
+        item.addEventListener("click", (e) => {
+            noRefresh(e);
+            filterTasks(e);
         });
     });
 
@@ -346,6 +364,30 @@ function checkTask(e) {
     autoUpdateTasks(e);
 }
 
+// ANCHOR FILTER TASKS
+function filterTasks(e) {
+    const taskLi = e.currentTarget
+        .closest(".tasks__art")
+        .querySelectorAll(".tasks__li");
+    if (e.currentTarget.innerText === "Toutes") {
+        taskLi.forEach((item) => {
+            item.style.display = "block";
+        });
+    } else if (e.currentTarget.innerText === "A faire") {
+        taskLi.forEach((item) => {
+            item.dataset.checked === "false"
+                ? (item.style.display = "block")
+                : (item.style.display = "none");
+        });
+    } else if (e.currentTarget.innerText === "Terminées") {
+        taskLi.forEach((item) => {
+            item.dataset.checked === "true"
+                ? (item.style.display = "block")
+                : (item.style.display = "none");
+        });
+    }
+}
+
 // DISPLAY LISTS ON LOAD
 (() => {
     data = JSON.parse(localStorage.getItem("data")) || [];
@@ -398,4 +440,3 @@ function checkTask(e) {
 // });
 
 // !SECTION
-
