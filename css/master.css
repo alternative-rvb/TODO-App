@@ -336,9 +336,7 @@ textarea {
     cursor: grab;
 }
 
-.tasks__art>* {
-    cursor: initial;
-}
+
 
 /* .tasks__art * {
     margin: 0 !important;
