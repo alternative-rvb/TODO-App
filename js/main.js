@@ -158,7 +158,7 @@ function createList() {
           x.id
       } class="tasks__art d-flex fd-column" style="border-color:${
             x.color
-        }" draggable="true" data-color="${x.color}">
+        }"  data-color="${x.color}">
       <h3 class="tasks__title">${x.title}</h3>
       ${
           x.date
@@ -213,13 +213,22 @@ function createList() {
             noRefresh(e);
             checkTask(e);
         });
-    });
-
-    tasksLi.forEach((item) => {
         item.addEventListener("dblclick", (e) => {
             noRefresh(e);
             deleteTask(e);
         });
+    });
+
+    // ANCHOR DRAG AND DROP
+    console.log("listsContainer => ", listsContainer);
+    listsContainer.querySelectorAll("article").forEach((article) => {
+        article.setAttribute("draggable", "true");
+        article.addEventListener("dragstart", handleDragStart);
+        article.addEventListener("dragover", handleDragOver);
+        article.addEventListener("dragenter", handleDragEnter);
+        article.addEventListener("dragleave", handleDragLeave);
+        article.addEventListener("drop", handleDrop);
+        article.addEventListener("dragend", handleDragEnd);
     });
 
     taskForm.reset();
@@ -362,37 +371,42 @@ function deleteTask(e) {
 
 // const allArticles = document.querySelectorAll(".tasks__art");
 
-// allArticles.forEach((article) => {
-//     article.ondragstart = (e) => {
-//         console.log("e.target START => ", e.target);
-//         e.target.closest("article").classList.add("drag-start");
-//         // e.dataTransfer.setData("text/plain", e.target.closest("article").innerHTML);
-//         // e.currentTarget.style.transform = "scale(.5)";
-//     };
-//     article.ondragover = (e) => {
-//         e.preventDefault();
-//     };
+let dragSource = null;
 
-//     article.ondragenter = (e) => {
-//         console.log("e.target ENTER => ", e.target.closest("article"));
-//         e.target.closest("article").classList.remove("drag-start");
-//         // e.target.closest("article").classList.add("drag-enter");
-//     };
+function handleDragStart(e) {
+    dragSource = e.target;
+    this.classList.add("drag-start");
+}
 
-//     article.ondragleave = (e) => {
-//         console.log("e.target LEAVE => ", e.target.closest("article"));
-//         // e.target.closest("article").classList.remove("drag-enter");
-//     };
+function handleDragOver(e) {
+    e.preventDefault();
+    this.classList.add("drag-enter");
+}
 
-//     article.ondrop = (e) => {
-//         e.stopPropagation();
-//         e.preventDefault();
-//         e.target.closest("article").classList.add("drop");
-//         // e.target.closest("article").innerHTML = e.dataTransfer.getData("text/plain");
-//     };
-//     article.ondragend = (e) => {
-//         e.target.closest("article").classList.remove("drop");
-//     };
-// });
+function handleDragEnter(e) {
+    this.classList.add("drag-enter");
+}
+
+function handleDragLeave(e) {
+    this.classList.remove("drag-enter");
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+    this.classList.remove("drop");
+    const dropTarget = e.target;
+    const targetIndex = findIndexOfElmt(dropTarget.id, data);
+    const sourceIndex = findIndexOfElmt(dragSource.id, data);
+    if (targetIndex !== sourceIndex) {
+        const [removed] = data.splice(sourceIndex, 1);
+        data.splice(targetIndex, 0, removed);
+        localStorage.setItem("data", JSON.stringify(data));
+        createList();
+    }
+}
+
+function handleDragEnd(e) {
+    this.classList.remove("drag-start");
+}
 
 // !SECTION

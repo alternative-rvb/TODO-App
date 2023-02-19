@@ -414,17 +414,7 @@ textarea {
 } 
 .list-form__container::-webkit-resizer {
 }*/
-.drag-start {
-    background-color: #222;
-}
 
-.drag-enter {
-    background-color: #222;
-}
-
-.drop {
-    background-color: none;
-}
 
 li {
     padding-left: 8px;
@@ -470,6 +460,19 @@ li::marker {
     filter: saturate(0.1) brightness(0.1) blur(5px);
     /* filter: blur(2px); */
 }
+
+.tasks__art.drag-start {
+    opacity: 0.4;
+  }
+  
+  .tasks__art.drag-enter {
+    border: 2px dashed #999;
+  }
+  
+  .tasks__art.drop {
+    opacity: 1;
+    border: none;
+  }
 
 @media (prefers-color-scheme: dark) {
     body {
