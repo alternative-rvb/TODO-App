@@ -51,15 +51,18 @@ modalForm.onkeypress = (e) => {
 };
 
 modalForm.querySelector(".add-single").addEventListener("click", (e) => {
-    // noRefresh(e);
+    noRefresh(e);
     addInput(inputsContainer);
 });
 
 // Lorsqu'on appuie sur entrée on ajoute un autre input
 inputsContainer.addEventListener("keyup", (e) => {
+    noRefresh(e);
     if (e.key === "Enter") {
-        // noRefresh(e);
         addInput(inputsContainer);
+    }
+    if (e.ctrlKey && e.key === "Enter") {
+        formValidation();
     }
 });
 
@@ -69,18 +72,11 @@ modalForm.querySelector(".btn-validation").addEventListener("click", (e) => {
 });
 
 modalForm.querySelector(".btn-reset").addEventListener("click", (e) => {
-    // noRefresh(e);
+    noRefresh(e);
     createList();
 });
 
 modalForm.querySelector(".btn-close").addEventListener("click", (e) => {
-    // noRefresh(e);
-    //  REVIEW
-    //  let confirmation=  confirm("Voulez-vous vraiment quitter ? Vous allez perdre vos données");
-    // if (confirmation) {
-    //     modalForm.style.display = "none";
-    //     createList();
-    // }
     if (
         window.confirm(
             "Voulez-vous vraiment quitter ? Vous allez perdre vos données"
