@@ -433,12 +433,12 @@ li::marker {
 }
 
 .fx-scale-out {
-    animation: fx-scale-out 300ms;
+    animation: fx-scale-out 200ms;
     animation-timing-function: ease-in;
 }
 
 .fx-scale-in {
-    animation: fx-scale-in 300ms;
+    animation: fx-scale-in 200ms;
     animation-timing-function: ease-in;
 }
 
