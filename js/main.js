@@ -1,13 +1,9 @@
 import {getRandomColor} from "./color.js";
 import {sanitizeInput, noRefresh, findIndexOfElmt} from "./utilities.js";
 import {getDemo} from "./demo.js";
-// import {noRefresh} from "./tools.js";
 
 const modalForm = document.querySelector("#modal-form");
 const listsForm = document.querySelector("#list-form");
-const btnCreate = document.querySelector("#btn-create");
-const btnDeleteAll = document.querySelector("#btn-delete-all");
-const btnDemo = document.querySelector("#btn-demo");
 const listsContainer = document.querySelector("#lists-container");
 const inputsContainer = document.querySelector("#inputs-container");
 let data = [];
@@ -17,9 +13,9 @@ const info = document.querySelector("#info");
 
 // SECTION TODO APP
 
-// ANCHOR HANDLE APP UI
+// ANCHOR HANDLE UI
 
-btnCreate.addEventListener("click", (e) => {
+document.querySelector("#btn-create").addEventListener("click", (e) => {
     noRefresh(e);
     createList();
     modalForm.style.display = "block";
@@ -28,7 +24,7 @@ btnCreate.addEventListener("click", (e) => {
     listsForm.inputColor.value = getRandomColor(50, 50);
 });
 
-btnDeleteAll.addEventListener("click", (e) => {
+document.querySelector("#btn-delete-all").addEventListener("click", (e) => {
     noRefresh(e);
     if (
         window.confirm(
@@ -41,7 +37,7 @@ btnDeleteAll.addEventListener("click", (e) => {
     }
 });
 
-btnDemo.addEventListener("click", (e) => {
+document.querySelector("#btn-demo").addEventListener("click", (e) => {
     if (
         window.confirm(
             "Attention ! Vous allez perdre vos données actuelles. Voulez-vous continuer ?"
@@ -53,16 +49,65 @@ btnDemo.addEventListener("click", (e) => {
     }
 });
 
+// ANCHOR DRAG AND DROP
+
+// ondragstart
+// ondragenter
+// ondragleave
+// ondragend
+// ondragover
+// ondrop
+
+// const allArticles = document.querySelectorAll(".list");
+
+let dragSource = null;
+
+function handleDragStart(e) {
+    dragSource = e.target.closest(".list");
+    this.classList.add("drag-start");
+}
+
+function handleDragOver(e) {
+    e.preventDefault();
+    this.classList.add("drag-enter");
+}
+
+function handleDragEnter(e) {
+    this.classList.add("drag-enter");
+}
+
+function handleDragLeave(e) {
+    this.classList.remove("drag-enter");
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+    this.classList.remove("drop");
+    const dropTarget = e.target.closest(".list");
+    const targetIndex = findIndexOfElmt(dropTarget.id, data);
+    const sourceIndex = findIndexOfElmt(dragSource.id, data);
+    if (targetIndex !== sourceIndex) {
+        const [removed] = data.splice(sourceIndex, 1);
+        data.splice(targetIndex, 0, removed);
+        localStorage.setItem("data", JSON.stringify(data));
+        createList();
+    }
+}
+
+function handleDragEnd(e) {
+    this.classList.remove("drag-start");
+}
+
 // ANCHOR HANDLE FORM
 
 // On empêche l'envoi du formulaire avec la touche entrée
-modalForm.onkeypress = (e) => {
+modalForm.addEventListener("keypress",  (e) => {
     let key = e.charCode || e.keyCode || 0;
     if (key == 13) {
         //   alert("No Enter!");
         e.preventDefault();
     }
-};
+});
 
 modalForm.querySelector(".add-single").addEventListener("click", (e) => {
     noRefresh(e);
@@ -70,7 +115,7 @@ modalForm.querySelector(".add-single").addEventListener("click", (e) => {
 });
 
 // Lorsqu'on appuie sur entrée on ajoute un autre input
-inputsContainer.addEventListener("keyup", (e) => {
+inputsContainer.addEventListener("keypress", (e) => {
     noRefresh(e);
     if (e.key === "Enter") {
         addInput(inputsContainer);
@@ -376,56 +421,4 @@ function deleteTask(e) {
 
 // !SECTION
 
-// SECTION DRAG AND DROP
 
-// ondragstart
-// ondragenter
-// ondragleave
-// ondragend
-// ondragover
-// ondrop
-
-// const allArticles = document.querySelectorAll(".list");
-
-let dragSource = null;
-
-function handleDragStart(e) {
-    dragSource = e.target.closest(".list");
-    console.log("dragSource => ", dragSource);
-    this.classList.add("drag-start");
-}
-
-function handleDragOver(e) {
-    e.preventDefault();
-    this.classList.add("drag-enter");
-}
-
-function handleDragEnter(e) {
-    this.classList.add("drag-enter");
-}
-
-function handleDragLeave(e) {
-    this.classList.remove("drag-enter");
-}
-
-function handleDrop(e) {
-    e.preventDefault();
-    this.classList.remove("drop");
-    const dropTarget = e.target.closest(".list");
-    const targetIndex = findIndexOfElmt(dropTarget.id, data);
-    console.log("targetIndex => ", targetIndex);
-    const sourceIndex = findIndexOfElmt(dragSource.id, data);
-    console.log("sourceIndex => ", sourceIndex);
-    if (targetIndex !== sourceIndex) {
-        const [removed] = data.splice(sourceIndex, 1);
-        data.splice(targetIndex, 0, removed);
-        localStorage.setItem("data", JSON.stringify(data));
-        createList();
-    }
-}
-
-function handleDragEnd(e) {
-    this.classList.remove("drag-start");
-}
-
-// !SECTION
