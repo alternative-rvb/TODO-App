@@ -16,6 +16,7 @@ Application Javascript simple pour gérer des listes de tâches.
 - [X] Remplacer liste a puce par checkbox
 - [X] Ajouter fonction pour supprimer une tâche
 - [X] Ajouter fonction pour déplacer une liste de tâche
+- [ ] Ajouter fonction pour annuler la dernière action
 - [ ] Suppression de la date d'échéance quand on double clique dessus
 - [ ] Ajouter une demo
 - [ ] Ajouter fonction Zoom pour une tache
