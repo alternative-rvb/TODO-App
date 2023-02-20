@@ -92,7 +92,7 @@ function handleDragEnd(e) {
 // ANCHOR HANDLE FORM
 
 // On empêche l'envoi du formulaire avec la touche entrée
-modalForm.addEventListener("keypress",  (e) => {
+modalForm.addEventListener("keypress", (e) => {
     let key = e.charCode || e.keyCode || 0;
     if (key == 13) {
         //   alert("No Enter!");
@@ -106,7 +106,7 @@ modalForm.querySelector(".add-single").addEventListener("click", (e) => {
 });
 
 // Lorsqu'on appuie sur entrée on ajoute un autre input
-inputsContainer.addEventListener("keypress", (e) => {
+inputsContainer.addEventListener("keyup", (e) => {
     noRefresh(e);
     if (e.key === "Enter") {
         addInput(inputsContainer);
@@ -203,7 +203,7 @@ function createList() {
     listsContainer.innerHTML = "";
     document.querySelector("#btn-validation").innerHTML = "Ajouter";
     data.map((x) => {
-        return (listsContainer.innerHTML += `
+        listsContainer.innerHTML += `
       <article id=${x.id} class="list d-flex fd-column" style="border-color:${
             x.color
         }"  data-color="${x.color}">
@@ -235,7 +235,8 @@ function createList() {
         </button>
       </form>
       </article>
-      `);
+      `;
+        return listsContainer;
     });
 
     // ANCHOR HANDLE LISTS UI
@@ -411,5 +412,3 @@ function deleteTask(e) {
 })();
 
 // !SECTION
-
-
