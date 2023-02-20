@@ -176,7 +176,7 @@ function createList() {
         </header>
         ${
             x.date
-                ? `<p class="list__meta p-1"><small>Échéance: <time>${x.date}</time></small></p>`
+                ? `<p class="list__meta"><small>Échéance: <time>${x.date}</time></small></p>`
                 : ""
         }
       <ul class="list__tasks">
