@@ -65,25 +65,14 @@ a {
     color: var(--light);
 }
 
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
 header,
 footer {
     background-color: hsla(0, 0%, 8%, 1);
     color: var(--light);
 }
 
-section,
-article {
+section {
     padding: 1rem;
-}
-
-article {
-    padding: 1rem 1rem 0.5rem;
 }
 
 main {
@@ -300,19 +289,25 @@ textarea {
     width: 32px;
 }
 
-.task-header>* {
+.main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.main-header>* {
     text-decoration: none;
 }
 
-.task-header__info {
+.main-header__info {
     padding: 0.5rem 1rem;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* .task-header__title {
+/* .main-header__title {
     white-space: nowrap;
 } */
-.task-header__title a {
+.main-header__title a {
     display: block;
     text-decoration: none;
     font-size: 24px;
@@ -327,7 +322,7 @@ textarea {
     align-content: flex-start; */
 }
 
-.tasks__art {
+.list {
     background-color: hsla(0, 0%, 8%, 0.8);
     border-bottom: 4px solid var(--accent);
     border-radius: 5px;
@@ -337,36 +332,32 @@ textarea {
 }
 
 
+.list__header {
+    padding: 1rem 1rem 0.5rem;
+    border-radius: 5px;
 
-/* .tasks__art * {
-    margin: 0 !important;
-    padding: 0 !important;
-} */
-.tasks__title,
-.tasks__meta {
+}
+
+.list__title,
+.list__meta {
     margin: 0 0 0.5rem;
 }
 
-.tasks__meta {
+.list__meta {
     font-size: 0.8em;
     opacity: 0.75;
 }
 
-.tasks__meta time {
+.list__meta time {
     font-style: italic;
 }
 
-.tasks__meta i {
+.list__meta i {
     margin-right: 0.5rem;
 }
 
-.tasks__description {
-    font-size: 0.8em;
-    font-family: Roboto, sans-serif;
-    white-space: pre-line;
-    /* border: 2px solid rgba(255, 255, 255, 0.2);
-    padding: 0.5rem;
-    border-radius: 5px; */
+.list__tasks {
+    padding: 1rem 2rem 1rem;
 }
 
 #modal-form {
@@ -417,6 +408,7 @@ textarea {
 li {
     padding-left: 8px;
     font-size: small;
+    cursor: default;
 }
 
 li::marker {
@@ -443,6 +435,7 @@ li::marker {
     animation: fx-scale-out 300ms;
     animation-timing-function: ease-in;
 }
+
 .fx-scale-in {
     animation: fx-scale-in 300ms;
     animation-timing-function: ease-in;
@@ -459,18 +452,18 @@ li::marker {
     /* filter: blur(2px); */
 }
 
-.tasks__art.drag-start {
+.list.drag-start {
     opacity: 0.4;
-  }
-  
-  .tasks__art.drag-enter {
-    border: 2px dashed #999;
-  }
-  
-  .tasks__art.drop {
+}
+
+.list.drag-enter {
+    border: 2px dashed #999 !important;
+}
+
+.list.drop {
     opacity: 1;
     border: none;
-  }
+}
 
 @media (prefers-color-scheme: dark) {
     body {

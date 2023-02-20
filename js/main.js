@@ -3,7 +3,7 @@ import {sanitizeInput, noRefresh, findIndexOfElmt} from "./utilities.js";
 // import {noRefresh} from "./tools.js";
 
 const modalForm = document.querySelector("#modal-form");
-const taskForm = document.querySelector("#list-form");
+const listsForm = document.querySelector("#list-form");
 const btnCreate = document.querySelector("#btn-create");
 const btnDeleteAll = document.querySelector("#btn-delete-all");
 const listsContainer = document.querySelector("#lists-container");
@@ -15,15 +15,15 @@ const info = document.querySelector("#info");
 
 // SECTION TODO APP
 
-// ANCHOR UI
+// ANCHOR HANDLE APP UI
 
 btnCreate.addEventListener("click", (e) => {
     noRefresh(e);
     createList();
     modalForm.style.display = "block";
-    taskForm.classList.add("fx-scale-out");
-    taskForm.inputTitle.focus();
-    taskForm.inputColor.value = getRandomColor(50, 50);
+    listsForm.classList.add("fx-scale-out");
+    listsForm.inputTitle.focus();
+    listsForm.inputColor.value = getRandomColor(50, 50);
 });
 
 btnDeleteAll.addEventListener("click", (e) => {
@@ -116,21 +116,21 @@ function acceptData() {
     let obj = {};
     obj.id = `task${Date.now()}`;
     obj.tasks = [];
-    for (let i = 0; i < taskForm.elements.length; i++) {
-        if (taskForm.elements[i].name) {
+    for (let i = 0; i < listsForm.elements.length; i++) {
+        if (listsForm.elements[i].name) {
             // REVIEW
-            if (!taskForm.elements[i].classList.contains("single-task")) {
-                obj[taskForm.elements[i].name] = sanitizeInput(
-                    taskForm.elements[i].value
+            if (!listsForm.elements[i].classList.contains("single-task")) {
+                obj[listsForm.elements[i].name] = sanitizeInput(
+                    listsForm.elements[i].value
                 );
-            } else if (taskForm.elements[i].value) {
-                // obj["tasks"].push(sanitizeInput(taskForm.elements[i].value));
+            } else if (listsForm.elements[i].value) {
+                // obj["tasks"].push(sanitizeInput(listsForm.elements[i].value));
                 obj.tasks.push({
                     isChecked:
-                        taskForm.elements[i].dataset.checked === "true"
+                        listsForm.elements[i].dataset.checked === "true"
                             ? "true"
                             : "false",
-                    task: sanitizeInput(taskForm.elements[i].value),
+                    task: sanitizeInput(listsForm.elements[i].value),
                 });
             }
         }
@@ -154,21 +154,21 @@ function createList() {
     document.querySelector("#btn-validation").innerHTML = "Ajouter";
     data.map((x) => {
         return (listsContainer.innerHTML += `
-      <article id=${
-          x.id
-      } class="tasks__art d-flex fd-column" style="border-color:${
+      <article id=${x.id} class="list d-flex fd-column" style="border-color:${
             x.color
         }"  data-color="${x.color}">
-      <h3 class="tasks__title">${x.title}</h3>
-      ${
-          x.date
-              ? `<p class="tasks__meta"><small>Échéance: <time>${x.date}</time></small></p>`
-              : ""
-      }
-      <ul>
+        <header class="list__header">
+            <h3 class="list__title">${x.title}</h3>
+        </header>
+        ${
+            x.date
+                ? `<p class="list__meta p-1"><small>Échéance: <time>${x.date}</time></small></p>`
+                : ""
+        }
+      <ul class="list__tasks">
         ${x.tasks
             .map((y) => {
-                return `<li class="tasks__li ${
+                return `<li class="list__li ${
                     y.isChecked === "true" ? "checked" : ""
                 }" data-checked="${
                     y.isChecked === "true" ? "true" : "false"
@@ -177,10 +177,10 @@ function createList() {
             .join("")}
       </ul>
       <form class="text-right mt-auto">
-        <button class="edit-task btn-square" >
+        <button class="edit-list btn-square" >
           <i class="fas fa-edit"></i>
         </button>
-        <button class="delete-task btn-square" >
+        <button class="delete-list btn-square" >
           <i class="fas fa-trash-alt"></i>
         </button>
       </form>
@@ -188,9 +188,9 @@ function createList() {
       `);
     });
 
-    // ANCHOR UI
+    // ANCHOR HANDLE LISTS UI
 
-    const edit = listsContainer.querySelectorAll(".edit-task");
+    const edit = listsContainer.querySelectorAll(".edit-list");
     edit.forEach((item) => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
@@ -198,7 +198,7 @@ function createList() {
         });
     });
 
-    const resetBtn = listsContainer.querySelectorAll(".delete-task");
+    const resetBtn = listsContainer.querySelectorAll(".delete-list");
     resetBtn.forEach((item) => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
@@ -207,7 +207,7 @@ function createList() {
         });
     });
 
-    const tasksLi = listsContainer.querySelectorAll(".tasks__li");
+    const tasksLi = listsContainer.querySelectorAll(".list__li");
     tasksLi.forEach((item) => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
@@ -231,21 +231,21 @@ function createList() {
         article.addEventListener("dragend", handleDragEnd);
     });
 
-    taskForm.reset();
+    listsForm.reset();
     inputsContainer.innerHTML = "";
     countInputs = 1;
     addInput(inputsContainer);
-    console.log("data created", {data});
+    console.log("data created", data);
 }
 
 // ANCHOR UPDATE LIST
 function updateList(e) {
     modalForm.style.display = "block";
-    taskForm.classList.add("fx-scale-out");
+    listsForm.classList.add("fx-scale-out");
     document.querySelector("#btn-validation").innerHTML = "Mettre à jour";
-    const currentList = e.currentTarget.closest(".tasks__art");
+    const currentList = e.currentTarget.closest(".list");
     const index = findIndexOfElmt(currentList.id, data);
-    const allTasks = currentList.querySelectorAll(".tasks__li");
+    const allTasks = currentList.querySelectorAll(".list__li");
     updatedIndex = index;
 
     if (data[index].tasks.length > 0) {
@@ -253,12 +253,12 @@ function updateList(e) {
             addInput(inputsContainer);
         }
     }
-    taskForm.elements.inputTitle.value = data[index].title;
-    taskForm.elements.inputDate.value = data[index].date;
-    taskForm.elements.inputColor.value = data[index].color;
+    listsForm.elements.inputTitle.value = data[index].title;
+    listsForm.elements.inputDate.value = data[index].date;
+    listsForm.elements.inputColor.value = data[index].color;
     allTasks.forEach((item, index) => {
-        taskForm.elements[`inputTask${index + 1}`].value = item.innerText;
-        taskForm.elements[`inputTask${index + 1}`].dataset.checked =
+        listsForm.elements[`inputTask${index + 1}`].value = item.innerText;
+        listsForm.elements[`inputTask${index + 1}`].dataset.checked =
             item.dataset.checked;
     });
 
@@ -266,16 +266,16 @@ function updateList(e) {
 }
 // UPDATE TASK
 function autoUpdateTasks(e) {
-    const currentList = e.currentTarget.closest(".tasks__art");
+    const currentList = e.currentTarget.closest(".list");
     const index = findIndexOfElmt(currentList.id, data);
-    const allTasks = currentList.querySelectorAll(".tasks__li");
-    if (currentList.querySelector(".tasks__title").innerText)
+    const allTasks = currentList.querySelectorAll(".list__li");
+    if (currentList.querySelector(".list__title").innerText)
         data[index].title = sanitizeInput(
-            currentList.querySelector(".tasks__title").innerText
+            currentList.querySelector(".list__title").innerText
         );
-    if (currentList.querySelector(".tasks__meta time")) {
+    if (currentList.querySelector(".list__meta time")) {
         data[index].date = sanitizeInput(
-            currentList.querySelector(".tasks__meta time").innerText
+            currentList.querySelector(".list__meta time").innerText
         );
     }
     if (currentList.dataset.color) {
@@ -295,7 +295,7 @@ function autoUpdateTasks(e) {
 
 // ANCHOR DELETE LIST
 function deleteList(e) {
-    const currentList = e.currentTarget.closest(".tasks__art");
+    const currentList = e.currentTarget.closest(".list");
     const index = findIndexOfElmt(currentList.id, data);
 
     // REVIEW
@@ -339,7 +339,7 @@ function checkTask(e) {
 
 // ANCHOR DELETE TASK
 function deleteTask(e) {
-    const currentList = e.currentTarget.closest(".tasks__art");
+    const currentList = e.currentTarget.closest(".list");
     const indexOfList = findIndexOfElmt(currentList.id, data);
     const indexOfTask = findIndexOfElmt(
         e.currentTarget.innerText,
@@ -356,11 +356,13 @@ function deleteTask(e) {
 // DISPLAY LISTS ON LOAD
 (() => {
     data = JSON.parse(localStorage.getItem("data")) || [];
-    console.log("data onLoad", {data});
+    console.log("data onLoad", data);
     createList();
 })();
 
 // !SECTION
+
+// SECTION DRAG AND DROP
 
 // ondragstart
 // ondragenter
@@ -369,12 +371,13 @@ function deleteTask(e) {
 // ondragover
 // ondrop
 
-// const allArticles = document.querySelectorAll(".tasks__art");
+// const allArticles = document.querySelectorAll(".list");
 
 let dragSource = null;
 
 function handleDragStart(e) {
-    dragSource = e.target;
+    dragSource = e.target.closest(".list");
+    console.log("dragSource => ", dragSource);
     this.classList.add("drag-start");
 }
 
@@ -394,9 +397,11 @@ function handleDragLeave(e) {
 function handleDrop(e) {
     e.preventDefault();
     this.classList.remove("drop");
-    const dropTarget = e.target;
+    const dropTarget = e.target.closest(".list");
     const targetIndex = findIndexOfElmt(dropTarget.id, data);
+    console.log("targetIndex => ", targetIndex);
     const sourceIndex = findIndexOfElmt(dragSource.id, data);
+    console.log("sourceIndex => ", sourceIndex);
     if (targetIndex !== sourceIndex) {
         const [removed] = data.splice(sourceIndex, 1);
         data.splice(targetIndex, 0, removed);
@@ -408,5 +413,109 @@ function handleDrop(e) {
 function handleDragEnd(e) {
     this.classList.remove("drag-start");
 }
+
+// !SECTION
+
+//SECTION DEMO
+const demo = [
+    {
+        "id": "task1676848854581",
+        "tasks": [
+            {
+                "isChecked": "true",
+                "task": "Élément 1"
+            },
+            {
+                "isChecked": "false",
+                "task": "Élément 2"
+            },
+            {
+                "isChecked": "false",
+                "task": "Élément 3"
+            },
+            {
+                "isChecked": "true",
+                "task": "Élément 4"
+            },
+            {
+                "isChecked": "true",
+                "task": "Élément 5"
+            },
+            {
+                "isChecked": "true",
+                "task": "Élément 6"
+            },
+            {
+                "isChecked": "false",
+                "task": "Élément 7"
+            }
+        ],
+        "title": "Chat 🙀",
+        "date": "2023-02-20",
+        "color": "#4fbf40"
+    },
+    {
+        "id": "task1676798831050",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Élément 1"
+            },
+            {
+                "isChecked": "false",
+                "task": "Élément 2 la description de l'élément"
+            },
+            {
+                "isChecked": "false",
+                "task": "Élément 3"
+            },
+            {
+                "isChecked": "false",
+                "task": "Élément 4"
+            }
+        ],
+        "title": "Cheval 🐴",
+        "date": "",
+        "color": "#4093bf"
+    },
+    {
+        "id": "task1676849152159",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Élément 1"
+            }
+        ],
+        "title": "Éléphant 🐘",
+        "date": "",
+        "color": "#ffd700"
+    },
+    {
+        "id": "task1676798930147",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "élément"
+            }
+        ],
+        "title": "Licorne 🦄",
+        "date": "",
+        "color": "#4071bf"
+    },
+    {
+        "id": "task1676798983374",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "élément"
+            }
+        ],
+        "title": "Chien 🐶",
+        "date": "",
+        "color": "#9fbf40"
+    }
+]
+
+// localStorage.setItem("data", JSON.stringify(demo));
 
 // !SECTION

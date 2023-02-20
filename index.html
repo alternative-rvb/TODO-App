@@ -16,20 +16,27 @@
 </head>
 
 <body>
-  <header class="task-header">
-    <!-- <p class="task-header__info text-center">New! Mardown support</p> -->
+  <header class="main-header">
+    <!-- <p class="main-header__info text-center">New! Mardown support</p> -->
     <div class="mw-1320 m-auto d-flex jc-sb ai-c p-1">
       <div class="d-flex ai-c g-1">
-        <img id="logo" src="./images/logo-arvb-2019-color-bg-white-circle.svg" alt="Logo Alternative RVB" width="32">
+        <a href="/">
+          <img id="logo" src="./images/logo-arvb-2019-color-bg-white-circle.svg" alt="Logo Alternative RVB" width="32">
+        </a>
       </div>
       <form class="create-form d-flex wrap jc-c g-1">
-        <button id="btn-create" class="btn-create btn-default d-flex jc-c ai-c shadow" aria-label="Add new task"
-          title="Add new task">
+        <button id="btn-create" class="btn-create btn-default d-flex jc-c ai-c shadow" aria-label="Add new list"
+          title="Add new list">
           <i class="fa-solid fa-square-plus"></i> <span>Ajouter</span>
         </button>
-        <button id="btn-delete-all" class="btn-delete-all d-flex jc-c ai-c shadow" aria-label="Add new task"
-          title="Delete all tasks">
-          <i class="fas fa-trash-alt"></i> <span>Delete all</span>
+        <!-- ANCHOR REVIEW -->
+        <!-- <button id="btn-demo" class="btn-demo btn-default d-flex jc-c ai-c shadow" aria-label="Add demo"
+          title="Add demo">
+         <span>Demo</span>
+        </button> -->
+        <button id="btn-delete-all" class="btn-delete-all d-flex jc-c ai-c shadow" aria-label="Add new list"
+          title="Delete all lists">
+          <i class="fas fa-trash-alt"></i> <span>Delete</span>
         </button>
       </form>
     </div>
@@ -37,10 +44,10 @@
 
   <main class="app mw-1320 m-auto">
     <div>
-      <section class="tasks-vue">
-        <h2 class="tasks-vue__title">Notes</h2>
+      <section class="lists-vue">
+        <h2 class="lists-vue__title">Notes</h2>
         <p>Cliquer sur [+] pour ajouter une nouvelle note</p>
-        <div id="lists-container" class="tasks-vue__container">
+        <div id="lists-container" class="lists-vue__container">
         </div>
       </section>
     </div>
