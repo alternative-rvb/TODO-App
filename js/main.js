@@ -162,7 +162,7 @@ function acceptData() {
     createList();
 }
 
-// ANCHOR CREATE LIST | AFFICHAGE | UI
+// ANCHOR CREATE LIST | LOOP
 function createList() {
     listsContainer.innerHTML = "";
     document.querySelector("#btn-validation").innerHTML = "Ajouter";
