@@ -423,34 +423,34 @@ const demo = [
         "tasks": [
             {
                 "isChecked": "true",
-                "task": "Élément 1"
+                "task": "Tâche 1"
             },
             {
                 "isChecked": "false",
-                "task": "Élément 2"
+                "task": "Tâche 2"
             },
             {
                 "isChecked": "false",
-                "task": "Élément 3"
+                "task": "Tâche 3"
             },
             {
                 "isChecked": "true",
-                "task": "Élément 4"
+                "task": "Tâche 4"
             },
             {
                 "isChecked": "true",
-                "task": "Élément 5"
+                "task": "Tâche 5"
             },
             {
                 "isChecked": "true",
-                "task": "Élément 6"
+                "task": "Tâche 6"
             },
             {
                 "isChecked": "false",
-                "task": "Élément 7"
+                "task": "Tâche 7"
             }
         ],
-        "title": "Chat 🙀",
+        "title": "Liste 🙀",
         "date": "2023-02-20",
         "color": "#4fbf40"
     },
@@ -459,22 +459,22 @@ const demo = [
         "tasks": [
             {
                 "isChecked": "false",
-                "task": "Élément 1"
+                "task": "Tâche 1"
             },
             {
                 "isChecked": "false",
-                "task": "Élément 2 la description de l'élément"
+                "task": "Tâche 2 la description de l'Tâche"
             },
             {
                 "isChecked": "false",
-                "task": "Élément 3"
+                "task": "Tâche 3"
             },
             {
                 "isChecked": "false",
-                "task": "Élément 4"
+                "task": "Tâche 4"
             }
         ],
-        "title": "Cheval 🐴",
+        "title": "Liste 🐴",
         "date": "",
         "color": "#4093bf"
     },
@@ -483,10 +483,10 @@ const demo = [
         "tasks": [
             {
                 "isChecked": "false",
-                "task": "Élément 1"
+                "task": "Tâche"
             }
         ],
-        "title": "Éléphant 🐘",
+        "title": "Liste 🐘",
         "date": "",
         "color": "#ffd700"
     },
@@ -495,10 +495,10 @@ const demo = [
         "tasks": [
             {
                 "isChecked": "false",
-                "task": "élément"
+                "task": "Tâche"
             }
         ],
-        "title": "Licorne 🦄",
+        "title": "Liste 🦄",
         "date": "",
         "color": "#4071bf"
     },
@@ -507,10 +507,10 @@ const demo = [
         "tasks": [
             {
                 "isChecked": "false",
-                "task": "élément"
+                "task": "Tâche"
             }
         ],
-        "title": "Chien 🐶",
+        "title": "Liste 🐶",
         "date": "",
         "color": "#9fbf40"
     }
