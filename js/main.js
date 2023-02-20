@@ -51,15 +51,6 @@ document.querySelector("#btn-demo").addEventListener("click", (e) => {
 
 // ANCHOR DRAG AND DROP
 
-// ondragstart
-// ondragenter
-// ondragleave
-// ondragend
-// ondragover
-// ondrop
-
-// const allArticles = document.querySelectorAll(".list");
-
 let dragSource = null;
 
 function handleDragStart(e) {
