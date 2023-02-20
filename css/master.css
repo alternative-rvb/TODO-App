@@ -78,6 +78,7 @@ section {
 main {
     margin-top: var(--headerHeight);
     min-height: calc(100vh - var(--headerHeight) - var(--footerHeight));
+    padding: 1rem 0;
 }
 
 input,

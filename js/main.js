@@ -1,11 +1,13 @@
 import {getRandomColor} from "./color.js";
 import {sanitizeInput, noRefresh, findIndexOfElmt} from "./utilities.js";
+import {getDemo} from "./demo.js";
 // import {noRefresh} from "./tools.js";
 
 const modalForm = document.querySelector("#modal-form");
 const listsForm = document.querySelector("#list-form");
 const btnCreate = document.querySelector("#btn-create");
 const btnDeleteAll = document.querySelector("#btn-delete-all");
+const btnDemo = document.querySelector("#btn-demo");
 const listsContainer = document.querySelector("#lists-container");
 const inputsContainer = document.querySelector("#inputs-container");
 let data = [];
@@ -30,10 +32,22 @@ btnDeleteAll.addEventListener("click", (e) => {
     noRefresh(e);
     if (
         window.confirm(
-            "Voulez-vous vraiment quitter ? Vous allez perdre vos données"
+            "Voulez-vous vraiment tout supprimer ? Vous allez perdre vos données"
         )
     ) {
         localStorage.clear();
+        data = [];
+        createList();
+    }
+});
+
+btnDemo.addEventListener("click", (e) => {
+    if (
+        window.confirm(
+            "Attention ! Vous allez perdre vos données actuelles. Voulez-vous continuer ?"
+        )
+    ) {
+        getDemo();
         data = [];
         createList();
     }
@@ -413,109 +427,5 @@ function handleDrop(e) {
 function handleDragEnd(e) {
     this.classList.remove("drag-start");
 }
-
-// !SECTION
-
-//SECTION DEMO
-const demo = [
-    {
-        "id": "task1676848854581",
-        "tasks": [
-            {
-                "isChecked": "true",
-                "task": "Tâche 1"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 2"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 3"
-            },
-            {
-                "isChecked": "true",
-                "task": "Tâche 4"
-            },
-            {
-                "isChecked": "true",
-                "task": "Tâche 5"
-            },
-            {
-                "isChecked": "true",
-                "task": "Tâche 6"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 7"
-            }
-        ],
-        "title": "Liste 🙀",
-        "date": "2023-02-20",
-        "color": "#4fbf40"
-    },
-    {
-        "id": "task1676798831050",
-        "tasks": [
-            {
-                "isChecked": "false",
-                "task": "Tâche 1"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 2 la description de l'Tâche"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 3"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 4"
-            }
-        ],
-        "title": "Liste 🐴",
-        "date": "",
-        "color": "#4093bf"
-    },
-    {
-        "id": "task1676849152159",
-        "tasks": [
-            {
-                "isChecked": "false",
-                "task": "Tâche"
-            }
-        ],
-        "title": "Liste 🐘",
-        "date": "",
-        "color": "#ffd700"
-    },
-    {
-        "id": "task1676798930147",
-        "tasks": [
-            {
-                "isChecked": "false",
-                "task": "Tâche"
-            }
-        ],
-        "title": "Liste 🦄",
-        "date": "",
-        "color": "#4071bf"
-    },
-    {
-        "id": "task1676798983374",
-        "tasks": [
-            {
-                "isChecked": "false",
-                "task": "Tâche"
-            }
-        ],
-        "title": "Liste 🐶",
-        "date": "",
-        "color": "#9fbf40"
-    }
-]
-
-// localStorage.setItem("data", JSON.stringify(demo));
 
 // !SECTION
