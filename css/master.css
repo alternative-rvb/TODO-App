@@ -475,6 +475,18 @@ li::marker {
     display: none;
 }
 
+/* Quand la section est en dessous de la ligne de flotaison */
+/* .reveal {
+    opacity: 0.2;
+    transform: translateY(4rem);
+}
+
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 300ms;
+} */
+
 @media (min-width: 375px) {
     .btn-text {
         display: initial;

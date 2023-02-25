@@ -204,7 +204,7 @@ function createList() {
     document.querySelector("#btn-validation").innerHTML = "Ajouter";
     data.map((x) => {
         listsContainer.innerHTML += `
-      <article id=${x.id} class="list d-flex fd-column" style="border-color:${
+      <article id=${x.id} class="list d-flex fd-column reveal" style="border-color:${
             x.color
         }"  data-color="${x.color}">
         <header class="list__header">
