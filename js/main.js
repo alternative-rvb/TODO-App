@@ -233,6 +233,9 @@ function createList() {
         <button class="delete-list btn-square" >
           <i class="fas fa-trash-alt"></i>
         </button>
+        <button class="duplicate-list btn-square" >
+            <i class="fas fa-clone"></i>
+        </button>
       </form>
       </article>
       `;
@@ -255,6 +258,21 @@ function createList() {
             noRefresh(e);
             deleteList(e);
             createList();
+        });
+    });
+
+    // Ajouter un événement d'écoute pour le bouton de duplication
+    const duplicateBtns = listsContainer.querySelectorAll(".duplicate-list");
+    duplicateBtns.forEach((item) => {
+        item.addEventListener("click", (e) => {
+            noRefresh(e);
+            const currentList = e.currentTarget.closest(".list");
+            const index = findIndexOfElmt(currentList.id, data);
+            const duplicatedList = JSON.parse(JSON.stringify(data[index])); // créer une copie de la liste
+            duplicatedList.id = `task${Date.now()}`; // changer l'id de la liste dupliquée
+            data.splice(index + 1, 0, duplicatedList); // insérer la liste dupliquée dans le tableau de données
+            localStorage.setItem("data", JSON.stringify(data)); // sauvegarder les données dans le local storage
+            createList(); // re-créer la liste
         });
     });
 

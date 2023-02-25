@@ -29,59 +29,7 @@ const demo = [
         "color": "#bf6640"
     },
     {
-        "id": "task1676897708233",
-        "tasks": [
-            {
-                "isChecked": "false",
-                "task": "Tâche 1"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 2"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 3"
-            }
-        ],
-        "title": "Liste 🦄",
-        "date": "",
-        "color": "#4071bf"
-    },
-    {
-        "id": "task1676897690083",
-        "tasks": [
-            {
-                "isChecked": "false",
-                "task": "Tâche 1"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 2"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 3"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 4"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 5"
-            },
-            {
-                "isChecked": "false",
-                "task": "Tâche 6"
-            }
-        ],
-        "title": "Liste 🐘",
-        "date": "",
-        "color": "#ffd700"
-    },
-    {
-        "id": "task1676898039898",
+        "id": "task1677359026099",
         "tasks": [
             {
                 "isChecked": "true",
@@ -120,28 +68,176 @@ const demo = [
                 "task": "Tâche 9"
             }
         ],
-        "title": "Liste 🙀",
+        "title": "🙀 Liste",
         "date": "2023-12-31",
         "color": "#4044bf"
     },
     {
-        "id": "task1676798983374",
+        "id": "task1677359528554",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Tâche 1"
+            },
+            {
+                "isChecked": "false",
+                "task": "Tâche 2"
+            },
+            {
+                "isChecked": "false",
+                "task": "Tâche 3"
+            },
+            {
+                "isChecked": "false",
+                "task": "Tâche 4"
+            },
+            {
+                "isChecked": "false",
+                "task": "Tâche 5"
+            },
+            {
+                "isChecked": "false",
+                "task": "Tâche 6"
+            }
+        ],
+        "title": "🐘 Liste",
+        "date": "",
+        "color": "#ff00d0"
+    },
+    {
+        "id": "task1677359523535",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Tâche 1"
+            },
+            {
+                "isChecked": "false",
+                "task": "Tâche 2"
+            },
+            {
+                "isChecked": "false",
+                "task": "Tâche 3"
+            }
+        ],
+        "title": "🦄 Liste",
+        "date": "",
+        "color": "#4071bf"
+    },
+    {
+        "id": "task1677359002084",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Tâche 1"
+            }
+        ],
+        "title": "🦊 Liste",
+        "date": "",
+        "color": "#b0bf40"
+    },
+    {
+        "id": "task1677359141547",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Tâche 1"
+            }
+        ],
+        "title": "🐮 Liste",
+        "date": "",
+        "color": "#6640bf"
+    },
+    {
+        "id": "task1677359035841",
         "tasks": [
             {
                 "isChecked": "false",
                 "task": "Tâche"
             }
         ],
-        "title": "Liste 🐶",
+        "title": "🐶 Liste",
         "date": "",
         "color": "#9fbf40"
     },
     {
-        "id": "task1676852476439",
+        "id": "task1677359048349",
         "tasks": [],
-        "title": "Liste 🐴",
+        "title": "🐴 Liste",
         "date": "",
         "color": "#4093bf"
+    },
+    {
+        "id": "task1677358804004",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Tâche 1"
+            }
+        ],
+        "title": "🦙Liste",
+        "date": "",
+        "color": "#bfb040"
+    },
+    {
+        "id": "task1677358916429",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Tâche 1"
+            }
+        ],
+        "title": "🐸 Liste",
+        "date": "",
+        "color": "#40bfa8"
+    },
+    {
+        "id": "task1677359535987",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Tâche 1"
+            }
+        ],
+        "title": "🐐 Liste",
+        "date": "",
+        "color": "#68bf40"
+    },
+    {
+        "id": "task1677359577523",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Tâche 1"
+            }
+        ],
+        "title": "🦅 Liste",
+        "date": "",
+        "color": "#4060bf"
+    },
+    {
+        "id": "task1677358882781",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Tâche 1"
+            }
+        ],
+        "title": "🐍 Liste",
+        "date": "",
+        "color": "#40bf91"
+    },
+    {
+        "id": "task1677359542271",
+        "tasks": [
+            {
+                "isChecked": "false",
+                "task": "Tâche 1"
+            }
+        ],
+        "title": "🐭 Liste",
+        "date": "",
+        "color": "#66bf40"
     }
 ]
 
