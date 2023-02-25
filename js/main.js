@@ -244,16 +244,16 @@ function createList() {
 
     // ANCHOR HANDLE LISTS UI
 
-    const edit = listsContainer.querySelectorAll(".edit-list");
-    edit.forEach((item) => {
+    const editBtns = listsContainer.querySelectorAll(".edit-list");
+    editBtns.forEach((item) => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
             updateList(e);
         });
     });
 
-    const resetBtn = listsContainer.querySelectorAll(".delete-list");
-    resetBtn.forEach((item) => {
+    const resetBtns = listsContainer.querySelectorAll(".delete-list");
+    resetBtns.forEach((item) => {
         item.addEventListener("click", (e) => {
             noRefresh(e);
             deleteList(e);
