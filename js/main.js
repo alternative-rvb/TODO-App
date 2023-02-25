@@ -204,7 +204,9 @@ function createList() {
     document.querySelector("#btn-validation").innerHTML = "Ajouter";
     data.map((x) => {
         listsContainer.innerHTML += `
-      <article id=${x.id} class="list d-flex fd-column reveal" style="border-color:${
+      <article id=${
+          x.id
+      } class="list d-flex fd-column reveal" style="border-color:${
             x.color
         }"  data-color="${x.color}">
         <header class="list__header">
@@ -304,6 +306,7 @@ function createList() {
     inputsContainer.innerHTML = "";
     countInputs = 1;
     addInput(inputsContainer);
+    countLists("h2", data);
     console.log("data created", data);
 }
 
@@ -420,6 +423,14 @@ function deleteTask(e) {
     data[indexOfList].tasks.splice(indexOfTask, 1);
     localStorage.setItem("data", JSON.stringify(data));
     createList();
+}
+
+// document.querySelector("h2").innerHTML += ` ${data.length ? data.length : ""}`;
+// Ajouter un élément HTML dans le h2 avant le texte
+function countLists(element, array) {
+    document.querySelector(element).innerHTML = ` ${
+        array.length ? array.length : ""
+    } Notes`;
 }
 
 // DISPLAY LISTS ON LOAD
