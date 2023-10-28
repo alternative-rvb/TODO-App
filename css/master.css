@@ -1,6 +1,10 @@
 /*ANCHOR REBOOT*/
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Hind+Madurai:wght@300;400;500;600;700&display=swap');
 
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+
+@import 'topnav.css';
+
 :root {
     scroll-behavior: smooth;
     --primary: gold;
@@ -65,7 +69,7 @@ a {
     color: var(--light);
 }
 
-header,
+nav,
 footer {
     background-color: hsla(0, 0%, 8%, 1);
     color: var(--light);
@@ -76,8 +80,8 @@ section {
 }
 
 main {
-    margin-top: var(--headerHeight);
-    min-height: calc(100vh - var(--headerHeight) - var(--footerHeight));
+    margin-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height) - var(--footerHeight));
     padding: 1rem 0;
 }
 
@@ -294,25 +298,21 @@ textarea {
     width: 32px;
 }
 
-.main-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
 
-.main-header>* {
+
+.secondary-nav>* {
     text-decoration: none;
 }
 
-.main-header__info {
+.secondary-nav__info {
     padding: 0.5rem 1rem;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* .main-header__title {
+/* .secondary-nav__title {
     white-space: nowrap;
 } */
-.main-header__title a {
+.secondary-nav__title a {
     display: block;
     text-decoration: none;
     font-size: 24px;

@@ -1,122 +1,239 @@
 <!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO APP</title>
+    <link
+      rel="shortcut icon"
+      href="images/logo-arvb-2019-color-bg-white-circle.svg"
+      type="image/x-icon"
+    />
+    <!-- FONT AWSOME CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- CUSTOM CSS master -->
+    <link rel="stylesheet" href="./css/master.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TODO APP</title>
-  <link rel="shortcut icon" href="images/logo-arvb-2019-color-bg-white-circle.svg" type="image/x-icon">
-  <!-- FONT AWSOME CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- CUSTOM CSS master -->
-  <link rel="stylesheet" href="./css/master.css" />
-</head>
-
-<body>
-  <header class="main-header">
-    <!-- <p class="main-header__info text-center">New! Mardown support</p> -->
-    <div class="mw-1320 m-auto d-flex jc-sb ai-c p-1">
-      <div class="d-flex ai-c g-1">
-        <a href="/">
-          <img id="logo" src="./images/logo-arvb-2019-color-bg-white-circle.svg" alt="Logo Alternative RVB" width="32">
+  <body>
+    <header class="arvb-header">
+      <nav class="arvb-nav">
+        <a href="/" class="arvb-nav__logo">
+          <img
+            src="images/alternative-rvb-logo.svg"
+            alt="Alternative RVB logo"
+            width="35"
+          />
         </a>
+        <div class="arvb-nav__sidebar">
+          <a href="/" class="arvb-nav__link">Home</a>
+          <a href="https://alternative-rvb.com" class="arvb-nav__link"
+            >Alternative RVB</a
+          >
+          <a href="https://todo-app-arvb.vercel.app/" class="arvb-nav__link"
+            >Todo App</a
+          >
+          <a href="https://quiz-arvb.vercel.app/" class="arvb-nav__link"
+            >Quiz</a
+          >
+          <a href="https://chimoumi-arvb.vercel.app/" class="arvb-nav__link"
+            >Chifoumi</a
+          >
+          <a
+            href="https://brick-breaker-arvb.vercel.app/"
+            class="arvb-nav__link"
+            >Brick Breaker</a
+          >
+          <a href="https://chatbox-arvb.vercel.app/" class="arvb-nav__link"
+            >ChatBox</a
+          >
+          <a
+            href="https://simple-js-calculator-arvb.vercel.app/"
+            class="arvb-nav__link"
+            >Calculator</a
+          >
+        </div>
+        <div class="arvb-nav__right">
+          <div class="arvb-nav__sm">
+            <a
+              class="arvb-nav__link"
+              href="https://www.youtube.com/@nicolasmalet9267/"
+              aria-label="Youtube"
+            >
+              <i class="bi bi-youtube"></i>
+            </a>
+            <a
+              class="arvb-nav__link"
+              href="https://github.com/alternative-rvb"
+              aria-label="Youtube"
+            >
+              <i class="bi bi-github"></i>
+            </a>
+            <a
+              class="arvb-nav__link"
+              href="https://www.linkedin.com/in/nicolas-malet/"
+              aria-label="Youtube"
+            >
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+          <div class="arvb-nav__menu">
+            <div class="arvb-nav__menu-btn" type="button">
+              <i class="bi bi-list"></i>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <nav class="secondary-nav">
+        <!-- <p class="secondary-nav__info text-center">New! Mardown support</p> -->
+        <div class="d-flex jc-sb ai-c p-1">
+          <div class="d-flex ai-c g-1"></div>
+          <form class="create-form d-flex wrap jc-c g-1">
+            <button
+              id="btn-create"
+              class="btn-create btn-default d-flex jc-c ai-c shadow"
+              aria-label="Add new list"
+              title="Ajouter une nouvelle note"
+            >
+              <i class="fa-solid fa-square-plus"></i>
+              <span class="btn-text">Ajouter</span>
+            </button>
+            <!-- ANCHOR REVIEW -->
+            <button
+              id="btn-demo"
+              class="btn-demo btn-default d-flex jc-c ai-c shadow"
+              aria-label="Get demo"
+              title="Remplir avec le contenu de démonstration"
+            >
+              <i class="fa-solid fa-file-import"></i>
+              <span class="btn-text">Demo</span>
+            </button>
+            <!-- ANCHOR REVIEW -->
+            <!-- <button id="btn-help" class="btn-help btn-default d-flex jc-c ai-c shadow" aria-label="Get help"
+            title="Obtenir de l'aide">
+           <span class="btn-text">Aide</span>
+          </button> -->
+            <button
+              id="btn-delete-all"
+              class="btn-delete-all d-flex jc-c ai-c shadow"
+              aria-label="Add new list"
+              title="Supprimer toutes les notes"
+            >
+              <i class="fas fa-trash-alt"></i>
+              <span class="btn-text">Supprimer</span>
+            </button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+    <main class="app mw-1320 m-auto">
+      <div>
+        <section class="lists-vue">
+          <h2 class="lists-vue__title">Notes</h2>
+          <p>Cliquer sur [+] pour ajouter une nouvelle note</p>
+          <div id="lists-container" class="lists-vue__container"></div>
+        </section>
       </div>
-      <form class="create-form d-flex wrap jc-c g-1">
-        <button id="btn-create" class="btn-create btn-default d-flex jc-c ai-c shadow" aria-label="Add new list"
-          title="Ajouter une nouvelle note">
-          <i class="fa-solid fa-square-plus"></i> <span class="btn-text">Ajouter</span>
-        </button>
-        <!-- ANCHOR REVIEW -->
-        <button id="btn-demo" class="btn-demo btn-default d-flex jc-c ai-c shadow" aria-label="Get demo"
-          title="Remplir avec le contenu de démonstration">
-          <i class="fa-solid fa-file-import"></i> <span class="btn-text">Demo</span>
-        </button>
-        <!-- ANCHOR REVIEW -->
-        <!-- <button id="btn-help" class="btn-help btn-default d-flex jc-c ai-c shadow" aria-label="Get help"
-          title="Obtenir de l'aide">
-         <span class="btn-text">Aide</span>
-        </button> -->
-        <button id="btn-delete-all" class="btn-delete-all d-flex jc-c ai-c shadow" aria-label="Add new list"
-          title="Supprimer toutes les notes">
-          <i class="fas fa-trash-alt"></i> <span class="btn-text">Supprimer</span>
-        </button>
-      </form>
-    </div>
-  </header>
 
-  <main class="app mw-1320 m-auto">
-    <div>
-      <section class="lists-vue">
-        <h2 class="lists-vue__title">Notes</h2>
-        <p>Cliquer sur [+] pour ajouter une nouvelle note</p>
-        <div id="lists-container" class="lists-vue__container">
-        </div>
-      </section>
-    </div>
-
-    <!-- ANCHOR Modal -->
-    <div id="modal-form">
-      <form id="list-form" class="list-form shadow rounded p-1">
-        <div class="list-form__section text-right">
-          <button id="btn-close" class="list-form__btn-close btn-close btn-square" type="button" aria-label="Close">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-        <div class="list-form__section">
-          <h2 class="list-form__title">Remplissez tous les champs</h2>
-          <div class="my-1">
-            <label for="inputTitle" class="list-form__label">
-              Intitulé de la liste:
-            </label>
-            <input type="text" id="inputTitle" class="rounded" placeholder="Titre ..." name="title" />
+      <!-- ANCHOR Modal -->
+      <div id="modal-form">
+        <form id="list-form" class="list-form shadow rounded p-1">
+          <div class="list-form__section text-right">
+            <button
+              id="btn-close"
+              class="list-form__btn-close btn-close btn-square"
+              type="button"
+              aria-label="Close"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
           </div>
-          <p id="info"></p>
-          <div class="my-1">
-            <label for="inputDate" class="list-form__label">
-              Échéance:
-            </label>
-            <input type="date" id="inputDate" class="rounded" name="date" />
-          </div>
-          <p class="list-form__title">Cliquer sur [+] ou appuyer sur Entrée pour ajouter un tâche</p>
-          <div id="inputs-container" class="list-form__container">
-            <!-- <div class="my-1 d-flex ai-c">
+          <div class="list-form__section">
+            <h2 class="list-form__title">Remplissez tous les champs</h2>
+            <div class="my-1">
+              <label for="inputTitle" class="list-form__label">
+                Intitulé de la liste:
+              </label>
+              <input
+                type="text"
+                id="inputTitle"
+                class="rounded"
+                placeholder="Titre ..."
+                name="title"
+              />
+            </div>
+            <p id="info"></p>
+            <div class="my-1">
+              <label for="inputDate" class="list-form__label">
+                Échéance:
+              </label>
+              <input type="date" id="inputDate" class="rounded" name="date" />
+            </div>
+            <p class="list-form__title">
+              Cliquer sur [+] ou appuyer sur Entrée pour ajouter un tâche
+            </p>
+            <div id="inputs-container" class="list-form__container">
+              <!-- <div class="my-1 d-flex ai-c">
               <input type="text" id="inputTask1" class="single-task rounded-left" placeholder="Your task 1..."
                 name="task1">
               <button type="button" class="add-single btn-classic rounded-right">+</button>
             </div> -->
+            </div>
+            <div>
+              <button type="button" class="add-single btn-default rounded">
+                +
+              </button>
+            </div>
+            <div class="my-1">
+              <input
+                type="color"
+                id="inputColor"
+                class="input-color"
+                value="#ffd700"
+                name="color"
+              />
+              <label for="inputColor">Couleur</label>
+            </div>
           </div>
-          <div>
-            <button type="button" class="add-single btn-default rounded">+</button>
+          <div class="list-form__section text-right">
+            <button
+              type="button"
+              id="btn-reset"
+              class="btn-reset list-form__btn btn-default"
+            >
+              Supprimer
+            </button>
+            <button
+              id="btn-validation"
+              class="btn-validation list-form__btn btn-default"
+            >
+              Ajouter
+            </button>
           </div>
-          <div class="my-1">
-            <input type="color" id="inputColor" class="input-color" value="#ffd700" name="color" />
-            <label for="inputColor">Couleur</label>
-          </div>
-        </div>
-        <div class="list-form__section text-right">
-          <button type="button" id="btn-reset" class="btn-reset list-form__btn btn-default">
-            Supprimer
-          </button>
-          <button id="btn-validation" class="btn-validation list-form__btn btn-default">
-            Ajouter
-          </button>
-        </div>
-      </form>
-    </div>
-  </main>
+        </form>
+      </div>
+    </main>
 
-  <footer class="p-1 text-center">
-    <p>© 2022 <a href="https://alternative-rvb.com/">Alternative RVB</a></p>
-  </footer>
+    <footer class="p-1 text-center">
+      <p><a href="https://alternative-rvb.com/">© 2023 Alternative RVB</a></p>
+    </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
-    integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="./js/main.js" type="module" defer></script>
-  <!-- <script src="./js/reveal.js" type="module" defer></script> -->
-</body>
-
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
+      integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./js/topnav.js" type="module" defer></script>
+    <script src="./js/main.js" type="module" defer></script>
+    <!-- <script src="./js/reveal.js" type="module" defer></script> -->
+  </body>
 </html>
