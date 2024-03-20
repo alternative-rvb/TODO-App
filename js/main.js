@@ -142,12 +142,12 @@ modalForm.querySelector(".btn-close").addEventListener("click", (e) => {
 
 function formValidation() {
     if (inputTitle.value === "") {
-        console.log("failure");
+
         inputTitle.focus();
         info.innerHTML = "Task cannot be blank";
         info.classList.add("color-danger");
     } else {
-        console.log("success");
+
         info.innerHTML = "";
         acceptData();
         modalForm.style.display = "none";
@@ -307,7 +307,7 @@ function createList() {
     countInputs = 1;
     addInput(inputsContainer);
     countLists("h2", data);
-    console.log("data created", data);
+
 }
 
 // ANCHOR UPDATE LIST
@@ -436,7 +436,7 @@ function countLists(element, array) {
 // DISPLAY LISTS ON LOAD
 (() => {
     data = JSON.parse(localStorage.getItem("data")) || [];
-    console.log("data onLoad", data);
+
     createList();
 })();
 
